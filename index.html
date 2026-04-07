@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>競馬予想レポート</title>
+<style>
+  /* ========== リセット・ベース ========== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Meiryo', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', sans-serif;
+    background: #f4f7f4;
+    color: #333;
+    min-height: 100vh;
+  }
+
+  /* ========== ヘッダー ========== */
+  header {
+    background: linear-gradient(135deg, #1a6e3c 0%, #2d9d5b 100%);
+    color: white;
+    padding: 0 24px;
+    box-shadow: 0 2px 12px rgba(26,110,60,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .site-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+  }
+  .logo-icon {
+    font-size: 1.6em;
+    line-height: 1;
+  }
+  .logo-text {
+    font-size: 1.15em;
+    font-weight: bold;
+    letter-spacing: 0.03em;
+  }
+  .logo-sub {
+    font-size: 0.65em;
+    opacity: 0.85;
+    display: block;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+  }
+  .header-nav {
+    display: flex;
+    gap: 6px;
+  }
+  .nav-chip {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.82em;
+    text-decoration: none;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  .nav-chip:hover, .nav-chip.active {
+    background: rgba(255,255,255,0.3);
+  }
+
+  /* ========== メインコンテンツ ========== */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+
+  /* ========== ヒーローバナー ========== */
+  .hero {
+    background: white;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .hero-text h2 {
+    font-size: 1.45em;
+    color: #1a6e3c;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .hero-text p {
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.7;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+  .stat-box {
+    text-align: center;
+    background: #f0f8f4;
+    border-radius: 10px;
+    padding: 14px 20px;
+    min-width: 80px;
+  }
+  .stat-num {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #1a6e3c;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72em;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  /* ========== セクションヘッダー ========== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: 1.05em;
+    font-weight: bold;
+    color: #1a6e3c;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: #1a6e3c;
+    border-radius: 2px;
+  }
+
+  /* ========== フィルタータブ ========== */
+  .filter-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .filter-tab {
+    background: white;
+    border: 1.5px solid #dde8e2;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.83em;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .filter-tab:hover {
+    border-color: #1a6e3c;
+    color: #1a6e3c;
+  }
+  .filter-tab.active {
+    background: #1a6e3c;
+    border-color: #1a6e3c;
+    color: white;
+  }
+
+  /* ========== レースカードグリッド ========== */
+  .race-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+  }
+
+  /* ========== レースカード ========== */
+  .race-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    overflow: hidden;
+    transition: transform 0.18s, box-shadow 0.18s;
+    border: 1.5px solid transparent;
+  }
+  .race-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(26,110,60,0.13);
+    border-color: #c8e6d0;
+  }
+  .card-header {
+    background: linear-gradient(135deg, #1a6e3c, #2d9d5b);
+    color: white;
+    padding: 14px 18px;
+    position: relative;
+  }
+  .card-header.upcoming {
+    background: linear-gradient(135deg, #2c5f8a, #3a7fc1);
+  }
+  .race-grade {
+    display: inline-block;
+    background: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.72em;
+    font-weight: bold;
+    padding: 2px 8px;
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+  .race-grade.g1 { background: rgba(220,40,40,0.5); border-color: rgba(255,100,100,0.5); }
+  .race-grade.g2 { background: rgba(30,80,180,0.5); border-color: rgba(100,140,220,0.5); }
+  .race-grade.g3 { background: rgba(30,140,60,0.4); border-color: rgba(80,180,100,0.4); }
+  .race-name {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .race-meta {
+    font-size: 0.78em;
+    opacity: 0.88;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .card-status {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+  }
+  .status-badge {
+    display: inline-block;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 0.72em;
+    font-weight: bold;
+  }
+  .status-done { background: rgba(255,255,255,0.9); color: #1a6e3c; }
+  .status-upcoming { background: rgba(255,200,0,0.9); color: #333; }
+  .status-live { background: rgba(220,40,40,0.9); color: white; }
+
+  /* ========== カードボディ ========== */
+  .card-body {
+    padding: 16px 18px;
+  }
+  .result-summary {
+    background: #f0f8f4;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-size: 0.85em;
+    line-height: 1.6;
+    color: #444;
+    border-left: 3px solid #1a6e3c;
+  }
+  .result-summary.win {
+    background: #fff8e1;
+    border-left-color: #e8a000;
+  }
+  .result-summary.loss {
+    background: #fdf0f0;
+    border-left-color: #d9534f;
+  }
+
+  /* ========== レポートリンク ========== */
+  .report-links {
+    display: flex;
+    gap: 10px;
+  }
+  .report-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.84em;
+    font-weight: bold;
+    transition: all 0.18s;
+    border: 1.5px solid;
+  }
+  .report-link.yoso {
+    background: #f0f8f4;
+    color: #1a6e3c;
+    border-color: #c8e6d0;
+  }
+  .report-link.yoso:hover {
+    background: #1a6e3c;
+    color: white;
+    border-color: #1a6e3c;
+  }
+  .report-link.kekka {
+    background: #fff8f0;
+    color: #e07000;
+    border-color: #f5d5a8;
+  }
+  .report-link.kekka:hover {
+    background: #e07000;
+    color: white;
+    border-color: #e07000;
+  }
+  .report-link.disabled {
+    background: #f5f5f5;
+    color: #aaa;
+    border-color: #e0e0e0;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .link-icon { font-size: 1em; }
+
+  /* ========== フッター ========== */
+  footer {
+    text-align: center;
+    padding: 28px 20px;
+    background: white;
+    border-top: 1px solid #e8ede8;
+    color: #999;
+    font-size: 0.8em;
+    margin-top: 40px;
+  }
+  footer strong {
+    color: #1a6e3c;
+  }
+
+  /* ========== レスポンシブ ========== */
+  @media (max-width: 600px) {
+    .hero { flex-direction: column; padding: 20px; }
+    .hero-stats { justify-content: center; }
+    .race-grid { grid-template-columns: 1fr; }
+    .header-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <div class="header-inner">
+    <a class="site-logo" href="index.html">
+      <span class="logo-icon">🏇</span>
+      <span class="logo-text">
+        競馬予想レポート
+        <span class="logo-sub">Horse Racing Prediction &amp; Analysis</span>
+      </span>
+    </a>
+    <nav class="header-nav">
+      <a class="nav-chip active" href="#races">レース一覧</a>
+    </nav>
+  </div>
+</header>
+
+<!-- メインコンテンツ -->
+<main>
+
+  <!-- ヒーローバナー -->
+  <div class="hero">
+    <div class="hero-text">
+      <h2>🏆 重賞レース 予想＆結果レポート</h2>
+      <p>データと統計に基づいた競馬予想レポートを公開しています。<br>
+        期待値分析・過去傾向・騎手データを組み合わせた独自の予想をご覧ください。</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num" id="total-count">1</div>
+        <div class="stat-label">公開レース</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">GI</div>
+        <div class="stat-label">最高グレード</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- フィルタータブ -->
+  <div class="filter-tabs">
+    <div class="filter-tab active" onclick="filterRaces('all', this)">すべて</div>
+    <div class="filter-tab" onclick="filterRaces('g1', this)">GI</div>
+    <div class="filter-tab" onclick="filterRaces('g2', this)">GII</div>
+    <div class="filter-tab" onclick="filterRaces('g3', this)">GIII</div>
+    <div class="filter-tab" onclick="filterRaces('done', this)">結果あり</div>
+  </div>
+
+  <!-- セクションヘッダー -->
+  <div class="section-header" id="races">
+    <div class="section-title">レース一覧</div>
+  </div>
+
+  <!-- レースカードグリッド -->
+  <div class="race-grid" id="race-grid">
+
+    <!-- 第70回大阪杯 -->
+    <div class="race-card" data-grade="g1" data-status="done">
+      <div class="card-header">
+        <div class="card-status">
+          <span class="status-badge status-done">✓ 結果あり</span>
+        </div>
+        <div class="race-grade g1">GI</div>
+        <div class="race-name">第70回 大阪杯</div>
+        <div class="race-meta">
+          <span>📅 2026年4月5日（日）</span>
+          <span>🏟️ 阪神芝2000m</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="result-summary">
+          ダノンデサイル・クロワデュノールを軸に期待値分析で選出。
+          稍重馬場・内回りのポイントを踏まえた予想レポートです。
+        </div>
+        <div class="report-links">
+          <a class="report-link yoso" href="2026/osaka-cup-70_prediction.html">
+            <span class="link-icon">📊</span> 予想レポート
+          </a>
+          <a class="report-link kekka" href="2026/osaka-cup-70_result.html">
+            <span class="link-icon">🏁</span> 結果レポート
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ダービー卿チャレンジトロフィー -->
+    <div class="race-card" data-grade="g3" data-status="upcoming">
+      <div class="card-header upcoming">
+        <div class="card-status">
+          <span class="status-badge status-upcoming">📋 予想のみ</span>
+        </div>
+        <div class="race-grade g3">GIII</div>
+        <div class="race-name">ダービー卿チャレンジトロフィー 2026</div>
+        <div class="race-meta">
+          <span>📅 2026年4月5日（土）</span>
+          <span>🏟️ 中山芝1600m</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="result-summary">
+          中山マイルの重賞。データと期待値分析に基づく予想レポートです。
+        </div>
+        <div class="report-links">
+          <a class="report-link yoso" href="2026/derby-kyo-ct_prediction.html">
+            <span class="link-icon">📊</span> 予想レポート
+          </a>
+          <a class="report-link kekka disabled" href="#">
+            <span class="link-icon">🏁</span> 結果待ち
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /race-grid -->
+
+</main>
+
+<!-- フッター -->
+<footer>
+  <p><strong>競馬予想レポート</strong> &nbsp;|&nbsp; データに基づく競馬予想・分析サイト</p>
+  <p style="margin-top:6px;">※ 本サイトの予想は参考情報です。馬券の購入は自己責任でお願いします。</p>
+</footer>
+
+<script>
+  // フィルタリング
+  function filterRaces(type, el) {
+    // タブのactiveを切り替え
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+
+    const cards = document.querySelectorAll('.race-card');
+    cards.forEach(card => {
+      const grade = card.dataset.grade;
+      const status = card.dataset.status;
+      let show = false;
+      if (type === 'all') show = true;
+      else if (type === 'done') show = status === 'done';
+      else show = grade === type;
+      card.style.display = show ? '' : 'none';
+    });
+
+    // カード数を更新
+    const visibleCount = [...cards].filter(c => c.style.display !== 'none').length;
+    document.getElementById('total-count').textContent = visibleCount;
+  }
+
+  // 初期表示カウント
+  document.addEventListener('DOMContentLoaded', () => {
+    const count = document.querySelectorAll('.race-card').length;
+    document.getElementById('total-count').textContent = count;
+  });
+</script>
+</body>
+</html>

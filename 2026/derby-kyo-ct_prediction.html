@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第58回ダービー卿チャレンジトロフィー 予想レポート</title>
+<style>
+  body { font-family: 'Meiryo', 'Hiragino Kaku Gothic Pro', sans-serif; background: #f5f5f5; margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { background: linear-gradient(135deg, #1a6e3c, #2d9d5b); color: white; padding: 20px 25px; border-radius: 10px; margin-bottom: 5px; font-size: 1.5em; }
+  h1 span { font-size: 0.7em; display: block; margin-top: 5px; opacity: 0.9; }
+  .badge { display: inline-block; background: #e8a000; color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.8em; font-weight: bold; margin-left: 10px; }
+  .race-info { background: white; border-radius: 10px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .race-info h2 { color: #1a6e3c; border-bottom: 2px solid #1a6e3c; padding-bottom: 8px; margin-top: 0; }
+  .info-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+  .info-item { background: #f0f8f4; border-radius: 8px; padding: 12px; text-align: center; }
+  .info-item .label { font-size: 0.75em; color: #666; }
+  .info-item .value { font-size: 1.1em; font-weight: bold; color: #1a6e3c; margin-top: 4px; }
+  .section { background: white; border-radius: 10px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .section h2 { color: #1a6e3c; border-bottom: 2px solid #1a6e3c; padding-bottom: 8px; margin-top: 0; }
+  .section h3 { color: #2d7a50; margin: 18px 0 10px; font-size: 1em; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; }
+  th { background: #1a6e3c; color: white; padding: 8px 10px; text-align: center; }
+  td { padding: 7px 10px; border-bottom: 1px solid #eee; text-align: center; }
+  tr:hover { background: #f5fbf7; }
+  tr:nth-child(even) { background: #fafafa; }
+  .pop1 { background: #fff3cd !important; }
+  .pop2 { background: #d1ecf1 !important; }
+  .pop3 { background: #d4edda !important; }
+  .pop4 { background: #f8d7da !important; }
+  .star { color: #e8a000; font-weight: bold; }
+  .ev-high { color: #c0392b; font-weight: bold; }
+  .ev-mid { color: #e67e22; font-weight: bold; }
+  .ev-low { color: #666; }
+  .recommendation { background: linear-gradient(135deg, #fff8e1, #fff3cd); border: 2px solid #e8a000; border-radius: 10px; padding: 20px; margin: 15px 0; }
+  .recommendation h2 { color: #b7770d; border-bottom: 2px solid #e8a000; padding-bottom: 8px; margin-top: 0; }
+  .rec-item { background: white; border-radius: 8px; padding: 14px; margin: 10px 0; border-left: 5px solid #e8a000; }
+  .rec-item .title { font-weight: bold; color: #333; margin-bottom: 6px; }
+  .rec-item .detail { color: #555; font-size: 0.9em; line-height: 1.6; }
+  .rank-badge { display: inline-block; background: #1a6e3c; color: white; border-radius: 50%; width: 24px; height: 24px; line-height: 24px; text-align: center; font-size: 0.8em; margin-right: 8px; }
+  .priority-s { border-left-color: #c0392b; }
+  .priority-a { border-left-color: #e67e22; }
+  .priority-b { border-left-color: #1a6e3c; }
+  .odds-table td.featured { color: #c0392b; font-weight: bold; }
+  .filter-note { background: #e8f4fd; border-left: 4px solid #3498db; padding: 12px 16px; margin: 10px 0; border-radius: 4px; font-size: 0.88em; color: #555; }
+  .jockey-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .jockey-card { background: #f8fffe; border: 1px solid #d0e8da; border-radius: 8px; padding: 12px; }
+  .jockey-card .horse { font-weight: bold; color: #1a6e3c; }
+  .jockey-card .jockey { color: #333; margin: 4px 0; }
+  .jockey-card .stats { font-size: 0.82em; color: #555; margin: 4px 0; }
+  .jockey-card .comment { font-size: 0.82em; color: #666; margin-top: 4px; }
+  .pop-label { font-size: 0.75em; background: #eee; padding: 1px 6px; border-radius: 10px; margin-left: 4px; }
+  .notice { background: #f0f0f0; border-radius: 6px; padding: 12px 16px; font-size: 0.83em; color: #666; margin-top: 15px; }
+  .umaren-highlight { background: #fff3e0 !important; }
+  .sanren-highlight { background: #e8f5e9 !important; }
+  .top-pick { background: linear-gradient(90deg, #fffde7, #fff); border: 1px solid #ffd600; }
+  @media(max-width:768px){ .info-grid{grid-template-columns:repeat(2,1fr);} .jockey-grid{grid-template-columns:1fr;} }
+
+  /* ========== トップページナビ ========== */
+  .top-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .top-nav a.top-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: white; color: #1a6e3c;
+    border: 1.5px solid #c8e6d0; border-radius: 20px;
+    padding: 6px 16px; font-size: 0.84em; font-weight: bold;
+    text-decoration: none; box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    transition: all 0.18s;
+  }
+  .top-nav a.top-link:hover { background: #1a6e3c; color: white; border-color: #1a6e3c; }
+  .back-to-top-bar {
+    text-align: center; margin: 30px 0 10px;
+    padding-top: 20px; border-top: 1px solid #e0ede6;
+  }
+  .back-to-top-bar a {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #1a6e3c; color: white;
+    border-radius: 24px; padding: 10px 28px;
+    font-size: 0.9em; font-weight: bold; text-decoration: none;
+    box-shadow: 0 2px 8px rgba(26,110,60,0.2);
+    transition: background 0.18s;
+  }
+  .back-to-top-bar a:hover { background: #145c32; }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="top-nav"><a class="top-link" href="../index.html">🏠 レース一覧へ戻る</a></div>
+<h1>
+  第58回ダービー卿チャレンジトロフィー <span class="badge">GIII</span>
+  <span>2026年4月4日（土） ／ 中山競馬場 ／ 芝1600m 右外 ／ 4歳以上 ／ ハンデ</span>
+</h1>
+
+<!-- レース基本情報 -->
+<div class="race-info">
+  <h2>レース基本情報</h2>
+  <div class="info-grid">
+    <div class="info-item"><div class="label">開催場</div><div class="value">中山競馬場</div></div>
+    <div class="info-item"><div class="label">コース</div><div class="value">芝 1600m 右外</div></div>
+    <div class="info-item"><div class="label">条件</div><div class="value">4歳以上 ハンデ</div></div>
+    <div class="info-item"><div class="label">出走頭数</div><div class="value">16頭</div></div>
+    <div class="info-item"><div class="label">1番人気オッズ</div><div class="value">6.7倍</div></div>
+    <div class="info-item"><div class="label">3番人気オッズ</div><div class="value">7.4倍</div></div>
+    <div class="info-item"><div class="label">過去類似レース数</div><div class="value">17件</div></div>
+    <div class="info-item"><div class="label">平均馬連払戻</div><div class="value">84.2倍</div></div>
+  </div>
+  <div class="filter-note">📊 過去データ絞り込み条件：コース距離=1600m ±100m ／ 1番人気オッズ 6.7 ±0.5 ／ 3番人気オッズ 7.4 ±0.5　→　<b>17件</b>ヒット</div>
+</div>
+
+<!-- 出馬表・オッズ -->
+<div class="section">
+  <h2>出馬表・オッズ一覧</h2>
+  <table>
+<thead><tr><th>馬番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>単勝オッズ</th><th>人気</th><th>複勝オッズ</th></tr></thead>
+<tbody><tr class="pop1"><td>2</td><td><b>ミニトランザット</b></td><td>牡4</td><td>56.0</td><td>西村 淳也</td><td class="featured">6.7</td><td>1番</td><td>2.4-2.9</td></tr>
+<tr class="pop2"><td>8</td><td><b>ファーヴェント</b></td><td>牡5</td><td>57.0</td><td>横山 武史</td><td class="featured">6.9</td><td>2番</td><td>2.5-3.0</td></tr>
+<tr class="pop3"><td>4</td><td><b>メタルスピード</b></td><td>牡6</td><td>55.0</td><td>岩田 康誠</td><td class="featured">7.4</td><td>3番</td><td>2.4-2.9</td></tr>
+<tr class="pop4"><td>10</td><td>ケイアイセナ</td><td>牡7</td><td>57.5</td><td>津村 明秀</td><td>9.0</td><td>4番</td><td>3.3-4.0</td></tr>
+<tr><td>15</td><td>シリウスコルト</td><td>牡5</td><td>58.0</td><td>三浦 皇成</td><td>10.1</td><td>5番</td><td>3.1-3.7</td></tr>
+<tr><td>6</td><td>マテンロウオリオン</td><td>牡7</td><td>56.0</td><td>横山 典弘</td><td>12.0</td><td>6番</td><td>6.0-7.3</td></tr>
+<tr><td>13</td><td>イミグラントソング</td><td>牡4</td><td>57.0</td><td>石川 裕紀人</td><td>12.4</td><td>7番</td><td>4.2-5.0</td></tr>
+<tr><td>5</td><td>ブエナオンダ</td><td>牡5</td><td>58.0</td><td>佐々木 大輔</td><td>12.7</td><td>8番</td><td>3.3-4.0</td></tr>
+<tr><td>1</td><td>ゾンニッヒ</td><td>牡8</td><td>57.5</td><td>団野 大成</td><td>13.2</td><td>9番</td><td>3.3-3.9</td></tr>
+<tr><td>16</td><td>サイルーン</td><td>せん7</td><td>57.0</td><td>大野 拓弥</td><td>14.5</td><td>10番</td><td>3.7-4.5</td></tr>
+<tr><td>3</td><td>エンペラーズソード</td><td>せん4</td><td>55.0</td><td>丹内 祐次</td><td>15.7</td><td>11番</td><td>4.5-5.4</td></tr>
+<tr><td>14</td><td>ジュンブロッサム</td><td>牡7</td><td>58.5</td><td>荻野 極</td><td>19.5</td><td>12番</td><td>5.2-6.3</td></tr>
+<tr><td>11</td><td>スズハローム</td><td>牡6</td><td>57.0</td><td>藤懸 貴志</td><td>20.0</td><td>13番</td><td>4.8-5.9</td></tr>
+<tr><td>7</td><td>タイムトゥヘヴン</td><td>牡8</td><td>56.0</td><td>田辺 裕信</td><td>24.4</td><td>14番</td><td>5.1-6.2</td></tr>
+<tr><td>9</td><td>エエヤン</td><td>せん6</td><td>57.0</td><td>杉原 誠人</td><td>70.8</td><td>15番</td><td>11.2-13.5</td></tr>
+<tr><td>12</td><td>ダディーズビビッド</td><td>牡8</td><td>57.5</td><td>横山 和生</td><td>111.4</td><td>16番</td><td>22.8-27.3</td></tr>
+</tbody></table>
+</div>
+
+<!-- 分析1: オッズ分析 -->
+<div class="section">
+  <h2>分析１：オッズ分析（過去17件の類似レース）</h2>
+
+  <h3>戦略1-1 ／ 単勝 人気別期待値</h3>
+  <table><thead><tr>
+<th>人気</th><th>今回の馬</th><th>単勝オッズ</th><th>勝率</th><th>的中数</th><th>平均払戻</th><th>期待値</th><th>評価</th>
+</tr></thead><tbody><tr><td>1番人気</td><td>ミニトランザット(馬2)</td><td>6.7</td><td>0.0%</td><td>0</td><td>—</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr class="top-pick"><td><b>2番人気</b></td><td><b>ファーヴェント(馬8)</b></td><td>6.9</td><td>17.6%</td><td>3</td><td>613円</td><td class="ev-high"><b>1.082</b></td><td class="ev-high">◎★</td></tr>
+<tr class="top-pick"><td><b>3番人気</b></td><td><b>メタルスピード(馬4)</b></td><td>7.4</td><td>29.4%</td><td>5</td><td>664円</td><td class="ev-high"><b>1.953</b></td><td class="ev-high">◎★★</td></tr>
+<tr><td>4番人気</td><td>ケイアイセナ(馬10)</td><td>9.0</td><td>5.9%</td><td>1</td><td>700円</td><td class="ev-low">0.412</td><td class="ev-low">×</td></tr>
+<tr class="top-pick"><td><b>5番人気</b></td><td><b>シリウスコルト(馬15)</b></td><td>10.1</td><td>17.6%</td><td>3</td><td>807円</td><td class="ev-high"><b>1.424</b></td><td class="ev-high">◎★★</td></tr>
+<tr><td>6番人気</td><td>マテンロウオリオン(馬6)</td><td>12.0</td><td>5.9%</td><td>1</td><td>780円</td><td class="ev-low">0.459</td><td class="ev-low">×</td></tr>
+</tbody></table>
+<p style='font-size:0.82em;color:#888'>※過去17件のデータ</p>
+
+  <h3>戦略1-2 ／ 単勝 オッズ帯別期待値</h3>
+  <table><thead><tr>
+<th>オッズ帯</th><th>今回の該当馬</th><th>過去的中数</th><th>期待値</th><th>評価</th>
+</tr></thead><tbody><tr><td>11.0〜13.0</td><td>マテンロウオリオン(12.0倍)</td><td>1</td><td class="ev-low">0.647</td><td class="ev-low">△</td></tr>
+<tr><td>11.4〜13.4</td><td>イミグラントソング(12.4倍)</td><td>0</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr><td>11.7〜13.7</td><td>ブエナオンダ(12.7倍)</td><td>0</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr><td>110.4〜112.4</td><td>ダディーズビビッド(111.4倍)</td><td>0</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr><td>12.2〜14.2</td><td>ゾンニッヒ(13.2倍)</td><td>0</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr><td>13.5〜15.5</td><td>サイルーン(14.5倍)</td><td>0</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr><td>14.7〜16.7</td><td>エンペラーズソード(15.7倍)</td><td>0</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr><td>18.5〜20.5</td><td>ジュンブロッサム(19.5倍)</td><td>0</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr><td>19.0〜21.0</td><td>スズハローム(20.0倍)</td><td>0</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr><td>23.4〜25.4</td><td>タイムトゥヘヴン(24.4倍)</td><td>0</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr class="top-pick"><td><b>5.7〜7.7</b></td><td><b>ミニトランザット(6.7倍)</b></td><td>11</td><td class="ev-high"><b>4.224</b></td><td class="ev-high">◎★★</td></tr>
+<tr class="top-pick"><td><b>5.9〜7.9</b></td><td><b>ファーヴェント(6.9倍)</b></td><td>11</td><td class="ev-high"><b>4.341</b></td><td class="ev-high">◎★★</td></tr>
+<tr class="top-pick"><td><b>6.4〜8.4</b></td><td><b>メタルスピード(7.4倍)</b></td><td>9</td><td class="ev-high"><b>3.629</b></td><td class="ev-high">◎★★</td></tr>
+<tr><td>69.8〜71.8</td><td>エエヤン(70.8倍)</td><td>0</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr><td>8.0〜10.0</td><td>ケイアイセナ(9.0倍)</td><td>0</td><td class="ev-low">0.0</td><td class="ev-low">×</td></tr>
+<tr><td>9.1〜11.1</td><td>シリウスコルト(10.1倍)</td><td>1</td><td class="ev-low">0.647</td><td class="ev-low">△</td></tr>
+</tbody></table>
+
+  <h3>戦略2-1 ／ 複勝 人気別期待値</h3>
+  <table><thead><tr>
+<th>人気</th><th>今回の馬</th><th>複勝オッズ</th><th>複勝率</th><th>的中数</th><th>期待値</th><th>評価</th>
+</tr></thead><tbody><tr><td>1番人気</td><td>ミニトランザット(馬2)</td><td>2.4-2.9</td><td>5.9%</td><td>1</td><td class="ev-low">0.106</td><td class="ev-low">×</td></tr>
+<tr class="top-pick"><td><b>2番人気</b></td><td><b>ファーヴェント(馬8)</b></td><td>2.5-3.0</td><td>41.2%</td><td>7</td><td class="ev-high"><b>1.6</b></td><td class="ev-high">◎★★</td></tr>
+<tr class="top-pick"><td><b>3番人気</b></td><td><b>メタルスピード(馬4)</b></td><td>2.4-2.9</td><td>47.1%</td><td>8</td><td class="ev-high"><b>1.706</b></td><td class="ev-high">◎★★</td></tr>
+<tr class="top-pick"><td><b>4番人気</b></td><td><b>ケイアイセナ(馬10)</b></td><td>3.3-4.0</td><td>23.5%</td><td>4</td><td class="ev-high"><b>1.288</b></td><td class="ev-high">◎★★</td></tr>
+<tr><td>5番人気</td><td>シリウスコルト(馬15)</td><td>3.1-3.7</td><td>29.4%</td><td>5</td><td class="ev-mid">0.882</td><td class="ev-mid">△〜○</td></tr>
+<tr class="top-pick"><td><b>6番人気</b></td><td><b>マテンロウオリオン(馬6)</b></td><td>6.0-7.3</td><td>41.2%</td><td>7</td><td class="ev-high"><b>1.147</b></td><td class="ev-high">◎★</td></tr>
+</tbody></table>
+<p style='font-size:0.82em;color:#888'>※1着馬の複勝払戻は2着払戻と同水準で近似</p>
+
+  <h3>戦略3 ／ 馬連 軸馬別 最適組合せ数</h3>
+  <table><thead><tr>
+<th>軸馬（人気）</th><th>今回の馬</th><th>最適流し頭数</th><th>期待値</th><th>馬連オッズ参考</th>
+</tr></thead><tbody><tr><td>1番人気軸</td><td>ミニトランザット(馬2)</td><td>5頭流し</td><td class="ev-low">0.281</td><td>2-8:14.8、2-4:25.2</td></tr>
+<tr><td>2番人気軸</td><td>ファーヴェント(馬8)</td><td>3頭流し</td><td class="ev-mid">0.88</td><td>2-8:14.8、5-8:25.8</td></tr>
+<tr class="top-pick"><td><b>3番人気軸</b></td><td><b>メタルスピード(馬4)</b></td><td><b>5頭流し</b></td><td class="ev-high"><b>1.993</b></td><td>2-4:25.2、4-8:28.7</td></tr>
+<tr class="top-pick"><td><b>4番人気軸</b></td><td><b>ケイアイセナ(馬10)</b></td><td><b>4頭流し</b></td><td class="ev-high"><b>1.032</b></td><td>8-10:26.8、2-10:29.3</td></tr>
+<tr class="top-pick"><td><b>5番人気軸</b></td><td><b>シリウスコルト(馬15)</b></td><td><b>4頭流し</b></td><td class="ev-high"><b>1.726</b></td><td>8-15:35.6、2-15:37.5</td></tr>
+</tbody></table>
+
+  <h3>馬連 オッズ低い順（上位15組）</h3>
+  <table><thead><tr>
+<th>順位</th><th>組み合わせ（馬番）</th><th>馬名</th><th>オッズ</th>
+</tr></thead><tbody><tr><td>1</td><td>2-8</td><td>ミニトランザット ー ファーヴェント</td><td class="ev-high">14.8</td></tr>
+<tr class="umaren-highlight"><td>2</td><td>2-4</td><td>ミニトランザット ー メタルスピード</td><td class="ev-high">25.2</td></tr>
+<tr><td>3</td><td>5-8</td><td>ブエナオンダ ー ファーヴェント</td><td class="ev-high">25.8</td></tr>
+<tr class="umaren-highlight"><td>4</td><td>8-10</td><td>ファーヴェント ー ケイアイセナ</td><td class="ev-high">26.8</td></tr>
+<tr><td>5</td><td>2-5</td><td>ミニトランザット ー ブエナオンダ</td><td class="ev-high">27.5</td></tr>
+<tr class="umaren-highlight"><td>6</td><td>4-8</td><td>メタルスピード ー ファーヴェント</td><td class="ev-high">28.7</td></tr>
+<tr class="umaren-highlight"><td>7</td><td>2-10</td><td>ミニトランザット ー ケイアイセナ</td><td class="ev-high">29.3</td></tr>
+<tr class="umaren-highlight"><td>8</td><td>8-15</td><td>ファーヴェント ー シリウスコルト</td><td>35.6</td></tr>
+<tr><td>9</td><td>2-13</td><td>ミニトランザット ー イミグラントソング</td><td>35.9</td></tr>
+<tr class="umaren-highlight"><td>10</td><td>2-15</td><td>ミニトランザット ー シリウスコルト</td><td>37.5</td></tr>
+<tr><td>11</td><td>8-13</td><td>ファーヴェント ー イミグラントソング</td><td>38.5</td></tr>
+<tr><td>12</td><td>1-2</td><td>ゾンニッヒ ー ミニトランザット</td><td>41.1</td></tr>
+<tr class="umaren-highlight"><td>13</td><td>4-10</td><td>メタルスピード ー ケイアイセナ</td><td>42.0</td></tr>
+<tr><td>14</td><td>2-3</td><td>ミニトランザット ー エンペラーズソード</td><td>42.9</td></tr>
+<tr><td>15</td><td>2-16</td><td>ミニトランザット ー サイルーン</td><td>45.6</td></tr>
+</tbody></table>
+
+  <h3>3連複 人気順 上位15組</h3>
+  <table><thead><tr>
+<th>人気</th><th>組み合わせ（馬番）</th><th>馬名（簡略）</th><th>オッズ</th>
+</tr></thead><tbody><tr><td>1位</td><td>2-5-8</td><td>ミニトランザット ー ブエナオンダ ー ファーヴェント</td><td class="ev-high">36.3</td></tr>
+<tr class="sanren-highlight"><td>2位</td><td>2-8-10</td><td>ミニトランザット ー ファーヴェント ー ケイアイセナ</td><td class="ev-high">38.5</td></tr>
+<tr class="sanren-highlight"><td>3位</td><td>2-4-8</td><td>ミニトランザット ー メタルスピード ー ファーヴェント</td><td class="ev-high">40.3</td></tr>
+<tr class="sanren-highlight"><td>4位</td><td>2-8-15</td><td>ミニトランザット ー ファーヴェント ー シリウスコルト</td><td class="ev-high">55.5</td></tr>
+<tr><td>5位</td><td>2-8-13</td><td>ミニトランザット ー ファーヴェント ー イミグラントソング</td><td class="ev-high">62.0</td></tr>
+<tr><td>6位</td><td>2-3-8</td><td>ミニトランザット ー エンペラーズソード ー ファーヴェント</td><td class="ev-high">66.9</td></tr>
+<tr><td>7位</td><td>2-8-16</td><td>ミニトランザット ー ファーヴェント ー サイルーン</td><td class="ev-high">72.7</td></tr>
+<tr class="sanren-highlight"><td>8位</td><td>2-5-10</td><td>ミニトランザット ー ブエナオンダ ー ケイアイセナ</td><td class="ev-high">74.5</td></tr>
+<tr class="sanren-highlight"><td>9位</td><td>5-8-10</td><td>ブエナオンダ ー ファーヴェント ー ケイアイセナ</td><td class="ev-high">75.6</td></tr>
+<tr class="sanren-highlight"><td>10位</td><td>4-8-10</td><td>メタルスピード ー ファーヴェント ー ケイアイセナ</td><td class="ev-high">77.6</td></tr>
+<tr class="sanren-highlight"><td>11位</td><td>2-4-10</td><td>ミニトランザット ー メタルスピード ー ケイアイセナ</td><td class="ev-high">78.6</td></tr>
+<tr><td>12位</td><td>1-2-8</td><td>ゾンニッヒ ー ミニトランザット ー ファーヴェント</td><td>80.2</td></tr>
+<tr class="sanren-highlight"><td>13位</td><td>2-4-5</td><td>ミニトランザット ー メタルスピード ー ブエナオンダ</td><td>82.6</td></tr>
+<tr class="sanren-highlight"><td>14位</td><td>8-10-15</td><td>ファーヴェント ー ケイアイセナ ー シリウスコルト</td><td>84.6</td></tr>
+<tr class="sanren-highlight"><td>15位</td><td>4-5-8</td><td>メタルスピード ー ブエナオンダ ー ファーヴェント</td><td>90.7</td></tr>
+</tbody></table>
+</div>
+
+<!-- 分析2: 騎手分析 -->
+<div class="section">
+  <h2>分析２：騎手分析（芝1600m ±200m の過去成績）</h2>
+  <p>騎手分析データなし（<code>--json-dir</code> で過去JSONフォルダを指定してください）</p>
+</div>
+
+<!-- 推奨戦略 -->
+<div class="recommendation">
+  <h2>🏆 推奨購入戦略（期待値順）</h2>
+  
+  <div class="rec-item priority-a">
+    <div class="title"><span class="rank-badge">A</span>【単勝 穴】ファーヴェント（6.9倍）／ 期待値 4.341</div>
+    <div class="detail">
+      オッズ帯 5.9〜7.9 での過去的中数 11 回。
+    </div>
+  </div>
+
+  <div class="rec-item priority-a">
+    <div class="title"><span class="rank-badge">A</span>【単勝 穴】ミニトランザット（6.7倍）／ 期待値 4.224</div>
+    <div class="detail">
+      オッズ帯 5.7〜7.7 での過去的中数 11 回。
+    </div>
+  </div>
+
+  <div class="rec-item priority-s">
+    <div class="title"><span class="rank-badge">S</span>【馬連】3番人気軸（メタルスピード(馬4)）× 5頭流し ／ 期待値 1.993</div>
+    <div class="detail">
+      5点 × 100円 = 500円。過去17件での期待値計算結果。
+    </div>
+  </div>
+
+  <div class="rec-item priority-s">
+    <div class="title"><span class="rank-badge">S</span>【単勝】メタルスピード(馬4)（期待値1.953） + シリウスコルト(馬15)（期待値1.424） + ファーヴェント(馬8)（期待値1.082）</div>
+    <div class="detail">
+      単勝期待値1.0超の馬：メタルスピード(馬4)（期待値1.953） + シリウスコルト(馬15)（期待値1.424） + ファーヴェント(馬8)（期待値1.082）。各1,000円での購入を推奨。
+    </div>
+  </div>
+
+  <div class="rec-item priority-s">
+    <div class="title"><span class="rank-badge">S</span>【複勝】メタルスピード(馬4)（3番人気）／ 複勝2.4〜2.9倍 ／ 期待値 1.706</div>
+    <div class="detail">
+      過去17件の類似レースで3番人気の複勝期待値が<b>1.706</b>。複勝率47.1%（8/17件）。<br>
+      購入額の目安：3,000円 → 期待回収 5,118円
+    </div>
+  </div>
+
+  <div class="rec-item priority-s">
+    <div class="title"><span class="rank-badge">S</span>【複勝】ファーヴェント(馬8)（2番人気）／ 複勝2.5〜3.0倍 ／ 期待値 1.6</div>
+    <div class="detail">
+      過去17件の類似レースで2番人気の複勝期待値が<b>1.6</b>。複勝率41.2%（7/17件）。<br>
+      購入額の目安：3,000円 → 期待回収 4,800円
+    </div>
+  </div>
+</div>
+
+<!-- 総括 -->
+<div class="section">
+  <h2>総括・レースの見立て</h2>
+  <p>今回の第58回ダービー卿チャレンジトロフィーは、1番人気オッズ6.7倍・3番人気7.4倍の混戦型レース。過去17件の類似レース（芝1600m±100m）を分析対象としました。</p>
+<p>過去データでは<b>3番人気の複勝期待値が1.706と高く</b>、複勝率47.1%を記録しています。 馬連は3番人気軸×5頭流しが期待値1.993と最優秀。</p>
+<p>オッズをよく確認し、各戦略の期待値を参考に購入プランを立ててください。</p>
+<div class="notice">⚠️ 本レポートは過去データの統計的分析に基づく参考情報です。競馬は確率論であり、必ずしも期待値通りの結果になるとは限りません。馬券購入は自己責任の範囲内でお楽しみください。</div>
+</div>
+
+<div style="text-align:center;color:#999;font-size:0.8em;margin-top:20px;padding-bottom:30px;">
+  分析日時: 2026年04月04日 <br>
+</div>
+
+</div>
+
+<div class="back-to-top-bar"><a href="../index.html">🏠 レース一覧へ戻る</a></div>
+</body>
+</html>
