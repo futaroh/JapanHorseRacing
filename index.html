@@ -91,6 +91,14 @@
   }
   .hero-stats {
     flex-shrink: 0;
+    transition: opacity 0.3s, visibility 0.3s, max-width 0.3s;
+  }
+  .hero-stats.hidden-sp {
+    opacity: 0;
+    visibility: hidden;
+    max-width: 0;
+    overflow: hidden;
+    padding: 0;
   }
   .hit-rate-block {
     text-align: center;
@@ -1104,6 +1112,21 @@
   }
   adjustLogoWidth();
   window.addEventListener('resize', adjustLogoWidth);
+
+  // スマホ時のスクロールでhero-statsを非表示
+  function updateHeroStatsVisibility() {
+    const heroStats = document.querySelector('.hero-stats');
+    if (!heroStats) return;
+    const isSP = window.innerWidth <= 768;
+    if (isSP && window.scrollY > 0) {
+      heroStats.classList.add('hidden-sp');
+    } else {
+      heroStats.classList.remove('hidden-sp');
+    }
+  }
+  updateHeroStatsVisibility();
+  window.addEventListener('scroll', updateHeroStatsVisibility);
+  window.addEventListener('resize', updateHeroStatsVisibility);
       animateHitRate();
   });
 </script>
