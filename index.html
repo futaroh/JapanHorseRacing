@@ -415,7 +415,7 @@
 <header>
   <div class="header-inner">
     <a class="site-logo" href="index.html">
-      <span class="logo-icon"><img src="images/logo.png" alt="競馬予想レポート ロゴ"></span>
+      <span class="logo-icon"><img id="logo-img" src="images/logo.png" alt="競馬予想レポート ロゴ"></span>
     </a>
     <div class="hero-stats">
       <div class="hit-rate-block">
@@ -425,7 +425,7 @@
       </div>
     </div>
   </div>
-  <div class="header-tagline">JRA公表資料をAIで分析し、競馬初心者にもわかりやすくストーリーで解説したサイトです</div>
+  <div class="header-tagline">JRA公表資料をAIで分析し、競馬初心者にもわかりやすくストーリーで解説したサイト</div>
 </header>
 
 <!-- メインコンテンツ -->
@@ -1068,15 +1068,44 @@
     }, 4100);
   }
 
+  // ロゴサイズ制御
+  function adjustLogo() {
+    const logo = document.querySelector('.logo-icon img');
+    if (!logo) return;
+    if (window.innerWidth <= 768) {
+      logo.style.width  = '375px';
+      logo.style.height = 'auto';
+    } else {
+      logo.style.width  = '';
+      logo.style.height = '160px';
+    }
+  }
+  window.addEventListener('resize', adjustLogo);
+
   // 初期表示カウント
   document.addEventListener('DOMContentLoaded', () => {
+    adjustLogo();
     const doneCount = document.querySelectorAll('.race-card[data-status="done"], .race-card[data-status="upcoming"]').length;
     const doneEl = document.getElementById('count-done');
     if (doneEl) doneEl.textContent = doneCount;
-    animateHitRate();
+  // ロゴ幅レスポンシブ制御
+  function adjustLogoWidth() {
+    const logoImg = document.getElementById('logo-img');
+    if (!logoImg) return;
+    if (window.innerWidth <= 768) {
+      logoImg.style.width = '375px';
+      logoImg.style.height = 'auto';
+    } else {
+      logoImg.style.width = '';
+      logoImg.style.height = '160px';
+    }
+  }
+  adjustLogoWidth();
+  window.addEventListener('resize', adjustLogoWidth);
+      animateHitRate();
   });
 </script>
 </body>
 </html>
                                                                                                                                                          
-                                                                                    
+                                                                 
