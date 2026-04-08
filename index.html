@@ -90,40 +90,61 @@
     display: none;
   }
   .hero-stats {
-    display: flex;
-    gap: 16px;
     flex-shrink: 0;
   }
-  .stat-box {
+  .hit-rate-block {
     text-align: center;
     background: rgba(255,255,255,0.15);
     border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 10px;
-    padding: 14px 20px;
-    min-width: 80px;
+    border-radius: 12px;
+    padding: 14px 32px;
   }
-  .stat-num {
-    font-size: 1.8em;
+  .hit-rate-label {
+    font-size: 0.78em;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .hit-rate-num {
+    font-size: 2.8em;
     font-weight: bold;
-    color: white;
+    color: #ff4d4d;
+    font-style: italic;
     line-height: 1;
   }
-  .stat-label {
-    font-size: 0.72em;
-    color: rgba(255,255,255,0.8);
-    margin-top: 4px;
+  .hit-rate-detail {
+    font-size: 0.7em;
+    color: rgba(255,255,255,0.75);
+    margin-top: 7px;
+    white-space: nowrap;
   }
 
-  /* ========== 月別サブヘッダー ========== */
-  .section-sub-header {
-    margin: 20px 0 10px;
+  /* ========== 月タブ ========== */
+  .month-tabs {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0 16px;
   }
-  .section-sub-title {
-    font-size: 0.95em;
-    font-weight: bold;
+  .month-tab {
+    background: white;
+    border: 1.5px solid #dde8e2;
+    border-radius: 20px;
+    padding: 6px 20px;
+    font-size: 0.85em;
     color: #555;
-    padding: 4px 0 4px 12px;
-    border-left: 3px solid #c8e6d0;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+    font-weight: bold;
+  }
+  .month-tab:hover {
+    border-color: #1a6e3c;
+    color: #1a6e3c;
+  }
+  .month-tab.active {
+    background: #1a6e3c;
+    border-color: #1a6e3c;
+    color: white;
   }
 
   /* ========== セクションヘッダー ========== */
@@ -224,6 +245,23 @@
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(26,110,60,0.13);
     border-color: #c8e6d0;
+  }
+  /* 的中カード */
+  .race-card.hit {
+    border: 2.5px solid #e8a000;
+    box-shadow: 0 4px 20px rgba(232,160,0,0.3);
+  }
+  .race-card.hit:hover {
+    border-color: #e8a000;
+    box-shadow: 0 8px 28px rgba(232,160,0,0.4);
+  }
+  /* 的中画像 */
+  .atari-img {
+    height: 120px;
+    width: auto;
+    display: block;
+    margin-top: -45px;
+    margin-right: -45px;
   }
   .card-header {
     background: linear-gradient(135deg, #1a6e3c, #2d9d5b);
@@ -380,21 +418,14 @@
       <span class="logo-icon"><img src="images/logo.png" alt="競馬予想レポート ロゴ"></span>
     </a>
     <div class="hero-stats">
-      <div class="stat-box">
-        <div class="stat-num" id="count-done">2</div>
-        <div class="stat-label">公開レース</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num" id="count-scheduled">29</div>
-        <div class="stat-label">予定レース</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">GI</div>
-        <div class="stat-label">最高グレード</div>
+      <div class="hit-rate-block">
+        <div class="hit-rate-label">的中率</div>
+        <div class="hit-rate-num" id="hit-rate">50.00%</div>
+        <div class="hit-rate-detail">（2026年4月現在：予想レース数<span id="count-done">2</span>、的中レース数<span id="count-hit">1</span>）</div>
       </div>
     </div>
   </div>
-  <div class="header-tagline">JRA公表資料をAIで分析し、競馬初心者にもわかりやすく解説したサイトです</div>
+  <div class="header-tagline">JRA公表資料をAIで分析し、競馬初心者にもわかりやすくストーリーで解説したサイトです</div>
 </header>
 
 <!-- メインコンテンツ -->
@@ -409,17 +440,17 @@
     <div class="filter-tab" onclick="filterRaces('done', this)">結果あり</div>
   </div>
 
-  <!-- 実施済みレース -->
+  <!-- 予想公開済レース -->
   <div class="section-header" id="races">
-    <div class="section-title">実施済みレース</div>
+    <div class="section-title">予想公開済レース</div>
   </div>
   <div class="race-grid" id="race-grid-done">
 
     <!-- 第70回大阪杯 -->
-    <div class="race-card" data-grade="g1" data-status="done">
+    <div class="race-card hit" data-grade="g1" data-status="done">
       <div class="card-header">
         <div class="card-status">
-          <span class="status-badge status-done">✓ 結果あり</span>
+          <img src="images/atari.png" alt="的中" class="atari-img">
         </div>
         <div class="race-grade g1">GI</div>
         <div class="race-name">第70回 大阪杯</div>
@@ -429,10 +460,6 @@
         </div>
       </div>
       <div class="card-body">
-        <div class="card-badges">
-          <span class="badge-hit">🎯 的中</span>
-          <span class="badge-loss">▼ −1,200円</span>
-        </div>
         <div class="result-summary">
           1番人気クロワデュノール（北村友一騎手）が後方から鮮やかに差し切り快勝。
         </div>
@@ -478,14 +505,15 @@
   </div><!-- /race-grid-done -->
 
   <!-- 今後の予定レース -->
-  <div class="section-header" style="margin-top: 36px;">
+  <div class="section-header" style="margin-top: 36px;" id="sched-section-header">
     <div class="section-title">今後の予定レース</div>
   </div>
-
-  <!-- 4月 -->
-  <div class="section-sub-header">
-    <div class="section-sub-title">4月</div>
+  <div class="month-tabs">
+    <div class="month-tab active" onclick="switchMonth(4, this)">4月</div>
+    <div class="month-tab" onclick="switchMonth(5, this)">5月</div>
+    <div class="month-tab" onclick="switchMonth(6, this)">6月</div>
   </div>
+
   <div class="race-grid month-grid" data-month="4">
 
     <!-- ニュージーランドトロフィー -->
@@ -625,11 +653,7 @@
 
   </div><!-- /month-4 -->
 
-  <!-- 5月 -->
-  <div class="section-sub-header">
-    <div class="section-sub-title">5月</div>
-  </div>
-  <div class="race-grid month-grid" data-month="5">
+  <div class="race-grid month-grid" data-month="5" style="display:none">
 
     <!-- 京王杯スプリングカップ -->
     <div class="race-card" data-grade="g2" data-status="scheduled">
@@ -828,11 +852,7 @@
 
   </div><!-- /month-5 -->
 
-  <!-- 6月 -->
-  <div class="section-sub-header">
-    <div class="section-sub-title">6月</div>
-  </div>
-  <div class="race-grid month-grid" data-month="6">
+  <div class="race-grid month-grid" data-month="6" style="display:none">
 
     <!-- 安田記念 -->
     <div class="race-card" data-grade="g1" data-status="scheduled">
@@ -952,9 +972,17 @@
 </footer>
 
 <script>
-  // フィルタリング
+  // 月タブ切り替え
+  function switchMonth(month, el) {
+    document.querySelectorAll('.month-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.month-grid').forEach(grid => {
+      grid.style.display = parseInt(grid.dataset.month) === month ? '' : 'none';
+    });
+  }
+
+  // グレードフィルタリング
   function filterRaces(type, el) {
-    // タブのactiveを切り替え
     document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
 
@@ -977,34 +1005,78 @@
       doneGrid.style.display = hasVisible ? '' : 'none';
     }
 
-    // 月別グリッドの表示制御（カードが1件も表示されない月はサブヘッダーごと隠す）
-    let anySchedVisible = false;
-    document.querySelectorAll('.month-grid').forEach(grid => {
-      const hasVisible = [...grid.querySelectorAll('.race-card')].some(c => c.style.display !== 'none');
-      grid.style.display = hasVisible ? '' : 'none';
-      grid.previousElementSibling.style.display = hasVisible ? '' : 'none'; // section-sub-header
-      if (hasVisible) anySchedVisible = true;
-    });
-    // 「今後の予定レース」セクションヘッダー自体も制御
-    const schedHeader = document.querySelector('[style*="margin-top: 36px"]');
-    if (schedHeader) schedHeader.style.display = anySchedVisible ? '' : 'none';
+    // 予定セクション（タブ含む）の表示制御 ※月グリッドの表示はタブが管理するため変更しない
+    const anySchedVisible = [...document.querySelectorAll('.month-grid .race-card')].some(c => c.style.display !== 'none');
+    document.getElementById('sched-section-header').style.display = anySchedVisible ? '' : 'none';
+    document.querySelector('.month-tabs').style.display = anySchedVisible ? '' : 'none';
 
     // カード数を更新
     const visibleDone  = doneGrid ? [...doneGrid.querySelectorAll('.race-card')].filter(c => c.style.display !== 'none').length : 0;
-    const visibleSched = [...document.querySelectorAll('.month-grid .race-card')].filter(c => c.style.display !== 'none').length;
-    document.getElementById('count-done').textContent = visibleDone;
-    document.getElementById('count-scheduled').textContent = visibleSched;
+    const doneEl = document.getElementById('count-done');
+    if (doneEl) doneEl.textContent = visibleDone;
+  }
+
+  // 的中率スロットアニメーション
+  function animateHitRate() {
+    const el = document.getElementById('hit-rate');
+    if (!el) return;
+
+    // 現在時刻のミリ秒が100〜200msの範囲外なら即確定表示
+    const ms = new Date().getMilliseconds();
+    if (ms < 100 || ms > 200) return;
+
+    const target = el.textContent;           // 例: "50.00%"
+    const chars  = target.split('');          // ['5','0','.','0','0','%']
+    const digitIdx = chars
+      .map((c, i) => (/\d/.test(c) ? i : -1))
+      .filter(i => i >= 0);                  // [0, 1, 3, 4]
+
+    // 確定する順番: 小数第2位→小数第1位→一の位→十の位
+    const lockSchedule = [
+      { index: 4, time: 1000 },
+      { index: 3, time: 2000 },
+      { index: 1, time: 3000 },
+      { index: 0, time: 4000 },
+    ];
+
+    const locked  = new Set();
+    const current = [...chars];
+
+    // 20msごとにランダム数字を表示
+    const timer = setInterval(() => {
+      digitIdx.forEach(i => {
+        if (!locked.has(i)) {
+          current[i] = String(Math.floor(Math.random() * 10));
+        }
+      });
+      el.textContent = current.join('');
+    }, 20);
+
+    // 各桁を順番に確定
+    lockSchedule.forEach(({ index, time }) => {
+      setTimeout(() => {
+        locked.add(index);
+        current[index] = chars[index];
+        el.textContent = current.join('');
+      }, time);
+    });
+
+    // 4秒後にアニメーション終了・最終値を保証
+    setTimeout(() => {
+      clearInterval(timer);
+      el.textContent = target;
+    }, 4100);
   }
 
   // 初期表示カウント
   document.addEventListener('DOMContentLoaded', () => {
     const doneCount = document.querySelectorAll('.race-card[data-status="done"], .race-card[data-status="upcoming"]').length;
-    const schedCount = document.querySelectorAll('.race-card[data-status="scheduled"]').length;
-    document.getElementById('count-done').textContent = doneCount;
-    document.getElementById('count-scheduled').textContent = schedCount;
+    const doneEl = document.getElementById('count-done');
+    if (doneEl) doneEl.textContent = doneCount;
+    animateHitRate();
   });
 </script>
 </body>
 </html>
                                                                                                                                                          
-                                                                                                      
+                                                                                    
