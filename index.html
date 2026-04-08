@@ -100,6 +100,22 @@
     overflow: hidden;
     padding: 0;
   }
+  .header-tagline {
+    transition: opacity 0.3s, visibility 0.3s, max-height 0.3s, padding 0.3s;
+  }
+  .header-tagline.hidden-sp {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+  .header-inner {
+    transition: height 0.3s;
+  }
+  .header-inner.sp-scrolled {
+    height: 100px;
+  }
   .hit-rate-block {
     text-align: center;
     background: rgba(255,255,255,0.15);
@@ -1113,16 +1129,16 @@
   adjustLogoWidth();
   window.addEventListener('resize', adjustLogoWidth);
 
-  // スマホ時のスクロールでhero-statsを非表示
+  // スマホ時のスクロールでhero-stats・header-tagline非表示、header高さ変更
   function updateHeroStatsVisibility() {
     const heroStats = document.querySelector('.hero-stats');
-    if (!heroStats) return;
+    const tagline = document.querySelector('.header-tagline');
+    const headerInner = document.querySelector('.header-inner');
     const isSP = window.innerWidth <= 768;
-    if (isSP && window.scrollY > 0) {
-      heroStats.classList.add('hidden-sp');
-    } else {
-      heroStats.classList.remove('hidden-sp');
-    }
+    const scrolled = isSP && window.scrollY > 0;
+    if (heroStats)    heroStats.classList.toggle('hidden-sp', scrolled);
+    if (tagline)      tagline.classList.toggle('hidden-sp', scrolled);
+    if (headerInner)  headerInner.classList.toggle('sp-scrolled', scrolled);
   }
   updateHeroStatsVisibility();
   window.addEventListener('scroll', updateHeroStatsVisibility);
