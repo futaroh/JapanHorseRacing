@@ -3,7 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>競馬予想レポート</title>
+<meta property="og:title" content="初心者向け競馬AI予想サイト｜Uma4begin.jp">
+<meta property="og:description" content="競馬初心者でもわかるAI予想。ストーリーでわかりやすく説明">
+<!-- <meta property="og:image" content="https://example.com/ogp.jpg"> -->
+<meta property="og:url" content="https://uma4begin.jp/">
+<meta property="og:type" content="website">
+<!-- X用
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="初心者向け競馬AI予想サイト">
+<meta name="twitter:description" content="AIで競馬をもっとわかりやすく。">
+<meta name="twitter:image" content="https://example.com/ogp.jpg">
+-->
+<link rel="canonical" href="https://uma4begin.jp/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "はじめての競馬",
+  "url": "https://uma4begin.jp/",
+}
+</script>
+<title>初心者向け競馬予想サイト | はじめての競馬</title>
 <style>
   /* ========== リセット・ベース ========== */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -428,7 +448,7 @@
   /* ========== レスポンシブ ========== */
   @media (max-width: 600px) {
     .header-inner { flex-direction: column; height: auto; padding: 20px 0; gap: 12px; }
-    .hero-stats { justify-content: center; }
+    .hero-stats { justify-content: center; margin-top: -100px; }
     .race-grid { grid-template-columns: 1fr; }
   }
 </style>
@@ -1119,7 +1139,7 @@
     if (window.innerWidth <= 768) {
       logoImg.style.width = '375px';
       logoImg.style.height = 'auto';
-      logoImg.style.marginTop = '-20px';
+      logoImg.style.marginTop = '-100px';
     } else {
       logoImg.style.width = '';
       logoImg.style.height = '400px';
