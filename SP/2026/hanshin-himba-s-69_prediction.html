@@ -527,11 +527,10 @@
   <!--
      %単勝人気別期待値行%  以下を人気順に繰り返す
        <tr [class="top-pick"]>
-         <td>%人気%番人気</td>
-         <td>%担当馬名%（馬%馬番%）</td>
+         <td>%人気%番</td>
+         <td class="l">馬%馬番% %担当馬名%</td>
          <td>%単勝オッズ%</td>
-         <td>%勝率%%</td>
-         <td>%的中数%</td>
+         <td>%勝率%（%的中数%/41）</td>
          <td>%平均払戻%円</td>
          <td class="ev-high|ev-mid|ev-low">%期待値%</td>
          <td>%評価記号%</td>
@@ -542,17 +541,17 @@
   <table>
     <thead>
       <tr>
-        <th>人気</th><th>今回の馬</th><th>単勝オッズ</th>
-        <th>勝率</th><th>的中数/41</th><th>平均払戻</th><th>期待値</th><th>評価</th>
+        <th>人気</th><th style="min-width:120px; text-align:left">今回の馬</th><th>単勝オッズ</th>
+        <th>確率（的中/件数）</th><th>平均払戻</th><th>期待値</th><th style="min-width:120px">評価</th>
       </tr>
     </thead>
     <tbody>
-            <tr><td class="p1">1番人気</td><td style="white-space:nowrap">エンブロイダリー（①）</td><td>2.5</td><td>31.7%</td><td>13</td><td>278円</td><td class="ev-mid">0.88</td><td>ほぼ期待値通り。妙味は薄い</td></tr>
-      <tr><td class="p2">2番人気</td><td style="white-space:nowrap">アスコリピチェーノ（⑥）</td><td>3.7</td><td>22.0%</td><td>9</td><td>397円</td><td class="ev-mid">0.871</td><td>期待値やや低め</td></tr>
-      <tr class="top-pick"><td class="p3">3番人気</td><td style="white-space:nowrap">ラヴァンダ（④）</td><td>4.1</td><td>24.4%</td><td>10</td><td>493円</td><td class="ev-high">1.202</td><td>期待値最高。推奨</td></tr>
-      <tr><td>4番人気</td><td style="white-space:nowrap">カムニャック（⑤）</td><td>7.6</td><td>4.9%</td><td>2</td><td>645円</td><td class="ev-low">0.315</td><td>期待値低い</td></tr>
-      <tr><td>5番人気</td><td style="white-space:nowrap">カピリナ（②）</td><td>14.4</td><td>4.9%</td><td>2</td><td>945円</td><td class="ev-low">0.461</td><td>期待値低い</td></tr>
-      <tr><td>6番人気</td><td style="white-space:nowrap">ルージュソリテール（③）</td><td>17.5</td><td>4.9%</td><td>2</td><td>1275円</td><td class="ev-low">0.622</td><td></td></tr>
+            <tr><td class="p1">1番</td><td class="l" style="white-space:nowrap">① エンブロイダリー</td><td>2.5</td><td>31.7%（13/41）</td><td>278円</td><td class="ev-mid">0.88</td><td>ほぼ期待値通り。妙味は薄い</td></tr>
+      <tr><td class="p2">2番</td><td class="l" style="white-space:nowrap">⑥ アスコリピチェーノ</td><td>3.7</td><td>22.0%（9/41）</td><td>397円</td><td class="ev-mid">0.871</td><td>期待値やや低め</td></tr>
+      <tr class="top-pick"><td class="p3">3番</td><td class="l" style="white-space:nowrap">④ ラヴァンダ</td><td>4.1</td><td>24.4%（10/41）</td><td>493円</td><td class="ev-high">1.202</td><td>期待値最高。推奨</td></tr>
+      <tr><td>4番</td><td class="l" style="white-space:nowrap">⑤ カムニャック</td><td>7.6</td><td>4.9%（2/41）</td><td>645円</td><td class="ev-low">0.315</td><td>期待値低い</td></tr>
+      <tr><td>5番</td><td class="l" style="white-space:nowrap">② カピリナ</td><td>14.4</td><td>4.9%（2/41）</td><td>945円</td><td class="ev-low">0.461</td><td>期待値低い</td></tr>
+      <tr><td>6番</td><td class="l" style="white-space:nowrap">③ ルージュソリテール</td><td>17.5</td><td>4.9%（2/41）</td><td>1275円</td><td class="ev-low">0.622</td><td></td></tr>
     </tbody>
   </table>
   <div class="filter-note">💡 3番人気（ラヴァンダ4.1倍）の単勝期待値1.202が突出。類似41件中10回勝利と安定した成績。1番人気は0.880とやや割れる。</div>
@@ -574,14 +573,14 @@
   <table>
     <thead>
       <tr>
-        <th>オッズ帯</th><th>今回の該当馬</th><th>購入件数</th><th>的中回数</th><th>的中率</th><th>平均払戻</th><th>期待値</th><th>評価</th>
+        <th>オッズ帯</th><th>今回の該当馬</th><th>確率</th><th>平均払戻</th><th>期待値</th><th style="min-width:120px">評価</th>
       </tr>
     </thead>
     <tbody>
-            <tr><td>1.5〜3.0倍</td><td class="l" style="white-space:nowrap">エンブロイダリー</td><td>24</td><td>8</td><td>33.3%</td><td>251円</td><td class="ev-mid">0.838</td><td>回収率84%</td></tr>
-      <tr class="top-pick"><td>3.0〜5.0倍</td><td class="l" style="white-space:nowrap">アスコリピチェーノ・ラヴァンダ</td><td>62</td><td>14</td><td>22.6%</td><td>419円</td><td class="ev-mid">0.945</td><td>回収率95%と高め</td></tr>
-      <tr><td>5.0〜10.0倍</td><td class="l" style="white-space:nowrap">カムニャック</td><td>33</td><td>2</td><td>6.1%</td><td>645円</td><td class="ev-low">0.391</td><td>回収率低い</td></tr>
-      <tr><td>10.0〜20.0倍</td><td class="l" style="white-space:nowrap">カピリナ・ルージュソリテール</td><td>30</td><td>1</td><td>3.3%</td><td>1020円</td><td class="ev-low">0.34</td><td>回収率低い</td></tr>
+            <tr><td>1.5〜3.0倍</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span></td><td>33.3%</td><td>251円</td><td class="ev-mid">0.838</td><td>回収率84%</td></tr>
+      <tr class="top-pick"><td>3.0〜5.0倍</td><td class="l"><span style="white-space:nowrap">⑥ アスコリピチェーノ</span><br><span style="white-space:nowrap">④ ラヴァンダ</span></td><td>22.6%</td><td>419円</td><td class="ev-mid">0.945</td><td>回収率95%と高め</td></tr>
+      <tr><td>5.0〜10.0倍</td><td class="l"><span style="white-space:nowrap">⑤ カムニャック</span></td><td>6.1%</td><td>645円</td><td class="ev-low">0.391</td><td>回収率低い</td></tr>
+      <tr><td>10.0〜20.0倍</td><td class="l"><span style="white-space:nowrap">② カピリナ</span><br><span style="white-space:nowrap">③ ルージュソリテール</span></td><td>3.3%</td><td>1020円</td><td class="ev-low">0.34</td><td>回収率低い</td></tr>
     </tbody>
   </table>
   <div class="filter-note">💡 3〜5倍帯（アスコリピチェーノ・ラヴァンダ）の期待値0.945が最も高い。複数購入で回収率向上の可能性あり。</div>
@@ -590,11 +589,10 @@
   <!--
      %複勝人気別期待値行%
        <tr [class="top-pick"]>
-         <td class="pX">%人気%番人気</td>
-         <td>%担当馬名%</td>
+         <td class="pX">%人気%番</td>
+         <td class="l">馬%馬番% %担当馬名%</td>
          <td>%複勝オッズ%</td>
-         <td>%複勝率%%</td>
-         <td>%的中数%</td>
+         <td>%複勝率%（%的中数%/41）</td>
          <td>%平均払戻%</td>
          <td class="ev-high|ev-mid|ev-low">%期待値%</td>
          <td>%評価記号%</td>
@@ -605,18 +603,18 @@
   <table>
     <thead>
       <tr>
-        <th>人気</th><th>今回の馬</th><th>複勝オッズ</th>
-        <th>複勝率</th><th>的中数/41</th><th>平均払戻</th><th>期待値</th><th>評価</th>
+        <th>人気</th><th style="min-width:120px; text-align:left">今回の馬</th><th>複勝オッズ</th>
+        <th>複勝率（的中/件数）</th><th>平均払戻</th><th>期待値</th><th style="min-width:120px">評価</th>
       </tr>
     </thead>
     <tbody>
-            <tr class="top-pick"><td class="p1">1番人気</td><td style="white-space:nowrap">エンブロイダリー</td><td>1.1〜1.5</td><td>73.2%</td><td>30</td><td>139円</td><td class="ev-high">1.016</td><td>期待値1超。最推奨</td></tr>
-      <tr><td class="p2">2番人気</td><td style="white-space:nowrap">アスコリピチェーノ</td><td>1.2〜1.7</td><td>51.2%</td><td>21</td><td>149円</td><td class="ev-low">0.764</td><td>やや低め</td></tr>
-      <tr><td class="p3">3番人気</td><td style="white-space:nowrap">ラヴァンダ</td><td>1.3〜1.9</td><td>43.9%</td><td>18</td><td>174円</td><td class="ev-low">0.763</td><td>やや低め</td></tr>
-      <tr><td>4番人気</td><td style="white-space:nowrap">カムニャック</td><td>2.2〜3.4</td><td>22.0%</td><td>9</td><td>233円</td><td class="ev-low">0.512</td><td></td></tr>
-      <tr><td>5番人気</td><td style="white-space:nowrap">カピリナ</td><td>2.3〜3.6</td><td>17.1%</td><td>7</td><td>332円</td><td class="ev-low">0.567</td><td></td></tr>
-      <tr><td>6番人気</td><td style="white-space:nowrap">ルージュソリテール</td><td>2.7〜4.3</td><td>22.0%</td><td>9</td><td>364円</td><td class="ev-mid">0.8</td><td></td></tr>
-      <tr><td>7番人気</td><td style="white-space:nowrap">カナテープ</td><td>4.0〜6.6</td><td>19.5%</td><td>8</td><td>473円</td><td class="ev-mid">0.923</td><td>オッズ妙味あり</td></tr>
+            <tr class="top-pick"><td class="p1">1番</td><td class="l" style="white-space:nowrap"> エンブロイダリー</td><td>1.1〜1.5</td><td>73.2%（30/41）</td><td>139円</td><td class="ev-high">1.016</td><td>期待値1超。最推奨</td></tr>
+      <tr><td class="p2">2番</td><td class="l" style="white-space:nowrap"> アスコリピチェーノ</td><td>1.2〜1.7</td><td>51.2%（21/41）</td><td>149円</td><td class="ev-low">0.764</td><td>やや低め</td></tr>
+      <tr><td class="p3">3番</td><td class="l" style="white-space:nowrap"> ラヴァンダ</td><td>1.3〜1.9</td><td>43.9%（18/41）</td><td>174円</td><td class="ev-low">0.763</td><td>やや低め</td></tr>
+      <tr><td>4番</td><td class="l" style="white-space:nowrap"> カムニャック</td><td>2.2〜3.4</td><td>22.0%（9/41）</td><td>233円</td><td class="ev-low">0.512</td><td></td></tr>
+      <tr><td>5番</td><td class="l" style="white-space:nowrap"> カピリナ</td><td>2.3〜3.6</td><td>17.1%（7/41）</td><td>332円</td><td class="ev-low">0.567</td><td></td></tr>
+      <tr><td>6番</td><td class="l" style="white-space:nowrap"> ルージュソリテール</td><td>2.7〜4.3</td><td>22.0%（9/41）</td><td>364円</td><td class="ev-mid">0.8</td><td></td></tr>
+      <tr><td>7番</td><td class="l" style="white-space:nowrap"> カナテープ</td><td>4.0〜6.6</td><td>19.5%（8/41）</td><td>473円</td><td class="ev-mid">0.923</td><td>オッズ妙味あり</td></tr>
     </tbody>
   </table>
   <div class="filter-note">💡 1番人気（エンブロイダリー）の複勝期待値1.016が唯一の1.0超。複勝率73.2%は安定。ただしオッズ1.1〜1.5倍と旨みは少ない。</div>
@@ -702,9 +700,9 @@
       </tr>
     </thead>
     <tbody>
-            <tr class="hl"><td class="p1">1番人気</td><td>エンブロイダリー</td><td>24/58.5%</td><td>30/73.2%</td></tr>
-      <tr><td class="p2">2番人気</td><td>アスコリピチェーノ</td><td>15/36.6%</td><td>21/51.2%</td></tr>
-      <tr><td class="p3">3番人気</td><td>ラヴァンダ</td><td>14/34.1%</td><td>18/43.9%</td></tr>
+            <tr class="hl"><td class="p1">1番</td><td class="l" style="white-space:nowrap">① エンブロイダリー</td><td>58.5%</td><td>73.2%</td></tr>
+      <tr><td class="p2">2番</td><td class="l" style="white-space:nowrap">⑥ アスコリピチェーノ</td><td>36.6%</td><td>51.2%</td></tr>
+      <tr><td class="p3">3番</td><td class="l" style="white-space:nowrap">④ ラヴァンダ</td><td>34.1%</td><td>43.9%</td></tr>
     </tbody>
   </table>
 
@@ -717,13 +715,14 @@
   <table>
     <thead>
       <tr>
-        <th>点数</th><th>組み合わせ</th><th>的中数</th><th>的中率</th>
+        <th>点数</th><th>組み合わせ</th><th>確率</th>
       </tr>
     </thead>
     <tbody>
-            <tr class="hl"><td>3点</td><td class="l">エンブロイダリー × 上位3頭</td><td>24</td><td>58.5%</td></tr>
-      <tr class="hl"><td>5点</td><td class="l">エンブロイダリー × 上位5頭</td><td>24</td><td>58.5%</td></tr>
-      <tr><td>7点</td><td class="l">エンブロイダリー × 上位7頭</td><td>24</td><td>58.5%</td></tr>
+            <tr><td>3点</td><td class="l">3頭流し（相手2〜4番人気）</td><td>39.0%</td></tr>
+      <tr><td>5点</td><td class="l">5頭流し（相手2〜6番人気）</td><td>46.3%</td></tr>
+      <tr><td>7点</td><td class="l">7頭流し（相手2〜8番人気）</td><td>48.8%</td></tr>
+      <tr><td>9点</td><td class="l">9頭流し（相手2〜10番人気）</td><td>53.7%</td></tr>
     </tbody>
   </table>
 
@@ -749,14 +748,14 @@
   <table>
     <thead>
       <tr>
-        <th>軸馬（人気）</th><th>今回の馬</th>
+        <th style="min-width:120px; text-align:left">今回の馬</th>
         <th>最適流し頭数</th><th>期待値</th><th>馬連オッズ参考</th>
       </tr>
     </thead>
     <tbody>
-            <tr class="top-pick"><td>1人気軸</td><td>エンブロイダリー（①）</td><td>3頭流し</td><td class="ev-high">9.083</td><td>4.6〜9.6</td></tr>
-      <tr><td>2人気軸</td><td>アスコリピチェーノ（⑥）</td><td>5頭流し</td><td class="ev-high">1.765</td><td>4.6〜31.6</td></tr>
-      <tr><td>3人気軸</td><td>ラヴァンダ（④）</td><td>5頭流し</td><td class="ev-high">1.659</td><td>5.6〜22.0</td></tr>
+            <tr class="top-pick"><td class="l" style="white-space:nowrap">① エンブロイダリー</td><td>3頭流し</td><td class="ev-mid">0.989</td><td>参照: 馬連オッズ一覧</td></tr>
+      <tr><td class="l" style="white-space:nowrap">⑥ アスコリピチェーノ</td><td>9頭流し</td><td class="ev-mid">0.981</td><td>参照: 馬連オッズ一覧</td></tr>
+      <tr><td class="l" style="white-space:nowrap">④ ラヴァンダ</td><td>3頭流し</td><td class="ev-mid">0.862</td><td>参照: 馬連オッズ一覧</td></tr>
     </tbody>
   </table>
 
@@ -766,26 +765,26 @@
   <table class="tbl-umaren-odds">
     <thead>
       <tr>
-        <th>順位</th><th>組み合わせ（馬番）</th><th style="min-width:160px">馬名</th><th>オッズ</th>
+        <th>順位</th><th style="min-width:140px; text-align:left">馬名</th><th>オッズ</th>
       </tr>
     </thead>
     <tbody>
-            <tr class="umaren-highlight"><td>1</td><td>①-⑥</td><td>エンブロイダリー ― アスコリピチェーノ</td><td>4.6</td></tr>
-      <tr class="umaren-highlight"><td>2</td><td>①-④</td><td>エンブロイダリー ― ラヴァンダ</td><td>5.6</td></tr>
-      <tr><td>3</td><td>④-⑥</td><td>ラヴァンダ ― アスコリピチェーノ</td><td>7.2</td></tr>
-      <tr><td>4</td><td>①-⑤</td><td>エンブロイダリー ― カムニャック</td><td>9.6</td></tr>
-      <tr><td>5</td><td>④-⑤</td><td>ラヴァンダ ― カムニャック</td><td>16.6</td></tr>
-      <tr><td>6</td><td>⑤-⑥</td><td>カムニャック ― アスコリピチェーノ</td><td>15.0</td></tr>
-      <tr><td>7</td><td>①-②</td><td>エンブロイダリー ― カピリナ</td><td>22.5</td></tr>
-      <tr><td>8</td><td>③-④</td><td>ルージュソリテール ― ラヴァンダ</td><td>22.0</td></tr>
-      <tr><td>9</td><td>①-③</td><td>エンブロイダリー ― ルージュソリテール</td><td>25.1</td></tr>
-      <tr><td>10</td><td>②-④</td><td>カピリナ ― ラヴァンダ</td><td>23.8</td></tr>
+            <tr class="umaren-highlight"><td>1</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">⑥ アスコリピチェーノ</span></td><td style="text-align:right">4.6倍</td></tr>
+      <tr class="umaren-highlight"><td>2</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">④ ラヴァンダ</span></td><td style="text-align:right">5.6倍</td></tr>
+      <tr><td>3</td><td class="l"><span style="white-space:nowrap">④ ラヴァンダ</span><br><span style="white-space:nowrap">⑥ アスコリピチェーノ</span></td><td style="text-align:right">7.2倍</td></tr>
+      <tr><td>4</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">⑤ カムニャック</span></td><td style="text-align:right">9.6倍</td></tr>
+      <tr><td>5</td><td class="l"><span style="white-space:nowrap">④ ラヴァンダ</span><br><span style="white-space:nowrap">⑤ カムニャック</span></td><td style="text-align:right">16.6倍</td></tr>
+      <tr><td>6</td><td class="l"><span style="white-space:nowrap">⑤ カムニャック</span><br><span style="white-space:nowrap">⑥ アスコリピチェーノ</span></td><td style="text-align:right">15.0倍</td></tr>
+      <tr><td>7</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">② カピリナ</span></td><td style="text-align:right">22.5倍</td></tr>
+      <tr><td>8</td><td class="l"><span style="white-space:nowrap">③ ルージュソリテール</span><br><span style="white-space:nowrap">④ ラヴァンダ</span></td><td style="text-align:right">22.0倍</td></tr>
+      <tr><td>9</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">③ ルージュソリテール</span></td><td style="text-align:right">25.1倍</td></tr>
+      <tr><td>10</td><td class="l"><span style="white-space:nowrap">② カピリナ</span><br><span style="white-space:nowrap">④ ラヴァンダ</span></td><td style="text-align:right">23.8倍</td></tr>
       <!--
       <tr class="umaren-highlight"><td>1</td><td>%馬番A%-%-馬番B%</td><td>%馬名A% ― %馬名B%</td><td class="ev-high">%オッズ%</td></tr>
       -->
     </tbody>
   </table>
-  <div class="filter-note">💡 馬連の最頻組み合わせは「3-1番人気（ラヴァンダ×エンブロイダリー）」で5.6倍。1番人気軸の3頭流しは期待値9.08と最高効率。</div>
+  <div class="filter-note">💡 1番人気（エンブロイダリー）軸の3頭流し（アスコリピチェーノ・ラヴァンダ・カムニャック）が期待値0.989と最高効率。9頭全流しでも0.826を維持。</div>
 
   <!-- 推奨馬連購入プラン -->
   <h3>推奨馬連購入プラン</h3>
@@ -816,24 +815,31 @@
            <td class="ev-high|ev-mid|ev-low">%期待値%</td>
            <td>%評価記号%</td>
          </tr>
-     「1-3-4番人気BOX（エンブロイダリー・ラヴァンダ・カムニャック）」が期待値2.007と突出。ただし的中率9.8%（41件中4回）と頻度は低め。
+     最低オッズは1-4-6（エンブロイダリー-ラヴァンダ-アスコリピチェーノ）の4.7倍。期待値最高は1-6-8（エンブロイダリー-アスコリピチェーノ-カナテープ）EV3.976。
 =========================== -->
 <div class="section" id="sanrenpuku" style="">
   <h2><span class="section-icon">🎯</span>分析４：３連複</h2>
 
   <!-- 人気順 上位 -->
-  <h3>３連複 人気順 上位10組</h3>
-  <!--  10  例）10  -->
+  <h3>３連複 人気順 上位15組</h3>
+  <!--  15  例）10  -->
   <table class="tbl-sanren-odds">
     <thead>
       <tr>
-        <th>人気</th><th>組み合わせ（馬番）</th><th style="min-width:160px">馬名（簡略）</th><th>オッズ</th>
+        <th>人気</th><th style="min-width:160px; text-align:left">馬名</th><th>オッズ</th>
       </tr>
     </thead>
     <tbody>
-            <tr class="sanren-highlight"><td>1位</td><td>1-4-6</td><td class="l">エンブロイダリー-ラヴァンダ-アスコリピチェーノ</td><td class=""></td></tr>
-      <tr><td>2位</td><td>1-5-6</td><td class="l">エンブロイダリー-カムニャック-アスコリピチェーノ</td><td class=""></td></tr>
-      <tr class="sanren-highlight"><td>3位</td><td>1-4-5</td><td class="l">エンブロイダリー-ラヴァンダ-カムニャック</td><td class=""></td></tr>
+            <tr class="sanren-highlight"><td>1位</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">④ ラヴァンダ</span><br><span style="white-space:nowrap">⑥ アスコリピチェーノ</span></td><td style="text-align:right">4.7倍</td></tr>
+      <tr class="sanren-highlight"><td>2位</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">⑤ カムニャック</span><br><span style="white-space:nowrap">⑥ アスコリピチェーノ</span></td><td style="text-align:right">9.8倍</td></tr>
+      <tr class="sanren-highlight"><td>3位</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">④ ラヴァンダ</span><br><span style="white-space:nowrap">⑤ カムニャック</span></td><td style="text-align:right">13.0倍</td></tr>
+      <tr class="sanren-highlight"><td>4位</td><td class="l"><span style="white-space:nowrap">④ ラヴァンダ</span><br><span style="white-space:nowrap">⑤ カムニャック</span><br><span style="white-space:nowrap">⑥ アスコリピチェーノ</span></td><td style="text-align:right">18.3倍</td></tr>
+      <tr class="sanren-highlight"><td>5位</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">③ ルージュソリテール</span><br><span style="white-space:nowrap">④ ラヴァンダ</span></td><td style="text-align:right">20.6倍</td></tr>
+      <tr><td>6位</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">③ ルージュソリテール</span><br><span style="white-space:nowrap">⑥ アスコリピチェーノ</span></td><td style="text-align:right">22.1倍</td></tr>
+      <tr><td>7位</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">② カピリナ</span><br><span style="white-space:nowrap">④ ラヴァンダ</span></td><td style="text-align:right">22.3倍</td></tr>
+      <tr><td>8位</td><td class="l"><span style="white-space:nowrap">① エンブロイダリー</span><br><span style="white-space:nowrap">② カピリナ</span><br><span style="white-space:nowrap">⑥ アスコリピチェーノ</span></td><td style="text-align:right">22.9倍</td></tr>
+      <tr><td>9位</td><td class="l"><span style="white-space:nowrap">② カピリナ</span><br><span style="white-space:nowrap">④ ラヴァンダ</span><br><span style="white-space:nowrap">⑥ アスコリピチェーノ</span></td><td style="text-align:right">26.4倍</td></tr>
+      <tr><td>10位</td><td class="l"><span style="white-space:nowrap">③ ルージュソリテール</span><br><span style="white-space:nowrap">④ ラヴァンダ</span><br><span style="white-space:nowrap">⑥ アスコリピチェーノ</span></td><td style="text-align:right">30.6倍</td></tr>
     </tbody>
   </table>
 
@@ -846,13 +852,24 @@
       </tr>
     </thead>
     <tbody>
-            <tr class="top-pick"><td>3番人気軸 × 1・4番人気</td><td>ラヴァンダ-エンブロイダリー-カムニャック</td><td>1点</td><td>9.8%</td><td class="ev-high">2.007</td><td>◎最推奨。期待値2.0超</td></tr>
-      <tr><td>1番人気軸 × 2・6番人気</td><td>エンブロイダリー-アスコリピチェーノ-ルージュソリテール</td><td>1点</td><td>2.4%</td><td class="ev-high">1.224</td><td>○推奨</td></tr>
-      <tr><td>2・3・4番人気BOX</td><td>アスコリピチェーノ-ラヴァンダ-カムニャック</td><td>1点</td><td>4.9%</td><td class="ev-mid">0.851</td><td></td></tr>
-      <tr><td>1・2・3番人気BOX</td><td>エンブロイダリー-アスコリピチェーノ-ラヴァンダ</td><td>1点</td><td>7.3%</td><td class="ev-low">0.573</td><td>期待値低い</td></tr>
+            <tr><td>1-2-3番人気</td><td>1-4-6</td><td>1点</td><td>7.3%</td><td class="ev-low">0.344</td><td></td></tr>
+      <tr><td>1-2-4番人気</td><td>1-5-6</td><td>1点</td><td>2.4%</td><td class="ev-low">0.239</td><td></td></tr>
+      <tr class="top-pick"><td>1-3-4番人気</td><td>1-4-5</td><td>1点</td><td>9.8%</td><td class="ev-high">1.268</td><td>◎</td></tr>
+      <tr><td>2-3-4番人気</td><td>4-5-6</td><td>1点</td><td>4.9%</td><td class="ev-mid">0.893</td><td>○</td></tr>
+      <tr><td>1-3-6番人気</td><td>1-3-4</td><td>1点</td><td>2.4%</td><td class="ev-low">0.502</td><td></td></tr>
+      <tr><td>1-2-6番人気</td><td>1-3-6</td><td>1点</td><td>2.4%</td><td class="ev-low">0.539</td><td></td></tr>
+      <tr><td>1-3-5番人気</td><td>1-2-4</td><td>1点</td><td>0.0%</td><td class="ev-low">0.0</td><td></td></tr>
+      <tr class="top-pick"><td>1-2-5番人気</td><td>1-2-6</td><td>1点</td><td>4.9%</td><td class="ev-high">1.117</td><td>◎</td></tr>
+      <tr><td>2-3-5番人気</td><td>2-4-6</td><td>1点</td><td>0.0%</td><td class="ev-low">0.0</td><td></td></tr>
+      <tr><td>2-3-6番人気</td><td>3-4-6</td><td>1点</td><td>2.4%</td><td class="ev-low">0.746</td><td></td></tr>
+      <tr class="top-pick"><td>1-2-7番人気</td><td>1-6-8</td><td>1点</td><td>12.2%</td><td class="ev-high">3.976</td><td>◎</td></tr>
+      <tr><td>1-3-7番人気</td><td>1-4-8</td><td>1点</td><td>0.0%</td><td class="ev-low">0.0</td><td></td></tr>
+      <tr><td>1-4-6番人気</td><td>1-3-5</td><td>1点</td><td>0.0%</td><td class="ev-low">0.0</td><td></td></tr>
+      <tr><td>1-3-8番人気</td><td>1-4-7</td><td>1点</td><td>0.0%</td><td class="ev-low">0.0</td><td></td></tr>
+      <tr class="top-pick"><td>1-2-8番人気</td><td>1-6-7</td><td>1点</td><td>4.9%</td><td class="ev-high">2.063</td><td>◎</td></tr>
     </tbody>
   </table>
-  <div class="filter-note">💡 「1-3-4番人気BOX（エンブロイダリー・ラヴァンダ・カムニャック）」が期待値2.007と突出。ただし的中率9.8%（41件中4回）と頻度は低め。</div>
+  <div class="filter-note">💡 最低オッズは1-4-6（エンブロイダリー-ラヴァンダ-アスコリピチェーノ）の4.7倍。期待値最高は1-6-8（エンブロイダリー-アスコリピチェーノ-カナテープ）EV3.976。</div>
   <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
 </div>
 
