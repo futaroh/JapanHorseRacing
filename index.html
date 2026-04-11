@@ -5,474 +5,246 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:title" content="初心者向け競馬AI予想サイト｜Uma4begin.jp">
 <meta property="og:description" content="競馬初心者でもわかるAI予想。ストーリーでわかりやすく説明">
-<!-- <meta property="og:image" content="https://example.com/ogp.jpg"> -->
 <meta property="og:url" content="https://uma4begin.jp/">
 <meta property="og:type" content="website">
-<!-- X用
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="初心者向け競馬AI予想サイト">
-<meta name="twitter:description" content="AIで競馬をもっとわかりやすく。">
-<meta name="twitter:image" content="https://example.com/ogp.jpg">
--->
 <link rel="canonical" href="https://uma4begin.jp/">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "はじめての競馬",
-  "url": "https://uma4begin.jp/",
+  "url": "https://uma4begin.jp/"
 }
 </script>
-<title>初心者向け競馬予想サイト | はじめての競馬</title>
+<title>はじめての競馬 | 初心者向け競馬予想サイト</title>
 <style>
-  /* ========== リセット・ベース ========== */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Meiryo', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', sans-serif;
-    background: #f4f7f4;
-    color: #333;
-    min-height: 100vh;
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Meiryo', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', sans-serif;
+  background: #f4f7f4;
+  color: #333;
+  min-height: 100vh;
+}
 
-  /* ========== ヘッダー ========== */
-  header {
-    background: linear-gradient(135deg, #1a6e3c 0%, #2d9d5b 100%);
-    color: white;
-    padding: 0 24px;
-    box-shadow: 0 2px 12px rgba(26,110,60,0.2);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .header-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    height: 144px;
-  }
-  .header-tagline {
-    border-top: 1px solid rgba(255,255,255,0.2);
-    text-align: center;
-    padding: 9px 24px;
-    font-size: 0.83em;
-    color: rgba(255,255,255,0.88);
-    letter-spacing: 0.04em;
-  }
-  .site-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: white;
-  }
-  .logo-icon {
-    display: flex;
-    align-items: center;
-    margin-top: 15px;
-  }
-  .logo-icon img {
-    height: 400px;
-    width: auto;
-    display: block;
-    border-radius: 6px;
-  }
-  .logo-text {
-    display: none;
-  }
-  .logo-sub {
-    font-size: 0.65em;
-    opacity: 0.85;
-    display: block;
-    font-weight: normal;
-    letter-spacing: 0.05em;
-  }
-  /* ========== メインコンテンツ ========== */
-  main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 28px 20px 60px;
-  }
+/* ========== ヘッダー ========== */
+header {
+  background: linear-gradient(135deg, #1a6e3c 0%, #2d9d5b 100%);
+  color: white;
+  padding: 0 24px;
+  box-shadow: 0 2px 12px rgba(26,110,60,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 144px;
+  transition: height 0.3s;
+}
+.header-tagline {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  text-align: center;
+  padding: 9px 24px;
+  font-size: 0.83em;
+  color: rgba(255,255,255,0.88);
+  letter-spacing: 0.04em;
+}
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: white;
+}
+.logo-icon {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+.logo-icon img {
+  height: 400px;
+  width: auto;
+  display: block;
+  border-radius: 6px;
+}
 
-  /* ========== ヒーローテキスト（ヘッダー内） ========== */
-  .hero-text {
-    flex: 1;
-  }
-  .hero-text h2 {
-    font-size: 1.3em;
-    color: white;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  .hero-text p {
-    display: none;
-  }
-  .hero-stats {
-    flex-shrink: 0;
-    transition: opacity 0.3s, visibility 0.3s, max-width 0.3s;
-  }
-  .hero-stats.hidden-sp {
-    opacity: 0;
-    visibility: hidden;
-    max-width: 0;
-    overflow: hidden;
-    padding: 0;
-  }
-  .header-tagline {
-    transition: opacity 0.3s, visibility 0.3s, max-height 0.3s, padding 0.3s;
-  }
-  .header-tagline.hidden-sp {
-    opacity: 0;
-    visibility: hidden;
-    max-height: 0;
-    overflow: hidden;
-    padding: 0;
-  }
-  .header-inner {
-    transition: height 0.3s;
-  }
-  .header-inner.sp-scrolled {
-    height: 100px;
-  }
-  .hit-rate-block {
-    text-align: center;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 12px;
-    padding: 14px 32px;
-  }
-  .hit-rate-label {
-    font-size: 0.78em;
-    color: rgba(255,255,255,0.8);
-    letter-spacing: 0.08em;
-    margin-bottom: 4px;
-  }
-  .hit-rate-num {
-    font-size: 2.8em;
-    font-weight: bold;
-    color: #ff4d4d;
-    font-style: italic;
-    line-height: 1;
-  }
-  .hit-rate-detail {
-    font-size: 0.7em;
-    color: rgba(255,255,255,0.75);
-    margin-top: 7px;
-    white-space: nowrap;
-  }
+/* ========== 的中率ブロック ========== */
+.hero-stats { flex-shrink: 0; }
+.hit-rate-block {
+  text-align: center;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 12px;
+  padding: 14px 32px;
+}
+.hit-rate-label { font-size: 0.78em; color: rgba(255,255,255,0.8); letter-spacing: 0.08em; margin-bottom: 4px; }
+.hit-rate-num   { font-size: 2.8em; font-weight: bold; color: #ff4d4d; font-style: italic; line-height: 1; }
+.hit-rate-detail { font-size: 0.7em; color: rgba(255,255,255,0.75); margin-top: 7px; white-space: nowrap; }
 
-  /* ========== 月タブ ========== */
-  .month-tabs {
-    display: flex;
-    gap: 8px;
-    margin: 12px 0 16px;
-  }
-  .month-tab {
-    background: white;
-    border: 1.5px solid #dde8e2;
-    border-radius: 20px;
-    padding: 6px 20px;
-    font-size: 0.85em;
-    color: #555;
-    cursor: pointer;
-    transition: all 0.2s;
-    user-select: none;
-    font-weight: bold;
-  }
-  .month-tab:hover {
-    border-color: #1a6e3c;
-    color: #1a6e3c;
-  }
-  .month-tab.active {
-    background: #1a6e3c;
-    border-color: #1a6e3c;
-    color: white;
-  }
+/* ========== メインコンテンツ ========== */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
 
-  /* ========== セクションヘッダー ========== */
-  .section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-  }
-  .section-title {
-    font-size: 1.05em;
-    font-weight: bold;
-    color: #1a6e3c;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .section-title::before {
-    content: '';
-    display: inline-block;
-    width: 4px;
-    height: 18px;
-    background: #1a6e3c;
-    border-radius: 2px;
-  }
+/* ========== フィルタータブ ========== */
+.filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.filter-tab {
+  background: white; border: 1.5px solid #dde8e2; border-radius: 20px;
+  padding: 6px 16px; font-size: 0.83em; color: #555; cursor: pointer;
+  transition: all 0.2s; user-select: none;
+}
+.filter-tab:hover  { border-color: #1a6e3c; color: #1a6e3c; }
+.filter-tab.active { background: #1a6e3c; border-color: #1a6e3c; color: white; }
 
-  /* ========== フィルタータブ ========== */
-  .filter-tabs {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
-  .filter-tab {
-    background: white;
-    border: 1.5px solid #dde8e2;
-    border-radius: 20px;
-    padding: 6px 16px;
-    font-size: 0.83em;
-    color: #555;
-    cursor: pointer;
-    transition: all 0.2s;
-    user-select: none;
-  }
-  .filter-tab:hover {
-    border-color: #1a6e3c;
-    color: #1a6e3c;
-  }
-  .filter-tab.active {
-    background: #1a6e3c;
-    border-color: #1a6e3c;
-    color: white;
-  }
+/* ========== セクションヘッダー ========== */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 1.05em;
+  font-weight: bold;
+  color: #1a6e3c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px; height: 18px;
+  background: #1a6e3c;
+  border-radius: 2px;
+}
 
-  /* ========== レースカードグリッド ========== */
-  .race-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 18px;
-  }
+/* ========== 月タブ ========== */
+.month-tabs { display: flex; gap: 8px; margin: 12px 0 16px; }
+.month-tab {
+  background: white; border: 1.5px solid #dde8e2; border-radius: 20px;
+  padding: 6px 20px; font-size: 0.85em; color: #555; cursor: pointer;
+  transition: all 0.2s; user-select: none; font-weight: bold;
+}
+.month-tab:hover  { border-color: #1a6e3c; color: #1a6e3c; }
+.month-tab.active { background: #1a6e3c; border-color: #1a6e3c; color: white; }
 
-  /* ========== 的中・収支バッジ ========== */
-  .card-badges {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    padding: 10px 14px 0;
-  }
-  .badge-hit, .badge-miss, .badge-profit, .badge-loss {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    border-radius: 20px;
-    padding: 3px 11px;
-    font-size: 0.78em;
-    font-weight: bold;
-    letter-spacing: 0.03em;
-  }
-  /* 的中 */
-  .badge-hit  { background: #e8f5e9; color: #2e7d32; border: 1.5px solid #a5d6a7; }
-  /* 外れ */
-  .badge-miss { background: #f5f5f5; color: #9e9e9e; border: 1.5px solid #e0e0e0; }
-  /* プラス */
-  .badge-profit { background: #e3f2fd; color: #1565c0; border: 1.5px solid #90caf9; }
-  /* マイナス */
-  .badge-loss   { background: #fce4ec; color: #c62828; border: 1.5px solid #ef9a9a; }
+/* ========== レースカードグリッド ========== */
+.race-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
 
-  /* ========== レースカード ========== */
-  .race-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-    overflow: hidden;
-    transition: transform 0.18s, box-shadow 0.18s;
-    border: 1.5px solid transparent;
-  }
-  .race-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(26,110,60,0.13);
-    border-color: #c8e6d0;
-  }
-  /* 的中カード */
-  .race-card.hit {
-    border: 2.5px solid #e8a000;
-    box-shadow: 0 4px 20px rgba(232,160,0,0.3);
-  }
-  .race-card.hit:hover {
-    border-color: #e8a000;
-    box-shadow: 0 8px 28px rgba(232,160,0,0.4);
-  }
-  /* 的中画像 */
-  .atari-img {
-    height: 120px;
-    width: auto;
-    display: block;
-    margin-top: -45px;
-    margin-right: -45px;
-  }
-  .card-header {
-    background: linear-gradient(135deg, #1a6e3c, #2d9d5b);
-    color: white;
-    padding: 14px 18px;
-    position: relative;
-  }
-  .card-header.upcoming {
-    background: linear-gradient(135deg, #2c5f8a, #3a7fc1);
-  }
-  .race-grade {
-    display: inline-block;
-    background: rgba(255,255,255,0.25);
-    border: 1px solid rgba(255,255,255,0.4);
-    color: white;
-    border-radius: 4px;
-    font-size: 0.72em;
-    font-weight: bold;
-    padding: 2px 8px;
-    margin-bottom: 6px;
-    letter-spacing: 0.05em;
-  }
-  .race-grade.g1 { background: rgba(220,40,40,0.5); border-color: rgba(255,100,100,0.5); }
-  .race-grade.g2 { background: rgba(30,80,180,0.5); border-color: rgba(100,140,220,0.5); }
-  .race-grade.g3 { background: rgba(30,140,60,0.4); border-color: rgba(80,180,100,0.4); }
-  .race-name {
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-bottom: 4px;
-    line-height: 1.3;
-  }
-  .race-meta {
-    font-size: 0.78em;
-    opacity: 0.88;
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .card-status {
-    position: absolute;
-    top: 12px;
-    right: 14px;
-  }
-  .status-badge {
-    display: inline-block;
-    border-radius: 12px;
-    padding: 3px 10px;
-    font-size: 0.72em;
-    font-weight: bold;
-  }
-  .status-done { background: rgba(255,255,255,0.9); color: #1a6e3c; }
-  .status-upcoming { background: rgba(255,200,0,0.9); color: #333; }
-  .status-live { background: rgba(220,40,40,0.9); color: white; }
+/* ========== レースカード ========== */
+.race-card {
+  background: white; border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  overflow: hidden; transition: transform 0.18s, box-shadow 0.18s;
+  border: 1.5px solid transparent;
+}
+.race-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(26,110,60,0.13);
+  border-color: #c8e6d0;
+}
+.race-card.hit {
+  border: 2.5px solid #e8a000;
+  box-shadow: 0 4px 20px rgba(232,160,0,0.3);
+}
+.atari-img { height: 120px; width: auto; display: block; margin-top: -45px; margin-right: -45px; }
+.card-header {
+  background: linear-gradient(135deg, #1a6e3c, #2d9d5b);
+  color: white; padding: 14px 18px; position: relative;
+}
+.card-header.upcoming { background: linear-gradient(135deg, #2c5f8a, #3a7fc1); }
+.race-grade {
+  display: inline-block;
+  background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.4);
+  color: white; border-radius: 4px; font-size: 0.72em; font-weight: bold;
+  padding: 2px 8px; margin-bottom: 6px; letter-spacing: 0.05em;
+}
+.race-grade.g1 { background: rgba(220,40,40,0.5);  border-color: rgba(255,100,100,0.5); }
+.race-grade.g2 { background: rgba(30,80,180,0.5);  border-color: rgba(100,140,220,0.5); }
+.race-grade.g3 { background: rgba(30,140,60,0.4);  border-color: rgba(80,180,100,0.4);  }
+.race-name { font-size: 1.1em; font-weight: bold; margin-bottom: 4px; line-height: 1.3; }
+.race-meta { font-size: 0.78em; opacity: 0.88; display: flex; gap: 12px; flex-wrap: wrap; }
+.card-status { position: absolute; top: 12px; right: 14px; }
+.status-badge {
+  display: inline-block; border-radius: 12px;
+  padding: 3px 10px; font-size: 0.72em; font-weight: bold;
+}
+.status-done     { background: rgba(255,255,255,0.9); color: #1a6e3c; }
+.status-upcoming { background: rgba(255,200,0,0.9);   color: #333;    }
 
-  /* ========== カードボディ ========== */
-  .card-body {
-    padding: 16px 18px;
-  }
-  .result-summary {
-    background: #f0f8f4;
-    border-radius: 8px;
-    padding: 10px 14px;
-    margin-bottom: 14px;
-    font-size: 0.85em;
-    line-height: 1.6;
-    color: #444;
-    border-left: 3px solid #1a6e3c;
-  }
-  .result-summary.win {
-    background: #fff8e1;
-    border-left-color: #e8a000;
-  }
-  .result-summary.loss {
-    background: #fdf0f0;
-    border-left-color: #d9534f;
-  }
+/* ========== カードボディ ========== */
+.card-body { padding: 16px 18px; }
+.result-summary {
+  background: #f0f8f4; border-radius: 8px; padding: 10px 14px;
+  margin-bottom: 14px; font-size: 0.85em; line-height: 1.6;
+  color: #444; border-left: 3px solid #1a6e3c;
+}
+.result-summary.win  { background: #fff8e1; border-left-color: #e8a000; }
+.result-summary.loss { background: #fdf0f0; border-left-color: #d9534f; }
 
-  /* ========== レポートリンク ========== */
-  .report-links {
-    display: flex;
-    gap: 10px;
-  }
-  .report-link {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 10px 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.84em;
-    font-weight: bold;
-    transition: all 0.18s;
-    border: 1.5px solid;
-  }
-  .report-link.yoso {
-    background: #f0f8f4;
-    color: #1a6e3c;
-    border-color: #c8e6d0;
-  }
-  .report-link.yoso:hover {
-    background: #1a6e3c;
-    color: white;
-    border-color: #1a6e3c;
-  }
-  .report-link.kekka {
-    background: #fff8f0;
-    color: #e07000;
-    border-color: #f5d5a8;
-  }
-  .report-link.kekka:hover {
-    background: #e07000;
-    color: white;
-    border-color: #e07000;
-  }
-  .report-link.disabled {
-    background: #f5f5f5;
-    color: #aaa;
-    border-color: #e0e0e0;
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-  .link-icon { font-size: 1em; }
+/* ========== レポートリンク ========== */
+.report-links { display: flex; gap: 10px; }
+.report-link {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  gap: 6px; padding: 10px 12px; border-radius: 8px; text-decoration: none;
+  font-size: 0.84em; font-weight: bold; transition: all 0.18s; border: 1.5px solid;
+}
+.report-link.yoso  { background: #f0f8f4; color: #1a6e3c; border-color: #c8e6d0; }
+.report-link.yoso:hover  { background: #1a6e3c; color: white; border-color: #1a6e3c; }
+.report-link.kekka { background: #fff8f0; color: #e07000; border-color: #f5d5a8; }
+.report-link.kekka:hover { background: #e07000; color: white; border-color: #e07000; }
+.report-link.disabled {
+  background: #f5f5f5; color: #aaa; border-color: #e0e0e0;
+  cursor: not-allowed; pointer-events: none;
+}
 
-  /* ========== フッター ========== */
-  footer {
-    text-align: center;
-    padding: 28px 20px;
-    background: white;
-    border-top: 1px solid #e8ede8;
-    color: #999;
-    font-size: 0.8em;
-    margin-top: 40px;
-  }
-  footer strong {
-    color: #1a6e3c;
-  }
+/* ========== フッター ========== */
+footer {
+  text-align: center; padding: 28px 20px;
+  background: white; border-top: 1px solid #e8ede8;
+  color: #999; font-size: 0.8em; margin-top: 40px;
+}
+footer strong { color: #1a6e3c; }
 
-  /* ========== レスポンシブ ========== */
-  @media (max-width: 600px) {
-    .header-inner { flex-direction: column; height: auto; padding: 20px 0; gap: 12px; }
-    .hero-stats { justify-content: center; margin-top: -100px; }
-    .race-grid { grid-template-columns: 1fr; }
-  }
+/* ========== レスポンシブ ========== */
+@media (max-width: 600px) {
+  .header-inner { flex-direction: column; height: auto; padding: 20px 0; gap: 12px; }
+  .race-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
-<!-- ヘッダー＋ヒーロー融合 -->
+<!-- ========== ヘッダー ========== -->
 <header>
   <div class="header-inner">
     <a class="site-logo" href="index.html">
-      <span class="logo-icon"><img id="logo-img" src="images/logo.png" alt="競馬予想レポート ロゴ"></span>
+      <span class="logo-icon">
+        <img id="logo-img" src="images/logo.png" alt="競馬予想レポート ロゴ">
+      </span>
     </a>
     <div class="hero-stats">
       <div class="hit-rate-block">
         <div class="hit-rate-label">的中率</div>
-        <div class="hit-rate-num" id="hit-rate">50.00%</div>
-        <div class="hit-rate-detail">（2026年4月現在：予想レース数<span id="count-done">2</span>、的中レース数<span id="count-hit">1</span>）</div>
+        <div class="hit-rate-num" id="hit-rate">100.0%</div>
+        <div class="hit-rate-detail">
+          （2026年4月現在：予想レース数<span id="count-done">1</span>、的中レース数<span id="count-hit">1</span>）
+        </div>
       </div>
     </div>
   </div>
   <div class="header-tagline">JRA公表資料をAIで分析し、競馬初心者にもわかりやすくストーリーで解説したサイト</div>
 </header>
 
-<!-- メインコンテンツ -->
+<!-- ========== メインコンテンツ ========== -->
 <main>
 
   <!-- フィルタータブ -->
@@ -489,83 +261,54 @@
     <div class="section-title">予想公開済レース</div>
   </div>
   <div class="race-grid" id="race-grid-done">
-
-    <!-- 第70回大阪杯 -->
-    <div class="race-card hit" data-grade="g1" data-status="done">
-      <div class="card-header">
-        <div class="card-status">
-          <img src="images/atari.png" alt="的中" class="atari-img">
+    
+    <div class="race-card" data-grade="g2" data-status="pred_only">
+      <div class="card-header upcoming">
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予想のみ</span></div>
+        <div class="race-grade g2">GII</div>
+        <div class="race-name">第69回 サンケイスポーツ杯阪神牝馬ステークス</div>
+        <div class="race-meta">
+          <span>📅 2026年4月11日（土）</span>
+          <span>🏟️ 阪神 芝1600m（右回り・外回り）</span>
         </div>
+      </div>
+      <div class="card-body">
+        <div class="result-summary">阪神 芝1600m（右回り・外回り） のデータと期待値分析に基づく前日情報です。</div>
+        <div class="report-links"><a class="report-link yoso" href="SP/2026/hanshin-himba-s-69_prediction.html"><span class="link-icon">📊</span> 予想レポート</a><a class="report-link kekka disabled" href="#"><span class="link-icon">🏁</span> 結果待ち</a></div>
+      </div>
+    </div>
+
+    <div class="race-card hit" data-grade="g1" data-status="done">
+      <div class="card-header ">
+        <div class="card-status"><img src="images/atari.png" alt="的中" class="atari-img"></div>
         <div class="race-grade g1">GI</div>
         <div class="race-name">第70回 大阪杯</div>
         <div class="race-meta">
           <span>📅 2026年4月5日（日）</span>
-          <span>🏟️ 阪神芝2000m</span>
+          <span>🏟️ 阪神 芝2000m（右回り・内回り）</span>
         </div>
       </div>
       <div class="card-body">
-        <div class="result-summary">
-          1番人気クロワデュノール（北村友一騎手）が後方から鮮やかに差し切り快勝。
-        </div>
-        <div class="report-links">
-          <a class="report-link yoso" href="2026/osaka-cup-70_prediction.html">
-            <span class="link-icon">📊</span> 予想レポート
-          </a>
-          <a class="report-link kekka" href="2026/osaka-cup-70_result.html">
-            <span class="link-icon">🏁</span> 結果レポート
-          </a>
-        </div>
+        <div class="result-summary win">1番人気クロワデュノールが後方から差し切り勝利。逃げ粘るメイショウタバル（3番人気）が2着、本命ダノンデサイル（2番人気）が3着。予想の上位3頭（◎○▲うち◎○）が3着以内に入る好結果。13番人気タガノデュードが4着に激走した点はやや意外。</div>
+        <div class="report-links"><a class="report-link yoso" href="SP/2026/osaka-cup-70_prediction.html"><span class="link-icon">📊</span> 予想レポート</a><a class="report-link kekka" href="SP/2026/osaka-cup-70_result.html"><span class="link-icon">🏁</span> 結果レポート</a></div>
       </div>
     </div>
+  </div>
 
-    <!-- ダービー卿チャレンジトロフィー -->
-    <div class="race-card" data-grade="g3" data-status="upcoming">
-      <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予想のみ</span>
-        </div>
-        <div class="race-grade g3">GIII</div>
-        <div class="race-name">ダービー卿チャレンジトロフィー 2026</div>
-        <div class="race-meta">
-          <span>📅 2026年4月5日（土）</span>
-          <span>🏟️ 中山芝1600m</span>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="result-summary">
-          中山マイルの重賞。データと期待値分析に基づく予想レポートです。
-        </div>
-        <div class="report-links">
-          <a class="report-link yoso" href="2026/derby-kyo-ct_prediction.html">
-            <span class="link-icon">📊</span> 予想レポート
-          </a>
-          <a class="report-link kekka disabled" href="#">
-            <span class="link-icon">🏁</span> 結果待ち
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /race-grid-done -->
-
-  <!-- 今後の予定レース -->
-  <div class="section-header" style="margin-top: 36px;" id="sched-section-header">
+  <!-- 今後の予定レース（月タブ＋グリッド） -->
+    <div class="section-header" style="margin-top:36px;" id="sched-section-header">
     <div class="section-title">今後の予定レース</div>
   </div>
   <div class="month-tabs">
-    <div class="month-tab active" onclick="switchMonth(4, this)">4月</div>
-    <div class="month-tab" onclick="switchMonth(5, this)">5月</div>
-    <div class="month-tab" onclick="switchMonth(6, this)">6月</div>
+    <div class="month-tab  active" onclick="switchMonth(4, this)">4月</div>
+<div class="month-tab" onclick="switchMonth(5, this)">5月</div>
+<div class="month-tab" onclick="switchMonth(6, this)">6月</div>
   </div>
-
-  <div class="race-grid month-grid" data-month="4">
-
-    <!-- ニュージーランドトロフィー -->
+  <div class="race-grid month-grid" data-month="4" >
+    
     <div class="race-card" data-grade="g2" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g2">GII</div>
         <div class="race-name">ニュージーランドトロフィー</div>
         <div class="race-meta">
@@ -573,29 +316,15 @@
           <span>🏟️ 中山 芝1600m</span>
         </div>
       </div>
-    </div>
-
-    <!-- サンケイスポーツ杯阪神牝馬ステークス -->
-    <div class="race-card" data-grade="g2" data-status="scheduled">
-      <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
-        <div class="race-grade g2">GII</div>
-        <div class="race-name">サンケイスポーツ杯阪神牝馬ステークス</div>
-        <div class="race-meta">
-          <span>📅 2026年4月11日（土）</span>
-          <span>🏟️ 阪神 芝1600m</span>
-        </div>
+      <div class="card-body">
+        
+        
       </div>
     </div>
 
-    <!-- 桜花賞 -->
     <div class="race-card" data-grade="g1" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g1">GI</div>
         <div class="race-name">桜花賞</div>
         <div class="race-meta">
@@ -603,14 +332,31 @@
           <span>🏟️ 阪神 芝1600m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- アンタレスステークス -->
+    <div class="race-card" data-grade="g1" data-status="scheduled">
+      <div class="card-header upcoming">
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
+        <div class="race-grade g1">J・GI</div>
+        <div class="race-name">中山グランドジャンプ</div>
+        <div class="race-meta">
+          <span>📅 2026年4月18日（土）</span>
+          <span>🏟️ 中山</span>
+        </div>
+      </div>
+      <div class="card-body">
+        
+        
+      </div>
+    </div>
+
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">アンタレスステークス</div>
         <div class="race-meta">
@@ -618,14 +364,15 @@
           <span>🏟️ 阪神 ダート1800m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 皐月賞 -->
     <div class="race-card" data-grade="g1" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g1">GI</div>
         <div class="race-name">皐月賞</div>
         <div class="race-meta">
@@ -633,14 +380,15 @@
           <span>🏟️ 中山 芝2000m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 福島牝馬ステークス -->
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">福島牝馬ステークス</div>
         <div class="race-meta">
@@ -648,14 +396,15 @@
           <span>🏟️ 福島 芝1800m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- テレビ東京杯青葉賞 -->
     <div class="race-card" data-grade="g2" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g2">GII</div>
         <div class="race-name">テレビ東京杯青葉賞</div>
         <div class="race-meta">
@@ -663,14 +412,15 @@
           <span>🏟️ 東京 芝2400m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- サンケイスポーツ賞フローラステークス -->
     <div class="race-card" data-grade="g2" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g2">GII</div>
         <div class="race-name">サンケイスポーツ賞フローラステークス</div>
         <div class="race-meta">
@@ -678,14 +428,15 @@
           <span>🏟️ 東京 芝2000m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 読売マイラーズカップ -->
     <div class="race-card" data-grade="g2" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g2">GII</div>
         <div class="race-name">読売マイラーズカップ</div>
         <div class="race-meta">
@@ -693,18 +444,17 @@
           <span>🏟️ 京都 芝1600m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
-
-  </div><!-- /month-4 -->
-
+  </div>
   <div class="race-grid month-grid" data-month="5" style="display:none">
-
-    <!-- 京王杯スプリングカップ -->
+    
     <div class="race-card" data-grade="g2" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g2">GII</div>
         <div class="race-name">京王杯スプリングカップ</div>
         <div class="race-meta">
@@ -712,14 +462,15 @@
           <span>🏟️ 東京 芝1400m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- ユニコーンステークス -->
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">ユニコーンステークス</div>
         <div class="race-meta">
@@ -727,14 +478,15 @@
           <span>🏟️ 京都 ダート1900m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 天皇賞（春） -->
     <div class="race-card" data-grade="g1" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g1">GI</div>
         <div class="race-name">天皇賞（春）</div>
         <div class="race-meta">
@@ -742,14 +494,15 @@
           <span>🏟️ 京都 芝3200m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- エプソムカップ -->
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">エプソムカップ</div>
         <div class="race-meta">
@@ -757,14 +510,15 @@
           <span>🏟️ 東京 芝1800m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 京都新聞杯 -->
     <div class="race-card" data-grade="g2" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g2">GII</div>
         <div class="race-name">京都新聞杯</div>
         <div class="race-meta">
@@ -772,14 +526,15 @@
           <span>🏟️ 京都 芝2200m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- NHKマイルカップ -->
     <div class="race-card" data-grade="g1" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g1">GI</div>
         <div class="race-name">NHKマイルカップ</div>
         <div class="race-meta">
@@ -787,14 +542,31 @@
           <span>🏟️ 東京 芝1600m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 新潟大賞典 -->
+    <div class="race-card" data-grade="g2" data-status="scheduled">
+      <div class="card-header upcoming">
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
+        <div class="race-grade g2">J・GII</div>
+        <div class="race-name">京都ハイジャンプ</div>
+        <div class="race-meta">
+          <span>📅 2026年5月16日（土）</span>
+          <span>🏟️ 京都</span>
+        </div>
+      </div>
+      <div class="card-body">
+        
+        
+      </div>
+    </div>
+
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">新潟大賞典</div>
         <div class="race-meta">
@@ -802,14 +574,15 @@
           <span>🏟️ 新潟 芝2000m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- ヴィクトリアマイル -->
     <div class="race-card" data-grade="g1" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g1">GI</div>
         <div class="race-name">ヴィクトリアマイル</div>
         <div class="race-meta">
@@ -817,14 +590,15 @@
           <span>🏟️ 東京 芝1600m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 平安ステークス -->
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">平安ステークス</div>
         <div class="race-meta">
@@ -832,14 +606,15 @@
           <span>🏟️ 京都 ダート1900m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- オークス -->
     <div class="race-card" data-grade="g1" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g1">GI</div>
         <div class="race-name">オークス</div>
         <div class="race-meta">
@@ -847,14 +622,15 @@
           <span>🏟️ 東京 芝2400m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 葵ステークス -->
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">葵ステークス</div>
         <div class="race-meta">
@@ -862,14 +638,15 @@
           <span>🏟️ 京都 芝1200m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 日本ダービー -->
     <div class="race-card" data-grade="g1" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g1">GI</div>
         <div class="race-name">日本ダービー</div>
         <div class="race-meta">
@@ -877,14 +654,15 @@
           <span>🏟️ 東京 芝2400m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 目黒記念 -->
     <div class="race-card" data-grade="g2" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g2">GII</div>
         <div class="race-name">目黒記念</div>
         <div class="race-meta">
@@ -892,18 +670,17 @@
           <span>🏟️ 東京 芝2500m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
-
-  </div><!-- /month-5 -->
-
+  </div>
   <div class="race-grid month-grid" data-month="6" style="display:none">
-
-    <!-- 安田記念 -->
+    
     <div class="race-card" data-grade="g1" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g1">GI</div>
         <div class="race-name">安田記念</div>
         <div class="race-meta">
@@ -911,14 +688,31 @@
           <span>🏟️ 東京 芝1600m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 函館スプリントステークス -->
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
+        <div class="race-grade g3">J・GIII</div>
+        <div class="race-name">東京ジャンプステークス</div>
+        <div class="race-meta">
+          <span>📅 2026年6月13日（土）</span>
+          <span>🏟️ 東京</span>
         </div>
+      </div>
+      <div class="card-body">
+        
+        
+      </div>
+    </div>
+
+    <div class="race-card" data-grade="g3" data-status="scheduled">
+      <div class="card-header upcoming">
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">函館スプリントステークス</div>
         <div class="race-meta">
@@ -926,14 +720,15 @@
           <span>🏟️ 函館 芝1200m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 宝塚記念 -->
     <div class="race-card" data-grade="g1" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g1">GI</div>
         <div class="race-name">宝塚記念</div>
         <div class="race-meta">
@@ -941,14 +736,15 @@
           <span>🏟️ 阪神 芝2200m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 府中牝馬ステークス -->
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">府中牝馬ステークス</div>
         <div class="race-meta">
@@ -956,14 +752,15 @@
           <span>🏟️ 東京 芝1800m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- しらさぎステークス -->
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">しらさぎステークス</div>
         <div class="race-meta">
@@ -971,14 +768,15 @@
           <span>🏟️ 阪神 芝1600m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- ラジオNIKKEI賞 -->
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">ラジオNIKKEI賞</div>
         <div class="race-meta">
@@ -986,14 +784,15 @@
           <span>🏟️ 福島 芝1800m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
 
-    <!-- 函館記念 -->
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status">
-          <span class="status-badge status-upcoming">📋 予定</span>
-        </div>
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">函館記念</div>
         <div class="race-meta">
@@ -1001,172 +800,73 @@
           <span>🏟️ 函館 芝2000m</span>
         </div>
       </div>
+      <div class="card-body">
+        
+        
+      </div>
     </div>
+  </div>
 
-  </div><!-- /month-6 -->
-
-  <div id="race-grid-scheduled" style="display:none"></div><!-- /race-grid-scheduled -->
 
 </main>
 
-<!-- フッター -->
+<!-- ========== フッター ========== -->
 <footer>
-  <p><strong>競馬予想レポート</strong> &nbsp;|&nbsp; データに基づく競馬予想・分析サイト</p>
+  <p><strong>はじめての競馬</strong> &nbsp;|&nbsp; AIと統計を利用した競馬予想サイト</p>
   <p style="margin-top:6px;">※ 本サイトの予想は参考情報です。馬券の購入は自己責任でお願いします。</p>
 </footer>
 
 <script>
-  // 月タブ切り替え
-  function switchMonth(month, el) {
-    document.querySelectorAll('.month-tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-    document.querySelectorAll('.month-grid').forEach(grid => {
-      grid.style.display = parseInt(grid.dataset.month) === month ? '' : 'none';
-    });
-  }
-
-  // グレードフィルタリング
-  function filterRaces(type, el) {
-    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-
-    const cards = document.querySelectorAll('.race-card');
-    cards.forEach(card => {
-      const grade  = card.dataset.grade;
-      const status = card.dataset.status;
-      let show = false;
-      if (type === 'all')       show = true;
-      else if (type === 'done') show = (status === 'done' || status === 'upcoming');
-      else                      show = (grade === type);
-      card.style.display = show ? '' : 'none';
-    });
-
-    // 実施済みグリッドの表示制御
-    const doneGrid = document.getElementById('race-grid-done');
-    if (doneGrid) {
-      const hasVisible = [...doneGrid.querySelectorAll('.race-card')].some(c => c.style.display !== 'none');
-      doneGrid.previousElementSibling.style.display = hasVisible ? '' : 'none';
-      doneGrid.style.display = hasVisible ? '' : 'none';
-    }
-
-    // 予定セクション（タブ含む）の表示制御 ※月グリッドの表示はタブが管理するため変更しない
-    const anySchedVisible = [...document.querySelectorAll('.month-grid .race-card')].some(c => c.style.display !== 'none');
-    document.getElementById('sched-section-header').style.display = anySchedVisible ? '' : 'none';
-    document.querySelector('.month-tabs').style.display = anySchedVisible ? '' : 'none';
-
-    // カード数を更新
-    const visibleDone  = doneGrid ? [...doneGrid.querySelectorAll('.race-card')].filter(c => c.style.display !== 'none').length : 0;
-    const doneEl = document.getElementById('count-done');
-    if (doneEl) doneEl.textContent = visibleDone;
-  }
-
-  // 的中率スロットアニメーション
-  function animateHitRate() {
-    const el = document.getElementById('hit-rate');
-    if (!el) return;
-
-    // 現在時刻のミリ秒が100〜200msの範囲外なら即確定表示
-    const ms = new Date().getMilliseconds();
-    if (ms < 100 || ms > 200) return;
-
-    const target = el.textContent;           // 例: "50.00%"
-    const chars  = target.split('');          // ['5','0','.','0','0','%']
-    const digitIdx = chars
-      .map((c, i) => (/\d/.test(c) ? i : -1))
-      .filter(i => i >= 0);                  // [0, 1, 3, 4]
-
-    // 確定する順番: 小数第2位→小数第1位→一の位→十の位
-    const lockSchedule = [
-      { index: 4, time: 1000 },
-      { index: 3, time: 2000 },
-      { index: 1, time: 3000 },
-      { index: 0, time: 4000 },
-    ];
-
-    const locked  = new Set();
-    const current = [...chars];
-
-    // 20msごとにランダム数字を表示
-    const timer = setInterval(() => {
-      digitIdx.forEach(i => {
-        if (!locked.has(i)) {
-          current[i] = String(Math.floor(Math.random() * 10));
-        }
-      });
-      el.textContent = current.join('');
-    }, 20);
-
-    // 各桁を順番に確定
-    lockSchedule.forEach(({ index, time }) => {
-      setTimeout(() => {
-        locked.add(index);
-        current[index] = chars[index];
-        el.textContent = current.join('');
-      }, time);
-    });
-
-    // 4秒後にアニメーション終了・最終値を保証
-    setTimeout(() => {
-      clearInterval(timer);
-      el.textContent = target;
-    }, 4100);
-  }
-
-  // ロゴサイズ制御
-  function adjustLogo() {
-    const logo = document.querySelector('.logo-icon img');
-    if (!logo) return;
-    if (window.innerWidth <= 768) {
-      logo.style.width  = '375px';
-      logo.style.height = 'auto';
-    } else {
-      logo.style.width  = '';
-      logo.style.height = '400px';
-    }
-  }
-  window.addEventListener('resize', adjustLogo);
-
-  // 初期表示カウント
-  document.addEventListener('DOMContentLoaded', () => {
-    adjustLogo();
-    const doneCount = document.querySelectorAll('.race-card[data-status="done"], .race-card[data-status="upcoming"]').length;
-    const doneEl = document.getElementById('count-done');
-    if (doneEl) doneEl.textContent = doneCount;
-  // ロゴ幅レスポンシブ制御
-  function adjustLogoWidth() {
-    const logoImg = document.getElementById('logo-img');
-    if (!logoImg) return;
-    if (window.innerWidth <= 768) {
-      logoImg.style.width = '375px';
-      logoImg.style.height = 'auto';
-      logoImg.style.marginTop = '-100px';
-    } else {
-      logoImg.style.width = '';
-      logoImg.style.height = '400px';
-      logoImg.style.marginTop = '';
-    }
-  }
-  adjustLogoWidth();
-  window.addEventListener('resize', adjustLogoWidth);
-
-  // スマホ時のスクロールでhero-stats・header-tagline非表示、header高さ変更
-  function updateHeroStatsVisibility() {
-    const heroStats = document.querySelector('.hero-stats');
-    const tagline = document.querySelector('.header-tagline');
-    const headerInner = document.querySelector('.header-inner');
-    const isSP = window.innerWidth <= 768;
-    const scrolled = isSP && window.scrollY > 0;
-    if (heroStats)    heroStats.classList.toggle('hidden-sp', scrolled);
-    if (tagline)      tagline.classList.toggle('hidden-sp', scrolled);
-    if (headerInner)  headerInner.classList.toggle('sp-scrolled', scrolled);
-  }
-  updateHeroStatsVisibility();
-  window.addEventListener('scroll', updateHeroStatsVisibility);
-  window.addEventListener('resize', updateHeroStatsVisibility);
-      animateHitRate();
+/* 月タブ切り替え */
+function switchMonth(month, el) {
+  document.querySelectorAll('.month-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.month-grid').forEach(grid => {
+    grid.style.display = parseInt(grid.dataset.month) === month ? '' : 'none';
   });
+}
+
+/* グレード・結果フィルター */
+function filterRaces(type, el) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+
+  document.querySelectorAll('.race-card').forEach(card => {
+    const grade  = card.dataset.grade;
+    const status = card.dataset.status;
+    let show = false;
+    if      (type === 'all')  show = true;
+    else if (type === 'done') show = (status === 'done' || status === 'pred_only');
+    else                      show = (grade === type);
+    card.style.display = show ? '' : 'none';
+  });
+
+  const doneGrid = document.getElementById('race-grid-done');
+  if (doneGrid) {
+    const hasVisible = [...doneGrid.querySelectorAll('.race-card')].some(c => c.style.display !== 'none');
+    doneGrid.previousElementSibling.style.display = hasVisible ? '' : 'none';
+    doneGrid.style.display = hasVisible ? '' : 'none';
+  }
+
+  const schedHeader = document.getElementById('sched-section-header');
+  const monthTabs   = document.querySelector('.month-tabs');
+  const anySchedVisible = [...document.querySelectorAll('.month-grid .race-card')].some(c => c.style.display !== 'none');
+  if (schedHeader) schedHeader.style.display = anySchedVisible ? '' : 'none';
+  if (monthTabs)   monthTabs.style.display   = anySchedVisible ? '' : 'none';
+}
+
+/* ロゴサイズ制御 */
+function adjustLogo() {
+  const img = document.getElementById('logo-img');
+  if (!img) return;
+  if (window.innerWidth <= 768) {
+    img.style.width = '375px'; img.style.height = 'auto'; img.style.marginTop = '-100px';
+  } else {
+    img.style.width = ''; img.style.height = '400px'; img.style.marginTop = '';
+  }
+}
+window.addEventListener('resize', adjustLogo);
+document.addEventListener('DOMContentLoaded', adjustLogo);
 </script>
 </body>
 </html>
-                                                                                                                                                         
-                                                                 

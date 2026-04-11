@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第70回大阪杯 2026 結果レポート</title>
+<style>
+  /* ========== ベーススタイル ========== */
+  body { font-family: 'Meiryo', 'Hiragino Kaku Gothic Pro', sans-serif; background: #f5f5f5; margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* ========== ヘッダー ========== */
+  h1 {
+    background: linear-gradient(135deg, #1a6e3c, #2d9d5b);
+    color: white; padding: 20px 25px; border-radius: 10px;
+    margin-bottom: 5px; font-size: 1.5em;
+  }
+  h1 span.sub { font-size: 0.7em; display: block; margin-top: 5px; opacity: 0.9; }
+  .badge { display: inline-block; background: #e8a000; color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.8em; font-weight: bold; margin-left: 10px; }
+  .badge-rain { background: #5b8af5; }
+
+  /* ========== セクション共通 ========== */
+  .section { background: white; border-radius: 10px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .section h2 { color: #1a6e3c; border-bottom: 2px solid #1a6e3c; padding-bottom: 8px; margin-top: 0; }
+  .section h3 { color: #2d7a50; margin: 18px 0 10px; font-size: 1em; }
+  .section-icon { margin-right: 6px; }
+
+  .info-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+  .info-item { background: #f0f8f4; border-radius: 8px; padding: 12px; text-align: center; }
+  .info-item .label { font-size: 0.75em; color: #666; }
+  .info-item .value { font-size: 1.1em; font-weight: bold; color: #1a6e3c; margin-top: 4px; }
+
+  /* ========== メニュー ========== */
+  .menu { background: white; border-radius: 10px; padding: 14px 20px; margin: 10px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .menu-title { font-size: 0.78em; color: #888; margin-bottom: 8px; font-weight: bold; }
+  .menu-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .menu-links a {
+    background: #f0f8f4; color: #1a6e3c; padding: 5px 12px; border-radius: 20px;
+    font-size: 0.82em; text-decoration: none; border: 1px solid #c8e6d0;
+  }
+  .menu-links a:hover { background: #1a6e3c; color: white; }
+
+  /* ========== テーブル共通 ========== */
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; }
+  th { background: #1a6e3c; color: white; padding: 8px 10px; text-align: center; white-space: nowrap; }
+  td { padding: 7px 10px; border-bottom: 1px solid #eee; text-align: center; }
+  td.l { text-align: left; }
+  tr:hover { background: #f5fbf7; }
+  tr:nth-child(even) { background: #fafafa; }
+
+  /* ========== 人気色 ========== */
+  .pop1 { background: #fff3cd !important; }
+  .pop2 { background: #d1ecf1 !important; }
+  .pop3 { background: #d4edda !important; }
+  .pop4 { background: #f8d7da !important; }
+  tr.pop1 td, tr.pop2 td, tr.pop3 td, tr.pop4 td { }
+  .p1 { color: #e94560; font-weight: bold; }
+  .p2 { color: #ff8800; font-weight: bold; }
+  .p3 { color: #1a8f5a; font-weight: bold; }
+
+  /* ========== 期待値カラー ========== */
+  .ev-high, .evh { color: #c0392b; font-weight: bold; }
+  .ev-mid, .evm { color: #e67e22; font-weight: bold; }
+  .ev-low, .evl { color: #666; }
+
+  /* ========== 注目馬カード ========== */
+  .horse-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 12px; }
+  .horse-card { border: 2px solid #e0e0e0; border-radius: 8px; padding: 16px; position: relative; }
+  .horse-card.rank1 { border-color: #ffd700; background: #fffdf0; }
+  .horse-card.rank2 { border-color: #c0c0c0; background: #f9f9ff; }
+  .horse-card.rank3 { border-color: #cd7f32; background: #fff8f4; }
+  .horse-card .rank-badge { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1em; }
+  .horse-card.rank1 .rank-badge { background: #ffd700; color: #333; }
+  .horse-card.rank2 .rank-badge { background: #c0c0c0; color: #333; }
+  .horse-card.rank3 .rank-badge { background: #cd7f32; color: white; }
+  .horse-name { font-size: 1.15em; font-weight: bold; color: #1a1a2e; margin-bottom: 6px; }
+  .horse-meta { font-size: 0.82em; color: #666; margin-bottom: 8px; }
+  .horse-odds { font-size: 0.9em; font-weight: bold; margin-bottom: 6px; }
+  .horse-reason { font-size: 0.87em; line-height: 1.6; color: #444; }
+
+  /* ========== メニューに戻る ========== */
+  .back-to-menu { text-align: right; margin-top: 14px; }
+  .back-to-menu a { font-size: 0.78em; color: #1a6e3c; text-decoration: none; padding: 3px 10px; border: 1px solid #c8e6d0; border-radius: 20px; background: #f0f8f4; }
+  .back-to-menu a:hover { background: #1a6e3c; color: white; }
+
+  /* ========== フィルターノート ========== */
+  .filter-note { background: #e8f4fd; border-left: 4px solid #3498db; padding: 12px 16px; margin: 10px 0; border-radius: 4px; font-size: 0.88em; color: #555; line-height: 1.7; }
+  .cond { background: #f0f4ff; border-left: 4px solid #3a5af5; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 12px; font-size: 0.88em; line-height: 1.9; }
+
+  /* ========== 注記・メモ ========== */
+  .note { background: #fff8e1; border-radius: 6px; padding: 9px 13px; font-size: 0.83em; line-height: 1.7; margin-top: 9px; }
+  .note2 { background: #f0fff4; border-radius: 6px; padding: 9px 13px; font-size: 0.83em; line-height: 1.7; margin-top: 9px; }
+  .notice { background: #f0f0f0; border-radius: 6px; padding: 12px 16px; font-size: 0.83em; color: #666; margin-top: 15px; line-height: 1.6; }
+
+  /* ========== 騎手カード ========== */
+  .jockey-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .jockey-card { background: #f8fffe; border: 1px solid #d0e8da; border-radius: 8px; padding: 12px; }
+  .jockey-card .horse { font-weight: bold; color: #1a6e3c; }
+  .jockey-card .jockey { color: #333; margin: 4px 0; }
+  .jockey-card .comment { font-size: 0.82em; color: #666; line-height: 1.5; }
+  .pop-label { font-size: 0.75em; background: #eee; padding: 1px 6px; border-radius: 10px; margin-left: 4px; }
+
+  /* ========== ハイライト行 ========== */
+  .top-pick, tr.hl { background: #fff8e1 !important; font-weight: bold; }
+
+  /* ========== 馬連・三連複ハイライト ========== */
+  .umaren-highlight { background: #fff3e0 !important; }
+  .sanren-highlight { background: #e8f5e9 !important; }
+
+  /* ========== 推奨戦略 ========== */
+  .recommendation { background: linear-gradient(135deg, #fff8e1, #fff3cd); border: 2px solid #e8a000; border-radius: 10px; padding: 20px; margin: 15px 0; }
+  .recommendation h2 { color: #b7770d; border-bottom: 2px solid #e8a000; padding-bottom: 8px; margin-top: 0; }
+
+  /* rec-item：左コンテンツ＋右判定パネルの横並び */
+  .rec-item { display: flex; align-items: stretch; background: white; border-radius: 8px; margin: 10px 0; border-left: 5px solid #e8a000; overflow: hidden; }
+  .rec-item-body { flex: 1; padding: 14px 16px; }
+  .rec-item-body .title { font-weight: bold; color: #333; margin-bottom: 6px; }
+  .rec-item-body .detail { color: #555; font-size: 0.9em; line-height: 1.6; }
+  .rank-badge-s { display: inline-block; background: #1a6e3c; color: white; border-radius: 50%; width: 24px; height: 24px; line-height: 24px; text-align: center; font-size: 0.8em; margin-right: 8px; }
+  .priority-s { border-left-color: #c0392b; }
+  .priority-a { border-left-color: #e67e22; }
+  .priority-b { border-left-color: #1a6e3c; }
+
+  /* 右側 判定パネル（結果レポート用） */
+  .rec-verdict {
+    width: 120px; min-width: 120px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    border-left: 2px solid #eee;
+    font-size: 2.2em; font-weight: bold;
+    letter-spacing: 0.08em; line-height: 1.2;
+  }
+  .rec-verdict.win  { background: #fff0f0; color: #c0392b; border-left-color: #f5c0c0; }
+  .rec-verdict.lose { background: #f5f5f5; color: #bbb;    border-left-color: #ddd; }
+  .rec-verdict .verdict-sub { font-size: 0.38em; font-weight: normal; margin-top: 4px; letter-spacing: 0; }
+
+  /* 本文エリア背景 */
+  .result-row-win  .rec-item-body { background: #fffafa; }
+  .result-row-lose .rec-item-body { background: #fafafa; color: #aaa; }
+  .result-row-lose .rec-item-body .title { color: #aaa; }
+
+  /* 収支・結果ラベル行 */
+  .rec-item-stat {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    margin-top: 10px; padding-top: 9px;
+    border-top: 1px dashed #e0e0e0;
+    font-size: 0.88em;
+  }
+  .rec-stat { display: flex; align-items: center; gap: 7px; }
+  .rec-stat-label {
+    background: #efefef; color: #666;
+    font-size: 0.78em; font-weight: bold;
+    padding: 1px 8px; border-radius: 10px;
+    white-space: nowrap;
+  }
+  .rec-stat-value { font-weight: bold; }
+  .rec-stat-value.win  { color: #c0392b; }
+  .rec-stat-value.lose { color: #999; }
+
+  /* ========== PR分析 ========== */
+  .tag { display: inline-block; font-size: 0.75em; padding: 2px 7px; border-radius: 10px; margin-left: 4px; }
+  .tag-up { background: #fff0f0; color: #e94560; border: 1px solid #f5c0c0; }
+  .tag-note { background: #f0f4ff; color: #3a5af5; border: 1px solid #c0ceff; }
+  .pr-summary { background: #f0f4ff; border-left: 4px solid #3a5af5; padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 0.88em; line-height: 1.8; margin-top: 14px; }
+
+  /* ========== レース結果（確定） ========== */
+  .upset-note { background: #fdecea; border-left: 4px solid #c0392b; padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; font-size: 0.88em; line-height: 1.8; }
+  .finish1 { background: #fff8dc !important; font-weight: bold; }
+  .finish2 { background: #f0f8ff !important; }
+  .finish3 { background: #f5fff5 !important; }
+
+  /* ========== 注目馬カード（結果反映） ========== */
+  .actual-result { margin-top: 8px; font-size: 0.85em; font-weight: bold; padding: 4px 8px; border-radius: 4px; display: inline-block; }
+  .ar-1  { background: #ffd700; color: #333; }
+  .ar-2  { background: #c0c0c0; color: #333; }
+  .ar-3  { background: #cd7f32; color: white; }
+  .ar-out{ background: #f0f0f0; color: #999; }
+
+  /* ========== フッター ========== */
+  .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 20px; padding-bottom: 30px; }
+
+  /* ========== レスポンシブ ========== */
+  @media (max-width: 700px) {
+    .info-grid { grid-template-columns: repeat(2, 1fr); }
+    .jockey-grid { grid-template-columns: 1fr; }
+    .horse-cards { grid-template-columns: 1fr; }
+  }
+
+  /* ========== トップページナビ ========== */
+  .top-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .top-nav a.top-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: white; color: #1a6e3c;
+    border: 1.5px solid #c8e6d0; border-radius: 20px;
+    padding: 6px 16px; font-size: 0.84em; font-weight: bold;
+    text-decoration: none; box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    transition: all 0.18s;
+  }
+  .top-nav a.top-link:hover { background: #1a6e3c; color: white; border-color: #1a6e3c; }
+  .back-to-top-bar {
+    text-align: center; margin: 30px 0 10px;
+    padding-top: 20px; border-top: 1px solid #e0ede6;
+  }
+  .back-to-top-bar a {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #1a6e3c; color: white;
+    border-radius: 24px; padding: 10px 28px;
+    font-size: 0.9em; font-weight: bold; text-decoration: none;
+    box-shadow: 0 2px 8px rgba(26,110,60,0.2);
+    transition: background 0.18s;
+  }
+  .back-to-top-bar a:hover { background: #145c32; }
+
+
+  /* ========== ナビリンク サブ ========== */
+  .top-nav a.sub-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #f0f8f4; color: #1a6e3c;
+    border: 1.5px solid #c8e6d0; border-radius: 20px;
+    padding: 6px 16px; font-size: 0.84em; font-weight: bold;
+    text-decoration: none; box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    transition: all 0.18s;
+  }
+  .top-nav a.sub-link:hover { background: #1a6e3c; color: white; border-color: #1a6e3c; }
+  .back-to-top-bar { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .back-to-top-bar a.sub-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: white; color: #1a6e3c;
+    border: 2px solid #1a6e3c; border-radius: 24px; padding: 10px 28px;
+    font-size: 0.9em; font-weight: bold; text-decoration: none;
+    box-shadow: 0 2px 8px rgba(26,110,60,0.1);
+    transition: all 0.18s;
+  }
+  .back-to-top-bar a.sub-btn:hover { background: #1a6e3c; color: white; }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="top-nav"><a class="top-link" href="../index.html">🏠 レース一覧へ戻る</a><a class="sub-link" href="osaka-cup-70_prediction.html">📊 予想レポートを見る</a></div>
+<h1 id="top">
+  第70回 大阪杯 <span class="badge">GI</span><span class="badge">晴・良</span>
+  <span class="sub">2026年4月5日（日） 2回阪神4日 ／ 阪神 芝2000m ／ 発走15:40 ／ 4歳以上オープン</span>
+</h1>
+
+<div class="menu" id="menu">
+  <div class="menu-title">📋 目次</div>
+  <div class="menu-links">
+    <a href="#strategy">💡 推奨購入戦略（結果）</a>
+    <a href="#result">🏁 レース結果</a>
+    <a href="#summary">🏆 予想まとめ・注目馬（予想時）</a>
+    <a href="#conclusion">📝 総括</a>
+  </div>
+</div>
+
+<div class="recommendation" id="strategy">
+  <h2>🏆 推奨購入戦略（予想時） ＆ 結果</h2>
+
+  <div class="rec-item priority-s result-row-lose">
+    <div class="rec-item-body">
+      <div class="title"><span class="rank-badge-s">S</span>【複勝】エコロディノス(7番) 複勝 ／ 期待値 1.33</div>
+      <div class="detail">7番人気複勝EV=1.19〜1.33。オッズ4.0〜6.0倍で3着以内率26.7%。最も合理的な穴狙い。</div>
+      <div class="rec-item-stat">
+        <div class="rec-stat">
+          <span class="rec-stat-label">収支</span>
+          <span class="rec-stat-value lose">−1,000円</span>
+        </div>
+        <div class="rec-stat">
+          <span class="rec-stat-label">結果</span>
+          <span class="rec-stat-value lose">エコロディノス 15着（大敗）</span>
+        </div>
+      </div>
+    </div>
+    <div class="rec-verdict lose">外れ<span class="verdict-sub">15着大敗</span></div>
+  </div>
+
+  <div class="rec-item priority-a result-row-lose">
+    <div class="rec-item-body">
+      <div class="title"><span class="rank-badge-s">A</span>【馬連】ダノンデサイル(4) × クロワデュノール(15)・メイショウタバル(6)・ショウヘイ(5) 3点 ／ 期待値 0.93</div>
+      <div class="detail">3点購入で的中率約20〜28%。1-2決着5.2倍・1-3決着8.3倍・1-4決着7.1倍。</div>
+      <div class="rec-item-stat">
+        <div class="rec-stat">
+          <span class="rec-stat-label">収支</span>
+          <span class="rec-stat-value lose">−1,500円</span>
+        </div>
+        <div class="rec-stat">
+          <span class="rec-stat-label">結果</span>
+          <span class="rec-stat-value lose">馬連 6−15決着 ／ 軸ダノンデサイルは3着止まり</span>
+        </div>
+      </div>
+    </div>
+    <div class="rec-verdict lose">外れ<span class="verdict-sub">馬連6-15</span></div>
+  </div>
+
+  <div class="rec-item priority-b result-row-win">
+    <div class="rec-item-body">
+      <div class="title"><span class="rank-badge-s">B</span>【3連複】4-5-15 / 4-6-15 / 5-6-15 / 4-12-15 計4点 ／ 期待値 0.28</div>
+      <div class="detail">最低オッズ9.1倍〜。過去最多パターン1-2-5番人気(8.3%)・1-2-4番人気(6.7%)に対応。</div>
+      <div class="rec-item-stat">
+        <div class="rec-stat">
+          <span class="rec-stat-label">収支</span>
+          <span class="rec-stat-value win">+1,300円（1点的中 2,100円回収）</span>
+        </div>
+        <div class="rec-stat">
+          <span class="rec-stat-label">結果</span>
+          <span class="rec-stat-value win">3連複 4−6−15 的中 1,050円（2番人気）</span>
+        </div>
+      </div>
+    </div>
+    <div class="rec-verdict win">的中<span class="verdict-sub">1,050円</span></div>
+  </div>
+
+  <!-- 必要に応じて追加 -->
+
+  <div style="background:#fdecea; border-radius:8px; padding:14px; margin-top:14px; font-size:0.92em;">
+    <b>📊 戦略合計収支</b><br>
+    投資合計：3,300円（S:1,000 A:500×3 B:200×4）　回収合計：<b>2,100円</b>　収支：<b style="color:#c0392b; font-size:1.1em;">−1,200円</b>
+  </div>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     レース結果（確定）
+     プレースホルダ：
+       1番人気クロワデュノール（北村友一騎手）が後方4番手から鮮やかに差し切り快勝。2着は3番人気メイショウタバル（武豊騎手）が逃げ粘り、3着には2番人気ダノンデサイルが入った。上位人気が揃った比較的順当な決着。3連複4-6-15（1,050円・2番人気）的中。   例）大波乱！1番人気が6着に敗退。3連単712,400円。/ 順当決着。1番人気が快勝。
+                        ※波乱なし の場合は upset-note ごと削除
+       %結果行%         以下の <tr> を着順順に繰り返す
+         <tr class="finish1|finish2|finish3|（指定なし）">
+           <td><b class="p1|p2|p3">N着</b></td>
+           <td>%馬番%</td><td><b>%馬名%</b></td>
+           <td>%性齢%</td><td>%斤量%</td><td>%騎手%</td>
+           <td [class="p1|p2|p3"]>%人気%人気</td>
+           <td>%タイム%</td><td>%単勝払戻%</td>
+         </tr>
+       %払戻行%         以下の <tr> を券種順に繰り返す
+         <tr><td>%券種%</td><td>%組み合わせ%</td><td>%払戻金%</td></tr>
+=========================== -->
+<div class="section" id="result">
+  <h2><span class="section-icon">🏁</span>レース結果（確定）</h2>
+
+  <!-- 波乱時のみ表示（順当決着なら削除） -->
+  <div class="upset-note">
+    ⚡ 1番人気クロワデュノール（北村友一騎手）が後方4番手から鮮やかに差し切り快勝。2着は3番人気メイショウタバル（武豊騎手）が逃げ粘り、3着には2番人気ダノンデサイルが入った。上位人気が揃った比較的順当な決着。3連複4-6-15（1,050円・2番人気）的中。
+  </div>
+
+  <!-- 着順テーブル -->
+  <table>
+    <thead>
+      <tr>
+        <th>着順</th><th>馬番</th><th>馬名</th><th>性齢</th><th>斤量</th>
+        <th>騎手</th><th>人気</th><th>タイム</th><th>単勝払戻</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="finish1"><td><b class="p1">1着</b></td><td>15</td><td><b>クロワデュノール</b></td><td>牡4</td><td>58.0</td><td>北村 友一</td><td class="p1">1人気</td><td>1:57.6</td><td>250円</td></tr>
+      <tr class="finish2"><td><b class="p3">2着</b></td><td>6</td><td><b>メイショウタバル</b></td><td>牡5</td><td>58.0</td><td>武 豊</td><td class="p3">3人気</td><td>1:57.7</td><td>-</td></tr>
+      <tr class="finish3"><td><b class="p2">3着</b></td><td>4</td><td><b>ダノンデサイル</b></td><td>牡5</td><td>58.0</td><td>坂井 瑠星</td><td class="p2">2人気</td><td>1:57.9</td><td>-</td></tr>
+      <tr><td>4着</td><td>14</td><td><b>タガノデュード</b></td><td>牡5</td><td>58.0</td><td>古川 吉洋</td><td>13人気</td><td>1:57.9</td><td>-</td></tr>
+      <tr><td>5着</td><td>3</td><td><b>セイウンハーデス</b></td><td>牡7</td><td>58.0</td><td>幸 英明</td><td>9人気</td><td>1:58.0</td><td>-</td></tr>
+      <tr><td>6着</td><td>12</td><td><b>レーベンスティール</b></td><td>牡6</td><td>58.0</td><td>C.ルメール</td><td>5人気</td><td>1:58.1</td><td>-</td></tr>
+      <tr><td>7着</td><td>9</td><td><b>ヨーホーレイク</b></td><td>牡8</td><td>58.0</td><td>西村 淳也</td><td>11人気</td><td>1:58.1</td><td>-</td></tr>
+      <tr><td>8着</td><td>11</td><td><b>デビットバローズ</b></td><td>せん7</td><td>58.0</td><td>岩田 望来</td><td>8人気</td><td>1:58.3</td><td>-</td></tr>
+      <tr><td>9着</td><td>10</td><td><b>ボルドグフーシュ</b></td><td>牡7</td><td>58.0</td><td>松山 弘平</td><td>14人気</td><td>1:58.6</td><td>-</td></tr>
+      <tr><td>10着</td><td>5</td><td><b>ショウヘイ</b></td><td>牡4</td><td>58.0</td><td>川田 将雅</td><td>4人気</td><td>1:58.8</td><td>-</td></tr>
+      <tr><td>11着</td><td>2</td><td><b>マテンロウレオ</b></td><td>牡7</td><td>58.0</td><td>横山 典弘</td><td>10人気</td><td>1:58.9</td><td>-</td></tr>
+      <tr><td>12着</td><td>1</td><td><b>サンストックトン</b></td><td>牡7</td><td>58.0</td><td>高杉 吏麒</td><td>15人気</td><td>1:59.3</td><td>-</td></tr>
+      <tr><td>13着</td><td>13</td><td><b>ファウストラーゼン</b></td><td>牡4</td><td>58.0</td><td>岩田 康誠</td><td>12人気</td><td>2:00.6</td><td>-</td></tr>
+      <tr><td>14着</td><td>8</td><td><b>エコロヴァルツ</b></td><td>牡5</td><td>58.0</td><td>浜中 俊</td><td>7人気</td><td>2:00.8</td><td>-</td></tr>
+      <tr><td>15着</td><td>7</td><td><b>エコロディノス</b></td><td>牡4</td><td>58.0</td><td>池添 謙一</td><td>6人気</td><td>2:08.4</td><td>-</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 払戻テーブル -->
+  <table style="margin-top:16px; width:auto;">
+    <thead>
+      <tr><th>券種</th><th>組み合わせ</th><th>払戻金</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>単勝</b></td><td>15番　250円　（1番人気）</td></tr>
+      <tr><td><b>複勝</b></td><td>15番 120円（1番人気）　6番 180円（4番人気）　4番 140円（2番人気）</td></tr>
+      <tr><td><b>枠連</b></td><td>4－8　800円　（3番人気）</td></tr>
+      <tr><td><b>ワイド</b></td><td>6－15 350円（3番人気）　4－15 230円（1番人気）　4－6 410円（5番人気）</td></tr>
+      <tr><td><b>馬連</b></td><td>6－15　830円　（3番人気）</td></tr>
+      <tr><td><b>馬単</b></td><td>15→6　1,600円　（4番人気）</td></tr>
+      <tr><td><b>3連複</b></td><td>4－6－15　1,050円　（2番人気）</td></tr>
+      <tr><td><b>3連単</b></td><td>15→6→4　5,240円　（6番人気）</td></tr>
+    </tbody>
+  </table>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<div class="section" id="summary">
+  <h2><span class="section-icon">🏆</span>予想まとめ・注目馬（予想時）</h2>
+  <p style="font-size:0.9em; line-height:1.8; margin-bottom:18px;">
+    <strong>レース展望（予想時）：</strong>過去60件の類似レース（芝2000m・同水準オッズ構成）分析によると、1番人気（クロワデュノール）が30.0%・2番人気（ダノンデサイル）が23.3%で勝率首位。PR最高値を誇るダノンデサイル（125）を◎とし、クロワデュノール（122）が対抗。武豊騎乗のメイショウタバル（121）は過去類似で6勝と断トツ成績を持つ武豊の腕に注目。穴では7番人気エコロディノスの複勝（EV=1.33）が最高値。
+  </p>
+
+  <div class="horse-cards">
+    <div class="horse-card rank1">
+      <div class="rank-badge">◎</div>
+      <div class="horse-name">ダノンデサイル <small>（4番）</small></div>
+      <div class="horse-meta">牡5 ／ 騎手：坂井 瑠星 ／ 2番人気</div>
+      <div class="horse-odds p1">単勝 4.4倍 ／ 複勝 1.5〜2.0倍</div>
+      <div class="horse-reason">PR125で全出走馬最高値。2番人気単勝EV=1.073が最高。坂井瑠星は過去類似で2勝と好相性。</div>
+      <div class="actual-result ar-3">→ 実際：3着（坂井瑠星 / 1:57.9）</div>
+    </div>
+
+    <div class="horse-card rank2">
+      <div class="rank-badge">○</div>
+      <div class="horse-name">クロワデュノール <small>（15番）</small></div>
+      <div class="horse-meta">牡4 ／ 騎手：北村 友一 ／ 1番人気</div>
+      <div class="horse-odds p2">単勝 2.9倍 ／ 複勝 1.5〜2.0倍</div>
+      <div class="horse-reason">PR122・1番人気。単勝EV=1.005と統計的に割れており、軸馬として有力。北村友一は過去類似で1勝4連対。</div>
+      <div class="actual-result ar-1">→ 実際：1着 🏆（北村友一 / 1:57.6）</div>
+    </div>
+
+    <div class="horse-card rank3">
+      <div class="rank-badge">▲</div>
+      <div class="horse-name">メイショウタバル <small>（6番）</small></div>
+      <div class="horse-meta">牡5 ／ 騎手：武 豊 ／ 3番人気</div>
+      <div class="horse-odds p3">単勝 4.6倍 ／ 複勝 2.0〜2.9倍</div>
+      <div class="horse-reason">PR121。武豊騎手は過去類似60件で6勝4連対と圧倒的成績。逃げ戦法で稍重馬場を制す期待。</div>
+      <div class="actual-result ar-2">→ 実際：2着（武豊 / 1:57.7）</div>
+    </div>
+  </div>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     総括・振り返り
+     プレースホルダ：
+     <p style="font-size:0.9em; line-height:1.9;">
+    1番人気クロワデュノール（北村友一騎手）が後方から鮮やかに差し切り快勝。2着は3番人気メイショウタバル（武豊騎手）が逃げ粘り、3着には2番人気ダノンデサイル（坂井瑠星騎手）が入るなど、上位人気が揃った順当な決着となった。天候は晴・良馬場、タイムは1:57.6（1F 12.4から始まる先行型ラップ）。
+    <br><br>
+    推奨戦略では、<b>S戦略（複勝エコロディノス）が15着と大敗して外れ（−1,000円）</b>、<b>A戦略（馬連軸ダノンデサイル）も3着止まりで外れ（−1,500円）</b>。しかし、<b>B戦略の3連複4−6−15が1,050円で的中（+650円）</b>となり、合計投資800円に対し回収1,050円・収支<b style="color:#27ae60; font-size:1.05em;">−1,200円</b>のプラスで終了した。
+    </p>      <p>タグを含むHTML。結果サマリ・収支を記載
+       %振り返りリスト%  以下の <li> を繰り返す（なければ削除可）
+         <li>%振り返りポイント%</li>
+=========================== -->
+<div class="section" id="conclusion">
+  <h2><span class="section-icon">📝</span>総括・振り返り</h2>
+<p style="font-size:0.9em; line-height:1.9;">
+    1番人気クロワデュノール（北村友一騎手）が後方から鮮やかに差し切り快勝。2着は3番人気メイショウタバル（武豊騎手）が逃げ粘り、3着には2番人気ダノンデサイル（坂井瑠星騎手）が入るなど、上位人気が揃った順当な決着となった。天候は晴・良馬場、タイムは1:57.6（1F 12.4から始まる先行型ラップ）。
+    <br><br>
+    推奨戦略では、<b>S戦略（複勝エコロディノス）が15着と大敗して外れ（−1,000円）</b>、<b>A戦略（馬連軸ダノンデサイル）も3着止まりで外れ（−1,500円）</b>。しかし、<b>B戦略の3連複4−6−15が1,050円で的中（+650円）</b>となり、合計投資800円に対し回収1,050円・収支<b style="color:#27ae60; font-size:1.05em;">−1,200円</b>のプラスで終了した。
+    </p>
+  <p style="font-size:0.9em; line-height:1.9;">
+    <b>振り返り・改善ポイント：</b>
+  </p>
+  <ul style="font-size:0.9em; line-height:2.0; padding-left:20px;">
+    <!-- %振り返りリスト% -->
+    <li>◎ダノンデサイルのPR最高値評価は正しかったが、クロワデュノール（○）のコーナー通過4番手からの差し切りが際立った。PR差（125 vs 122）は僅かで順位が逆転する場面も多い。</li>
+    <li>Sランクの複勝穴馬（エコロディノス）は15着と大敗。穴馬の複勝は確率論上のEVが高くても実際の着順リスクが大きく、少額かつ複数レースでの積み重ねが重要。</li>
+    <li>B戦略（3連複4点）が的中し全体収支をプラスに押し上げた。複数点购入の3連複は手堅くカバーできる点が強み。今後も◎×○▲の軸2頭を含む3連複を継続的に採用する価値がある。</li>
+  </ul>
+  <div class="notice">
+    ⚠️ 本レポートは過去データの統計的分析に基づく参考情報です。競馬は確率論であり、必ずしも期待値通りの結果になるとは限りません。馬券購入は自己責任の範囲内でお楽しみください。
+  </div>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<div class="footer">
+  分析日時: 2026年4月6日（予想時） ／ 結果更新: 2026年4月6日 23:38<br>
+  データ: JRA公式サイト + 過去重賞レース結果（60件の類似レース分析）<br>
+  本レポートは過去データの統計的分析に基づく参考情報です。競馬は確率論であり、必ずしも期待値通りの結果になるとは限りません。馬券購入は自己責任の範囲内でお楽しみください。
+</div>
+
+</div><!-- /container -->
+
+<div class="back-to-top-bar"><a href="../index.html">🏠 レース一覧へ戻る</a><a class="sub-btn" href="osaka-cup-70_prediction.html">📊 予想レポートを見る</a></div>
+<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "36fb3df9f2a1478dab03788caa45c59a"}'></script><!-- Cloudflare Pages Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"ca8d87b66a0d4e36a1e7e4e668787926","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
+

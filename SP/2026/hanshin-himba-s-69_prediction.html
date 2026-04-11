@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第69回 サンケイスポーツ杯阪神牝馬ステークス 2026 前日情報</title>
+<style>
+/* ===== ベース ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Meiryo','Hiragino Kaku Gothic Pro','Yu Gothic',sans-serif;background:#f5f5f5;color:#333;padding:16px}
+.container{max-width:1100px;margin:0 auto}
+/* ===== ヘッダー ===== */
+h1{background:linear-gradient(135deg,#1a6e3c,#2d9d5b);color:white;padding:18px 22px;border-radius:10px;margin-bottom:6px;font-size:1.4em;line-height:1.4}
+h1 .sub{font-size:.68em;display:block;margin-top:6px;opacity:.88;font-weight:normal}
+.badge{display:inline-block;background:#e8a000;color:white;padding:2px 10px;border-radius:4px;font-size:.78em;font-weight:bold;margin-left:8px}
+.badge-blue{background:#3a7fc1}
+/* ===== ナビ ===== */
+.top-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px;flex-wrap:wrap}
+.top-nav a{display:inline-flex;align-items:center;gap:5px;padding:6px 15px;border-radius:20px;font-size:.83em;font-weight:bold;text-decoration:none;border:1.5px solid #c8e6d0;background:white;color:#1a6e3c;transition:all .18s}
+.top-nav a:hover{background:#1a6e3c;color:white;border-color:#1a6e3c}
+.back-bar{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:28px 0 10px;padding-top:18px;border-top:1px solid #e0ede6}
+.back-bar a{display:inline-flex;align-items:center;gap:7px;padding:10px 26px;border-radius:24px;font-size:.88em;font-weight:bold;text-decoration:none;background:#1a6e3c;color:white;box-shadow:0 2px 8px rgba(26,110,60,.2);transition:background .18s}
+.back-bar a:hover{background:#145c32}
+.back-bar a.alt{background:white;color:#1a6e3c;border:2px solid #1a6e3c;box-shadow:0 2px 8px rgba(26,110,60,.1)}
+.back-bar a.alt:hover{background:#1a6e3c;color:white}
+/* ===== セクション ===== */
+.section{background:white;border-radius:10px;padding:18px 20px;margin:14px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.section h2{color:#1a6e3c;border-bottom:2px solid #1a6e3c;padding-bottom:8px;margin-bottom:14px;font-size:1.05em}
+.section h3{color:#2d7a50;margin:16px 0 8px;font-size:.96em}
+.back-link{text-align:right;margin-top:12px}
+.back-link a{font-size:.76em;color:#1a6e3c;text-decoration:none;padding:3px 10px;border:1px solid #c8e6d0;border-radius:20px;background:#f0f8f4}
+.back-link a:hover{background:#1a6e3c;color:white}
+/* ===== メニュー ===== */
+.menu{background:white;border-radius:10px;padding:13px 18px;margin:8px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.menu-title{font-size:.76em;color:#888;margin-bottom:7px;font-weight:bold}
+.menu-links{display:flex;flex-wrap:wrap;gap:7px}
+.menu-links a{background:#f0f8f4;color:#1a6e3c;padding:4px 11px;border-radius:20px;font-size:.81em;text-decoration:none;border:1px solid #c8e6d0}
+.menu-links a:hover{background:#1a6e3c;color:white}
+/* ===== テーブル ===== */
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.88em}
+th{background:#1a6e3c;color:white;padding:7px 9px;text-align:center;white-space:nowrap}
+td{padding:6px 9px;border-bottom:1px solid #eee;text-align:center}
+td.l{text-align:left}
+tr:hover{background:#f5fbf7}
+tr:nth-child(even){background:#fafafa}
+.pop1{background:#fff3cd!important}.pop2{background:#d1ecf1!important}
+.pop3{background:#d4edda!important}.pop4{background:#f8d7da!important}
+.p1{color:#e94560;font-weight:bold}.p2{color:#ff8800;font-weight:bold}.p3{color:#1a8f5a;font-weight:bold}
+.evh{color:#c0392b;font-weight:bold}.evm{color:#e67e22;font-weight:bold}.evl{color:#888}
+.finish1{background:#fff8dc!important;font-weight:bold}
+.finish2{background:#f0f8ff!important}.finish3{background:#f5fff5!important}
+/* ===== 注目馬カード ===== */
+.horse-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:10px}
+.horse-card{border:2px solid #e0e0e0;border-radius:8px;padding:14px;position:relative}
+.horse-card.rank1{border-color:#ffd700;background:#fffdf0}
+.horse-card.rank2{border-color:#c0c0c0;background:#f9f9ff}
+.horse-card.rank3{border-color:#cd7f32;background:#fff8f4}
+.rank-badge{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.95em}
+.horse-card.rank1 .rank-badge{background:#ffd700;color:#333}
+.horse-card.rank2 .rank-badge{background:#c0c0c0;color:#333}
+.horse-card.rank3 .rank-badge{background:#cd7f32;color:white}
+.horse-name{font-size:1.1em;font-weight:bold;color:#1a1a2e;margin-bottom:5px}
+.horse-meta{font-size:.8em;color:#666;margin-bottom:6px}
+.horse-odds{font-size:.88em;font-weight:bold;margin-bottom:5px}
+.horse-reason{font-size:.85em;line-height:1.6;color:#444}
+.actual-result{margin-top:7px;font-size:.83em;font-weight:bold;padding:3px 8px;border-radius:4px;display:inline-block}
+.ar-1{background:#ffd700;color:#333}.ar-2{background:#c0c0c0;color:#333}
+.ar-3{background:#cd7f32;color:white}.ar-out{background:#f0f0f0;color:#999}
+/* ===== 推奨戦略 ===== */
+.recommendation{background:linear-gradient(135deg,#fff8e1,#fff3cd);border:2px solid #e8a000;border-radius:10px;padding:18px;margin:14px 0}
+.recommendation h2{color:#b7770d;border-bottom:2px solid #e8a000;padding-bottom:7px;margin-bottom:12px;font-size:1.05em}
+.rec-item{display:flex;align-items:stretch;background:white;border-radius:8px;margin:9px 0;border-left:5px solid #e8a000;overflow:hidden}
+.rec-item-body{flex:1;padding:12px 15px}
+.rec-item-body .title{font-weight:bold;color:#333;margin-bottom:5px;font-size:.93em}
+.rec-item-body .detail{color:#555;font-size:.87em;line-height:1.6}
+.priority-s{border-left-color:#c0392b}.priority-a{border-left-color:#e67e22}.priority-b{border-left-color:#1a6e3c}
+.rank-badge-s{display:inline-block;background:#1a6e3c;color:white;border-radius:50%;width:22px;height:22px;line-height:22px;text-align:center;font-size:.76em;margin-right:7px}
+.rec-verdict{width:100px;min-width:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-left:2px solid #eee;font-size:2em;font-weight:bold;line-height:1.2}
+.rec-verdict.win{background:#fff0f0;color:#c0392b;border-left-color:#f5c0c0}
+.rec-verdict.lose{background:#f5f5f5;color:#bbb;border-left-color:#ddd}
+.rec-verdict .verdict-sub{font-size:.35em;font-weight:normal;margin-top:3px}
+.result-row-win .rec-item-body{background:#fffafa}
+.result-row-lose .rec-item-body{background:#fafafa}
+.result-row-lose .rec-item-body .title{color:#aaa}
+.rec-item-stat{display:flex;gap:16px;flex-wrap:wrap;margin-top:9px;padding-top:8px;border-top:1px dashed #e0e0e0;font-size:.85em}
+.rec-stat{display:flex;align-items:center;gap:6px}
+.rec-stat-label{background:#efefef;color:#666;font-size:.76em;font-weight:bold;padding:1px 8px;border-radius:10px;white-space:nowrap}
+.rec-stat-value{font-weight:bold}.rec-stat-value.win{color:#c0392b}.rec-stat-value.lose{color:#999}
+/* ===== 収支サマリ ===== */
+.balance-box{border-radius:10px;padding:16px 20px;margin:14px 0;font-size:.95em}
+.balance-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+.balance-total{font-weight:bold;font-size:1.1em;padding-top:8px;display:flex;justify-content:space-between}
+/* ===== 絞り込み条件 ===== */
+.cond{background:#f0f4ff;border-left:4px solid #3a5af5;padding:11px 15px;border-radius:0 6px 6px 0;margin-bottom:10px;font-size:.86em;line-height:1.9}
+/* ===== フッター ===== */
+.footer{text-align:center;color:#999;font-size:.78em;margin-top:18px;padding-bottom:28px}
+/* ===== info-grid ===== */
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.info-item{background:#f0f8f4;border-radius:8px;padding:10px;text-align:center}
+.info-item .label{font-size:.73em;color:#666}
+.info-item .value{font-size:1.05em;font-weight:bold;color:#1a6e3c;margin-top:4px}
+/* ===== レスポンシブ ===== */
+@media(max-width:700px){
+  .info-grid{grid-template-columns:repeat(2,1fr)}
+  .horse-cards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="top-nav">
+  <a href="../index.html">🏠 レース一覧へ戻る</a>
+  
+</div>
+
+<h1 id="top">
+  第69回 サンケイスポーツ杯阪神牝馬ステークス <span class="badge">GII</span>
+  <span class="sub">2026年4月11日（土曜） 2回阪神5日 ／ 阪神 芝1600m（右回り・外回り） ／ 発走15:30 ／ 4歳以上 牝馬オープン</span>
+</h1>
+
+<div class="menu" id="menu">
+  <div class="menu-title">📋 目次</div>
+  <div class="menu-links">
+    <a href="#entry">🐎 出馬表</a>
+    <a href='#past'>📊 過去類似レース</a>
+  </div>
+</div>
+
+<!-- 出馬表 -->
+<div class="section" id="entry">
+  <h2>🐎 出馬表・オッズ一覧（前日情報）</h2>
+  <p style="font-size:.8em;color:#888;margin-bottom:10px;">🕐 オッズ取得：2026年04月10日 17:20</p>
+  <table>
+    <thead><tr><th>馬番</th><th>馬名</th><th>性齢</th><th>斤量</th><th>騎手</th><th>単勝</th><th>人気</th><th>複勝</th></tr></thead>
+    <tbody>
+      <tr class="pop1"><td>1</td><td class="l"><b>エンブロイダリー</b></td>
+        <td>牝4/鹿</td><td>57.0</td><td class="l">C.ルメール</td>
+        <td class="evh">2.5倍</td><td class="p1">1番人気</td>
+        <td>1.3〜1.7倍</td></tr>
+      <tr class=""><td>2</td><td class="l"><b>カピリナ</b></td>
+        <td>牝5/芦</td><td>55.0</td><td class="l">横山 典弘</td>
+        <td class="evm">20.0倍</td><td class="p">6番人気</td>
+        <td>4.5〜6.5倍</td></tr>
+      <tr class=""><td>3</td><td class="l"><b>ルージュソリテール</b></td>
+        <td>牝4/鹿</td><td>55.0</td><td class="l">西塚 洸二</td>
+        <td class="evl">40.0倍</td><td class="p">9番人気</td>
+        <td>7.5〜11.0倍</td></tr>
+      <tr class="pop4"><td>4</td><td class="l"><b>ラヴァンダ</b></td>
+        <td>牝5/黒鹿</td><td>56.0</td><td class="l">岩田 望来</td>
+        <td class="evm">9.5倍</td><td class="p">4番人気</td>
+        <td>2.8〜4.0倍</td></tr>
+      <tr class="pop3"><td>5</td><td class="l"><b>カムニャック</b></td>
+        <td>牝4/鹿</td><td>57.0</td><td class="l">川田 将雅</td>
+        <td class="evh">5.5倍</td><td class="p3">3番人気</td>
+        <td>2.0〜2.7倍</td></tr>
+      <tr class="pop2"><td>6</td><td class="l"><b>アスコリピチェーノ</b></td>
+        <td>牝5/黒鹿</td><td>57.0</td><td class="l">坂井 瑠星</td>
+        <td class="evh">4.0倍</td><td class="p2">2番人気</td>
+        <td>1.7〜2.2倍</td></tr>
+      <tr class=""><td>7</td><td class="l"><b>クランフォード</b></td>
+        <td>牝5/鹿</td><td>55.0</td><td class="l">幸 英明</td>
+        <td class="evl">35.0倍</td><td class="p">8番人気</td>
+        <td>7.0〜10.0倍</td></tr>
+      <tr class=""><td>8</td><td class="l"><b>カナテープ</b></td>
+        <td>牝7/鹿</td><td>55.0</td><td class="l">松山 弘平</td>
+        <td class="evm">13.0倍</td><td class="p">5番人気</td>
+        <td>3.5〜5.0倍</td></tr>
+      <tr class=""><td>9</td><td class="l"><b>エポックヴィーナス</b></td>
+        <td>牝5/鹿</td><td>55.0</td><td class="l">酒井 学</td>
+        <td class="evl">60.0倍</td><td class="p">10番人気</td>
+        <td>11.0〜16.0倍</td></tr>
+      <tr class=""><td>10</td><td class="l"><b>ビップデイジー</b></td>
+        <td>牝4/鹿</td><td>55.0</td><td class="l">西村 淳也</td>
+        <td class="evl">25.0倍</td><td class="p">7番人気</td>
+        <td>5.5〜8.0倍</td></tr></tbody>
+  </table>
+  <div class="back-link"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- 過去類似レース -->
+<div class="section" id="past">
+  <h2>📊 過去類似レース分析（34件）</h2>
+  <div class="cond"><b>絞り込み条件</b><br>芝1600m・1番人気1.5〜3.5倍・3番人気4.0〜7.0倍・5番人気7.5〜11.5倍（2020〜2025年重賞）</div>
+  <div class="info-grid" style="margin-bottom:12px;">
+    <div class="info-item"><div class="label">単勝 最多価格帯</div><div class="value">300〜500円</div></div>
+    <div class="info-item"><div class="label">複勝 最多価格帯</div><div class="value">500円以上</div></div>
+  </div>
+  <table style="margin-bottom:6px;font-size:.82em">
+    <thead><tr><th>項目</th><th style="text-align:left">詳細</th></tr></thead>
+    <tbody>
+      <tr><td><b>単勝</b></td><td class="l">300〜500円が14件(41.2%) / 500〜800円が8件(23.5%) / 800〜1500円が7件(20.6%) / 300円未満が3件(8.8%)</td></tr>
+      <tr><td><b>複勝</b></td><td class="l">500円以上が11件(32.4%) / 150〜200円が7件(20.6%) / 200〜300円が7件(20.6%) / 150円未満が5件(14.7%)</td></tr>
+    </tbody>
+  </table>
+  
+  <h3>📋 全一覧</h3><div style='overflow-x:auto'><table><thead><tr><th>開催年月</th><th style='text-align:left'>レース名</th><th>1着</th><th>2着</th><th>3着</th><th>1P倍</th><th>3P倍</th><th>5P倍</th><th>単勝払戻</th></tr></thead><tbody>
+      <tr><td>2025年12月</td><td class="l">第77回朝日杯フューチュリティステークス</td>
+        <td>2</td><td>5</td><td>1</td>
+        <td>3.1</td><td>4.9</td><td>8.3</td><td>360円</td></tr>
+      <tr><td>2025年10月</td><td class="l">第14回アルテミスステークス</td>
+        <td>2</td><td>9</td><td>3</td>
+        <td>2.2</td><td>6.1</td><td>9.7</td><td>390円</td></tr>
+      <tr><td>2025年08月</td><td class="l">第73回中京記念</td>
+        <td>5</td><td>7</td><td>10</td>
+        <td>3.4</td><td>5.3</td><td>8.7</td><td>870円</td></tr>
+      <tr><td>2025年08月</td><td class="l">第45回新潟2歳ステークス</td>
+        <td>1</td><td>6</td><td>3</td>
+        <td>2.3</td><td>4.4</td><td>9.2</td><td>230円</td></tr>
+      <tr><td>2025年04月</td><td class="l">第68回サンケイスポーツ杯阪神牝馬ステークス</td>
+        <td>9</td><td>3</td><td>8</td>
+        <td>2.5</td><td>6.2</td><td>9.7</td><td>2970円</td></tr>
+      <tr><td>2025年04月</td><td class="l">第56回読売マイラーズカップ</td>
+        <td>5</td><td>1</td><td>2</td>
+        <td>2.1</td><td>4.8</td><td>10.2</td><td>1020円</td></tr>
+      <tr><td>2025年01月</td><td class="l">第59回日刊スポーツ賞シンザン記念</td>
+        <td>3</td><td>1</td><td>14</td>
+        <td>3.0</td><td>4.7</td><td>8.8</td><td>470円</td></tr>
+      <tr><td>2024年12月</td><td class="l">第10回ターコイズステークス</td>
+        <td>2</td><td>6</td><td>3</td>
+        <td>2.9</td><td>5.4</td><td>9.2</td><td>530円</td></tr>
+      <tr><td>2024年12月</td><td class="l">第76回朝日杯フューチュリティステークス</td>
+        <td>5</td><td>2</td><td>9</td>
+        <td>3.3</td><td>6.6</td><td>9.1</td><td>910円</td></tr>
+      <tr><td>2024年10月</td><td class="l">第27回富士ステークス</td>
+        <td>4</td><td>1</td><td>9</td>
+        <td>3.2</td><td>6.3</td><td>10.5</td><td>720円</td></tr>
+      <tr><td>2024年08月</td><td class="l">第44回新潟2歳ステークス</td>
+        <td>6</td><td>1</td><td>5</td>
+        <td>2.6</td><td>4.7</td><td>9.0</td><td>1170円</td></tr>
+      <tr><td>2024年04月</td><td class="l">第33回アーリントンカップ</td>
+        <td>1</td><td>15</td><td>4</td>
+        <td>3.2</td><td>4.6</td><td>9.6</td><td>320円</td></tr>
+      <tr><td>2024年04月</td><td class="l">第84回桜花賞</td>
+        <td>2</td><td>1</td><td>7</td>
+        <td>3.5</td><td>5.7</td><td>7.7</td><td>430円</td></tr>
+      <tr><td>2024年04月</td><td class="l">第42回ニュージーランドトロフィー</td>
+        <td>3</td><td>1</td><td>9</td>
+        <td>3.2</td><td>4.7</td><td>9.3</td><td>470円</td></tr>
+      <tr><td>2024年03月</td><td class="l">第31回チューリップ賞</td>
+        <td>5</td><td>9</td><td>15</td>
+        <td>3.0</td><td>6.2</td><td>9.7</td><td>970円</td></tr>
+      <tr><td>2024年02月</td><td class="l">第59回デイリー杯クイーンカップ</td>
+        <td>1</td><td>3</td><td>4</td>
+        <td>3.1</td><td>4.3</td><td>11.0</td><td>310円</td></tr>
+      <tr><td>2023年11月</td><td class="l">第28回東京中日スポーツ杯武蔵野ステークス</td>
+        <td>2</td><td>6</td><td>5</td>
+        <td>2.6</td><td>5.6</td><td>11.5</td><td>420円</td></tr>
+      <tr><td>2023年04月</td><td class="l">第66回サンケイスポーツ杯阪神牝馬ステークス</td>
+        <td>6</td><td>10</td><td>9</td>
+        <td>2.9</td><td>5.0</td><td>9.7</td><td>1380円</td></tr>
+      <tr><td>2023年03月</td><td class="l">第30回チューリップ賞</td>
+        <td>7</td><td>6</td><td>2</td>
+        <td>2.5</td><td>7.0</td><td>11.4</td><td>1620円</td></tr>
+      <tr><td>2023年01月</td><td class="l">第57回日刊スポーツ賞シンザン記念</td>
+        <td>2</td><td>3</td><td>4</td>
+        <td>2.4</td><td>5.4</td><td>9.7</td><td>300円</td></tr>
+      <tr><td>2022年12月</td><td class="l">第74回阪神ジュベナイルフィリーズ</td>
+        <td>1</td><td>12</td><td>10</td>
+        <td>2.6</td><td>6.6</td><td>11.1</td><td>260円</td></tr>
+      <tr><td>2022年12月</td><td class="l">第8回ターコイズステークス</td>
+        <td>2</td><td>4</td><td>12</td>
+        <td>3.2</td><td>6.2</td><td>11.5</td><td>560円</td></tr>
+      <tr><td>2022年04月</td><td class="l">第40回ニュージーランドトロフィー</td>
+        <td>3</td><td>1</td><td>6</td>
+        <td>2.3</td><td>7.0</td><td>11.2</td><td>700円</td></tr>
+      <tr><td>2022年04月</td><td class="l">第31回アーリントンカップ</td>
+        <td>1</td><td>7</td><td>4</td>
+        <td>2.5</td><td>6.9</td><td>9.3</td><td>250円</td></tr>
+      <tr><td>2022年01月</td><td class="l">第60回スポーツニッポン賞京都金杯</td>
+        <td>7</td><td>11</td><td>2</td>
+        <td>3.5</td><td>7.0</td><td>9.9</td><td>1390円</td></tr>
+      <tr><td>2021年12月</td><td class="l">第73回阪神ジュベナイルフィリーズ</td>
+        <td>3</td><td>8</td><td>4</td>
+        <td>2.9</td><td>5.6</td><td>8.3</td><td>560円</td></tr>
+      <tr><td>2021年04月</td><td class="l">第30回アーリントンカップ</td>
+        <td>1</td><td>10</td><td>7</td>
+        <td>3.4</td><td>4.9</td><td>10.6</td><td>340円</td></tr>
+      <tr><td>2021年04月</td><td class="l">第64回サンケイスポーツ杯阪神牝馬ステークス</td>
+        <td>1</td><td>2</td><td>8</td>
+        <td>3.1</td><td>4.5</td><td>8.7</td><td>310円</td></tr>
+      <tr><td>2021年02月</td><td class="l">第38回フェブラリーステークス</td>
+        <td>1</td><td>9</td><td>8</td>
+        <td>3.3</td><td>6.0</td><td>11.0</td><td>330円</td></tr>
+      <tr><td>2021年02月</td><td class="l">第56回デイリー杯クイーンカップ</td>
+        <td>2</td><td>5</td><td>1</td>
+        <td>3.2</td><td>5.4</td><td>9.5</td><td>490円</td></tr>
+      <tr><td>2020年11月</td><td class="l">第25回東京中日スポーツ杯武蔵野ステークス</td>
+        <td>3</td><td>11</td><td>8</td>
+        <td>2.8</td><td>5.1</td><td>10.5</td><td>510円</td></tr>
+      <tr><td>2020年10月</td><td class="l">第6回サウジアラビアロイヤルカップ</td>
+        <td>3</td><td>1</td><td>9</td>
+        <td>2.4</td><td>5.7</td><td>10.3</td><td>570円</td></tr>
+      <tr><td>2020年02月</td><td class="l">第55回デイリー杯クイーンカップ</td>
+        <td>2</td><td>4</td><td>12</td>
+        <td>3.5</td><td>4.3</td><td>7.8</td><td>380円</td></tr>
+      <tr><td>2020年01月</td><td class="l">第58回スポーツニッポン賞京都金杯</td>
+        <td>3</td><td>2</td><td>14</td>
+        <td>3.1</td><td>5.5</td><td>10.8</td><td>550円</td></tr></tbody></table></div>
+  <div class="back-link"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<div class="back-bar">
+  <a href="../index.html">🏠 レース一覧へ戻る</a>
+  
+</div>
+
+<div class="footer">
+  <p>※本サイトの予想は参考情報です。馬券の購入は自己責任でお願いします。</p>
+</div>
+</div>
+</body>
+</html>
