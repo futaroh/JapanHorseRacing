@@ -46,6 +46,9 @@ header {
   height: 144px;
   transition: height 0.3s;
 }
+.header-inner.sp-scrolled {
+  height: 100px;
+}
 .header-tagline {
   border-top: 1px solid rgba(255,255,255,0.2);
   text-align: center;
@@ -53,6 +56,14 @@ header {
   font-size: 0.83em;
   color: rgba(255,255,255,0.88);
   letter-spacing: 0.04em;
+  transition: opacity 0.3s, visibility 0.3s, max-height 0.3s, padding 0.3s;
+}
+.header-tagline.hidden-sp {
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
 }
 .site-logo {
   display: flex;
@@ -74,7 +85,17 @@ header {
 }
 
 /* ========== 的中率ブロック ========== */
-.hero-stats { flex-shrink: 0; }
+.hero-stats {
+  flex-shrink: 0;
+  transition: opacity 0.3s, visibility 0.3s, max-width 0.3s;
+}
+.hero-stats.hidden-sp {
+  opacity: 0;
+  visibility: hidden;
+  max-width: 0;
+  overflow: hidden;
+  padding: 0;
+}
 .hit-rate-block {
   text-align: center;
   background: rgba(255,255,255,0.15);
@@ -217,6 +238,7 @@ footer strong { color: #1a6e3c; }
 /* ========== レスポンシブ ========== */
 @media (max-width: 600px) {
   .header-inner { flex-direction: column; height: auto; padding: 20px 0; gap: 12px; }
+  .hero-stats { justify-content: center; margin-top: -100px; }
   .race-grid { grid-template-columns: 1fr; }
 }
 </style>
@@ -308,7 +330,7 @@ footer strong { color: #1a6e3c; }
     
     <div class="race-card" data-grade="g2" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
+        <div class="card-status"></div>
         <div class="race-grade g2">GII</div>
         <div class="race-name">ニュージーランドトロフィー</div>
         <div class="race-meta">
@@ -340,7 +362,7 @@ footer strong { color: #1a6e3c; }
 
     <div class="race-card" data-grade="g1" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
+        <div class="card-status"></div>
         <div class="race-grade g1">J・GI</div>
         <div class="race-name">中山グランドジャンプ</div>
         <div class="race-meta">
@@ -388,7 +410,7 @@ footer strong { color: #1a6e3c; }
 
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
+        <div class="card-status"></div>
         <div class="race-grade g3">GIII</div>
         <div class="race-name">福島牝馬ステークス</div>
         <div class="race-meta">
@@ -550,7 +572,7 @@ footer strong { color: #1a6e3c; }
 
     <div class="race-card" data-grade="g2" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
+        <div class="card-status"></div>
         <div class="race-grade g2">J・GII</div>
         <div class="race-name">京都ハイジャンプ</div>
         <div class="race-meta">
@@ -696,7 +718,7 @@ footer strong { color: #1a6e3c; }
 
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status"><span class="status-badge status-upcoming">📋 予定</span></div>
+        <div class="card-status"></div>
         <div class="race-grade g3">J・GIII</div>
         <div class="race-name">東京ジャンプステークス</div>
         <div class="race-meta">
@@ -817,56 +839,157 @@ footer strong { color: #1a6e3c; }
 </footer>
 
 <script>
-/* 月タブ切り替え */
-function switchMonth(month, el) {
-  document.querySelectorAll('.month-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  document.querySelectorAll('.month-grid').forEach(grid => {
-    grid.style.display = parseInt(grid.dataset.month) === month ? '' : 'none';
-  });
-}
-
-/* グレード・結果フィルター */
-function filterRaces(type, el) {
-  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-
-  document.querySelectorAll('.race-card').forEach(card => {
-    const grade  = card.dataset.grade;
-    const status = card.dataset.status;
-    let show = false;
-    if      (type === 'all')  show = true;
-    else if (type === 'done') show = (status === 'done' || status === 'pred_only');
-    else                      show = (grade === type);
-    card.style.display = show ? '' : 'none';
-  });
-
-  const doneGrid = document.getElementById('race-grid-done');
-  if (doneGrid) {
-    const hasVisible = [...doneGrid.querySelectorAll('.race-card')].some(c => c.style.display !== 'none');
-    doneGrid.previousElementSibling.style.display = hasVisible ? '' : 'none';
-    doneGrid.style.display = hasVisible ? '' : 'none';
+  // 月タブ切り替え
+  function switchMonth(month, el) {
+    document.querySelectorAll('.month-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.month-grid').forEach(grid => {
+      grid.style.display = parseInt(grid.dataset.month) === month ? '' : 'none';
+    });
   }
 
-  const schedHeader = document.getElementById('sched-section-header');
-  const monthTabs   = document.querySelector('.month-tabs');
-  const anySchedVisible = [...document.querySelectorAll('.month-grid .race-card')].some(c => c.style.display !== 'none');
-  if (schedHeader) schedHeader.style.display = anySchedVisible ? '' : 'none';
-  if (monthTabs)   monthTabs.style.display   = anySchedVisible ? '' : 'none';
-}
+  // グレードフィルタリング
+  function filterRaces(type, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
 
-/* ロゴサイズ制御 */
-function adjustLogo() {
-  const img = document.getElementById('logo-img');
-  if (!img) return;
-  if (window.innerWidth <= 768) {
-    img.style.width = '375px'; img.style.height = 'auto'; img.style.marginTop = '-100px';
-  } else {
-    img.style.width = ''; img.style.height = '400px'; img.style.marginTop = '';
+    const cards = document.querySelectorAll('.race-card');
+    cards.forEach(card => {
+      const grade  = card.dataset.grade;
+      const status = card.dataset.status;
+      let show = false;
+      if (type === 'all')       show = true;
+      else if (type === 'done') show = (status === 'done' || status === 'upcoming');
+      else                      show = (grade === type);
+      card.style.display = show ? '' : 'none';
+    });
+
+    // 実施済みグリッドの表示制御
+    const doneGrid = document.getElementById('race-grid-done');
+    if (doneGrid) {
+      const hasVisible = [...doneGrid.querySelectorAll('.race-card')].some(c => c.style.display !== 'none');
+      doneGrid.previousElementSibling.style.display = hasVisible ? '' : 'none';
+      doneGrid.style.display = hasVisible ? '' : 'none';
+    }
+
+    // 予定セクション（タブ含む）の表示制御 ※月グリッドの表示はタブが管理するため変更しない
+    const anySchedVisible = [...document.querySelectorAll('.month-grid .race-card')].some(c => c.style.display !== 'none');
+    document.getElementById('sched-section-header').style.display = anySchedVisible ? '' : 'none';
+    document.querySelector('.month-tabs').style.display = anySchedVisible ? '' : 'none';
+
+    // カード数を更新
+    const visibleDone  = doneGrid ? [...doneGrid.querySelectorAll('.race-card')].filter(c => c.style.display !== 'none').length : 0;
+    const doneEl = document.getElementById('count-done');
+    if (doneEl) doneEl.textContent = visibleDone;
   }
-}
-window.addEventListener('resize', adjustLogo);
-document.addEventListener('DOMContentLoaded', adjustLogo);
+
+  // 的中率スロットアニメーション
+  function animateHitRate() {
+    const el = document.getElementById('hit-rate');
+    if (!el) return;
+
+    // 現在時刻のミリ秒が100〜200msの範囲外なら即確定表示
+    const ms = new Date().getMilliseconds();
+    if (ms < 100 || ms > 200) return;
+
+    const target = el.textContent;           // 例: "50.00%"
+    const chars  = target.split('');          // ['5','0','.','0','0','%']
+    const digitIdx = chars
+      .map((c, i) => (/\d/.test(c) ? i : -1))
+      .filter(i => i >= 0);                  // [0, 1, 3, 4]
+
+    // 確定する順番: 小数第2位→小数第1位→一の位→十の位
+    const lockSchedule = [
+      { index: 4, time: 1000 },
+      { index: 3, time: 2000 },
+      { index: 1, time: 3000 },
+      { index: 0, time: 4000 },
+    ];
+
+    const locked  = new Set();
+    const current = [...chars];
+
+    // 20msごとにランダム数字を表示
+    const timer = setInterval(() => {
+      digitIdx.forEach(i => {
+        if (!locked.has(i)) {
+          current[i] = String(Math.floor(Math.random() * 10));
+        }
+      });
+      el.textContent = current.join('');
+    }, 20);
+
+    // 各桁を順番に確定
+    lockSchedule.forEach(({ index, time }) => {
+      setTimeout(() => {
+        locked.add(index);
+        current[index] = chars[index];
+        el.textContent = current.join('');
+      }, time);
+    });
+
+    // 4秒後にアニメーション終了・最終値を保証
+    setTimeout(() => {
+      clearInterval(timer);
+      el.textContent = target;
+    }, 4100);
+  }
+
+  // ロゴサイズ制御
+  function adjustLogo() {
+    const logo = document.querySelector('.logo-icon img');
+    if (!logo) return;
+    if (window.innerWidth <= 768) {
+      logo.style.width  = '375px';
+      logo.style.height = 'auto';
+    } else {
+      logo.style.width  = '';
+      logo.style.height = '400px';
+    }
+  }
+  window.addEventListener('resize', adjustLogo);
+
+  // 初期表示カウント
+  document.addEventListener('DOMContentLoaded', () => {
+    adjustLogo();
+    const doneCount = document.querySelectorAll('.race-card[data-status="done"], .race-card[data-status="upcoming"]').length;
+    const doneEl = document.getElementById('count-done');
+    if (doneEl) doneEl.textContent = doneCount;
+
+    // ロゴ幅レスポンシブ制御
+    function adjustLogoWidth() {
+      const logoImg = document.getElementById('logo-img');
+      if (!logoImg) return;
+      if (window.innerWidth <= 768) {
+        logoImg.style.width = '375px';
+        logoImg.style.height = 'auto';
+        logoImg.style.marginTop = '-100px';
+      } else {
+        logoImg.style.width = '';
+        logoImg.style.height = '400px';
+        logoImg.style.marginTop = '';
+      }
+    }
+    adjustLogoWidth();
+    window.addEventListener('resize', adjustLogoWidth);
+
+    // スマホ時のスクロールでhero-stats・header-tagline非表示、header高さ変更
+    function updateHeroStatsVisibility() {
+      const heroStats = document.querySelector('.hero-stats');
+      const tagline = document.querySelector('.header-tagline');
+      const headerInner = document.querySelector('.header-inner');
+      const isSP = window.innerWidth <= 768;
+      const scrolled = isSP && window.scrollY > 0;
+      if (heroStats)    heroStats.classList.toggle('hidden-sp', scrolled);
+      if (tagline)      tagline.classList.toggle('hidden-sp', scrolled);
+      if (headerInner)  headerInner.classList.toggle('sp-scrolled', scrolled);
+    }
+    updateHeroStatsVisibility();
+    window.addEventListener('scroll', updateHeroStatsVisibility);
+    window.addEventListener('resize', updateHeroStatsVisibility);
+
+    animateHitRate();
+  });
 </script>
 </body>
 </html>
