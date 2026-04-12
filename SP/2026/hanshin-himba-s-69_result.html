@@ -32,13 +32,22 @@
 
   /* ========== メニュー ========== */
   .menu { background: white; border-radius: 10px; padding: 14px 20px; margin: 10px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-  .menu-title { font-size: 0.78em; color: #888; margin-bottom: 8px; font-weight: bold; }
+  .menu-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .menu-title { font-size: 0.78em; color: #888; font-weight: bold; }
   .menu-links { display: flex; flex-wrap: wrap; gap: 8px; }
   .menu-links a {
     background: #f0f8f4; color: #1a6e3c; padding: 5px 12px; border-radius: 20px;
     font-size: 0.82em; text-decoration: none; border: 1px solid #c8e6d0;
   }
   .menu-links a:hover { background: #1a6e3c; color: white; }
+  .menu-top-btn {
+    background: #1a6e3c; color: white;
+    padding: 5px 14px; border-radius: 20px;
+    font-size: 0.78em; font-weight: bold;
+    text-decoration: none; white-space: nowrap;
+    border: 2px solid #1a6e3c;
+  }
+  .menu-top-btn:hover { background: white; color: #1a6e3c; }
 
   /* ========== テーブル共通 ========== */
   table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; }
@@ -214,7 +223,10 @@
      ※必要に応じてリンクを追加・削除
 =========================== -->
 <div class="menu" id="menu">
-  <div class="menu-title">📋 メニュー</div>
+  <div class="menu-header">
+    <div class="menu-title">📋 メニュー</div>
+    <a href="https://uma4begin.jp/" class="menu-top-btn">▲ サイトTOPに戻る</a>
+  </div>
   <div class="menu-links">
     <a href="#strategy">💡 推奨購入戦略（結果）</a>
     <a href="#result">🏁 レース結果</a>
@@ -247,7 +259,7 @@
       <div class="rec-item-stat">
         <div class="rec-stat">
           <span class="rec-stat-label">投資</span>
-          <span class="rec-stat-value">1,500円</span>
+          <span class="rec-stat-value">1,700円</span>
         </div>
         <div class="rec-stat">
           <span class="rec-stat-label">払戻</span>
@@ -255,7 +267,7 @@
         </div>
         <div class="rec-stat">
           <span class="rec-stat-label">収支</span>
-          <span class="rec-stat-value win">4,300円</span>
+          <span class="rec-stat-value win">4,100円</span>
         </div>
       </div>
     </div>
@@ -269,7 +281,7 @@
       <div class="rec-item-stat">
         <div class="rec-stat">
           <span class="rec-stat-label">投資</span>
-          <span class="rec-stat-value">1,000円</span>
+          <span class="rec-stat-value">2,000円</span>
         </div>
         <div class="rec-stat">
           <span class="rec-stat-label">払戻</span>
@@ -277,7 +289,7 @@
         </div>
         <div class="rec-stat">
           <span class="rec-stat-label">収支</span>
-          <span class="rec-stat-value win">400円</span>
+          <span class="rec-stat-value win">-600円</span>
         </div>
       </div>
     </div>
@@ -310,7 +322,7 @@
 
   <div style="background:; border-radius:8px; padding:14px; margin-top:14px; font-size:0.92em;">
     <b>📊 戦略合計収支</b><br>
-    投資 3,100円　回収 <b>7,200円</b>　収支 <b style="color:; font-size:1.1em;">4,100円</b>
+    投資 4,300円　回収 <b>7,200円</b>　収支 <b style="color:; font-size:1.1em;">2,900円</b>
   </div>
   <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
 </div>
