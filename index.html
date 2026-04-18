@@ -8,8 +8,6 @@
 <meta property="og:url" content="https://uma4begin.jp/">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://uma4begin.jp/">
-<link rel="apple-touch-icon" sizes="180x180" href="favicon-uma.png">
-<link rel="icon" type="image/png" sizes="180x180" href="favicon-uma.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -115,16 +113,6 @@ main {
   margin: 0 auto;
   padding: 28px 20px 60px;
 }
-
-/* ========== フィルタータブ ========== */
-.filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-.filter-tab {
-  background: white; border: 1.5px solid #dde8e2; border-radius: 20px;
-  padding: 6px 16px; font-size: 0.83em; color: #555; cursor: pointer;
-  transition: all 0.2s; user-select: none;
-}
-.filter-tab:hover  { border-color: #1a6e3c; color: #1a6e3c; }
-.filter-tab.active { background: #1a6e3c; border-color: #1a6e3c; color: white; }
 
 /* ========== セクションヘッダー ========== */
 .section-header {
@@ -239,8 +227,8 @@ footer strong { color: #1a6e3c; }
 
 /* ========== レスポンシブ ========== */
 @media (max-width: 600px) {
-  .header-inner { flex-direction: column; height: auto; padding: 20px 0; gap: 12px; }
-  .hero-stats { justify-content: center; margin-top: -100px; }
+  .header-inner { flex-direction: column; height: 100px; padding: 20px 0; gap: 12px; }
+  .hero-stats { display: none; }
   .race-grid { grid-template-columns: 1fr; }
 }
 </style>
@@ -271,21 +259,28 @@ footer strong { color: #1a6e3c; }
 <!-- ========== メインコンテンツ ========== -->
 <main>
 
-  <!-- フィルタータブ -->
-  <div class="filter-tabs">
-    <div class="filter-tab active" onclick="filterRaces('all', this)">すべて</div>
-    <div class="filter-tab" onclick="filterRaces('g1', this)">GI</div>
-    <div class="filter-tab" onclick="filterRaces('g2', this)">GII</div>
-    <div class="filter-tab" onclick="filterRaces('g3', this)">GIII</div>
-    <div class="filter-tab" onclick="filterRaces('done', this)">結果あり</div>
-  </div>
-
   <!-- 予想公開済レース -->
   <div class="section-header" id="races">
     <div class="section-title">予想公開済レース</div>
   </div>
   <div class="race-grid" id="race-grid-done">
     
+    <div class="race-card" data-grade="g3" data-status="pred_only">
+      <div class="card-header upcoming">
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予想のみ</span></div>
+        <div class="race-grade g3">GIII</div>
+        <div class="race-name">第31回 アンタレスステークス</div>
+        <div class="race-meta">
+          <span>📅 2026年4月18日（土）</span>
+          <span>🏟️ 阪神 阪神 ダート1800m（右回り）</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="result-summary">阪神ダート1800mGIII・第31回アンタレスステークス。過去56件の類似レースでは1番人気の勝率が14.3%と低く、単勝期待値0.493と割安感に乏しい。一方、6番人気クラス（単勝9〜10倍）の期待値は1.602と突出して高く、中穴を狙う戦略が有効。複勝では1番人気（ムルソー）の期待値1.293が最高で、堅実な複勝買いも有効。3連複1-2-3ボックスは期待値1.164と高く、少点数で狙え…</div>
+        <div class="report-links"><a class="report-link yoso" href="SP/2026/antares-s-31_prediction.html"><span class="link-icon">📊</span> 予想レポート</a><a class="report-link kekka disabled" href="#"><span class="link-icon">🏁</span> 結果待ち</a></div>
+      </div>
+    </div>
+
     <div class="race-card" data-grade="g1" data-status="done">
       <div class="card-header ">
         <div class="card-status"><span class="status-badge status-done">✅ 結果公開済</span></div>
@@ -354,22 +349,6 @@ footer strong { color: #1a6e3c; }
         <div class="race-meta">
           <span>📅 2026年4月18日（土）</span>
           <span>🏟️ 中山</span>
-        </div>
-      </div>
-      <div class="card-body">
-        
-        
-      </div>
-    </div>
-
-    <div class="race-card" data-grade="g3" data-status="scheduled">
-      <div class="card-header upcoming">
-        <div class="card-status"><span class="status-badge status-upcoming">📋 予想予定</span></div>
-        <div class="race-grade g3">GIII</div>
-        <div class="race-name">アンタレスステークス</div>
-        <div class="race-meta">
-          <span>📅 2026年4月18日（土）</span>
-          <span>🏟️ 阪神 ダート1800m</span>
         </div>
       </div>
       <div class="card-body">
@@ -821,6 +800,7 @@ footer strong { color: #1a6e3c; }
 <!-- ========== フッター ========== -->
 <footer>
   <p><strong>はじめての競馬</strong> &nbsp;|&nbsp; AIと統計を利用した競馬予想サイト</p>
+  <section class="trust">分析対象レース数:2,733件 / 的中率:66.7%（2026年4月現在)</section>
   <p style="margin-top:6px;">※ 本サイトの予想は参考情報です。馬券の購入は自己責任でお願いします。</p>
 </footer>
 
@@ -832,41 +812,6 @@ footer strong { color: #1a6e3c; }
     document.querySelectorAll('.month-grid').forEach(grid => {
       grid.style.display = parseInt(grid.dataset.month) === month ? '' : 'none';
     });
-  }
-
-  // グレードフィルタリング
-  function filterRaces(type, el) {
-    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-
-    const cards = document.querySelectorAll('.race-card');
-    cards.forEach(card => {
-      const grade  = card.dataset.grade;
-      const status = card.dataset.status;
-      let show = false;
-      if (type === 'all')       show = true;
-      else if (type === 'done') show = (status === 'done' || status === 'upcoming');
-      else                      show = (grade === type);
-      card.style.display = show ? '' : 'none';
-    });
-
-    // 実施済みグリッドの表示制御
-    const doneGrid = document.getElementById('race-grid-done');
-    if (doneGrid) {
-      const hasVisible = [...doneGrid.querySelectorAll('.race-card')].some(c => c.style.display !== 'none');
-      doneGrid.previousElementSibling.style.display = hasVisible ? '' : 'none';
-      doneGrid.style.display = hasVisible ? '' : 'none';
-    }
-
-    // 予定セクション（タブ含む）の表示制御 ※月グリッドの表示はタブが管理するため変更しない
-    const anySchedVisible = [...document.querySelectorAll('.month-grid .race-card')].some(c => c.style.display !== 'none');
-    document.getElementById('sched-section-header').style.display = anySchedVisible ? '' : 'none';
-    document.querySelector('.month-tabs').style.display = anySchedVisible ? '' : 'none';
-
-    // カード数を更新
-    const visibleDone  = doneGrid ? [...doneGrid.querySelectorAll('.race-card')].filter(c => c.style.display !== 'none').length : 0;
-    const doneEl = document.getElementById('count-done');
-    if (doneEl) doneEl.textContent = visibleDone;
   }
 
   // 的中率スロットアニメーション
@@ -958,21 +903,6 @@ footer strong { color: #1a6e3c; }
     }
     adjustLogoWidth();
     window.addEventListener('resize', adjustLogoWidth);
-
-    // スマホ時のスクロールでhero-stats・header-tagline非表示、header高さ変更
-    function updateHeroStatsVisibility() {
-      const heroStats = document.querySelector('.hero-stats');
-      const tagline = document.querySelector('.header-tagline');
-      const headerInner = document.querySelector('.header-inner');
-      const isSP = window.innerWidth <= 768;
-      const scrolled = isSP && window.scrollY > 0;
-      if (heroStats)    heroStats.classList.toggle('hidden-sp', scrolled);
-      if (tagline)      tagline.classList.toggle('hidden-sp', scrolled);
-      if (headerInner)  headerInner.classList.toggle('sp-scrolled', scrolled);
-    }
-    updateHeroStatsVisibility();
-    window.addEventListener('scroll', updateHeroStatsVisibility);
-    window.addEventListener('resize', updateHeroStatsVisibility);
 
     animateHitRate();
   });
