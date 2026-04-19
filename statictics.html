@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>競馬統計ダッシュボード</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+    }
+    .chart-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .chart-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .chart-wrapper {
+      position: relative;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>競馬統計ダッシュボード</h1>
+
+    <div class="chart-grid">
+      <!-- 総合的中率 -->
+      <div class="chart-card">
+        <div class="chart-title">総合的中率</div>
+        <div class="chart-wrapper">
+          <canvas id="winRateChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // JSONからデータを取得
+    fetch('statictics.json')
+      .then(response => response.json())
+      .then(data => {
+        const winRate = data.winRate;
+
+        // 総合的中率（円グラフ）
+        const winRateCtx = document.getElementById('winRateChart').getContext('2d');
+        new Chart(winRateCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['的中', 'ハズレ'],
+            datasets: [{
+              data: [winRate.hit, winRate.miss],
+              backgroundColor: [
+                '#4CAF50',
+                '#f44336'
+              ],
+              borderColor: [
+                '#45a049',
+                '#da190b'
+              ],
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  font: { size: 14 },
+                  padding: 15
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return context.label + ': ' + context.parsed + '%';
+                  }
+                }
+              }
+            }
+          }
+        });
+      })
+      .catch(error => console.error('データ読み込みエラー:', error));
+  </script>
+</body>
+</html>

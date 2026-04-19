@@ -12,7 +12,7 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:title" content="初心者向け競馬AI予想サイト｜Uma4begin.jp">
+<meta property="og:title" content="初心者向けAI競馬予想サイト｜Uma4begin.jp">
 <meta property="og:description" content="競馬初心者でもわかるAI予想。ストーリーでわかりやすく説明">
 <meta property="og:url" content="https://uma4begin.jp/">
 <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
   "url": "https://uma4begin.jp/"
 }
 </script>
-<title>はじめての競馬 | 初心者向け競馬予想サイト</title>
+<title>はじめての競馬 | 初心者向けAI競馬予想サイト</title>
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-uma.png">
 <link rel="icon" type="image/png" sizes="180x180" href="/favicon-uma.png">
 <style>
@@ -276,6 +276,22 @@ footer strong { color: #1a6e3c; }
   </div>
   <div class="race-grid" id="race-grid-done">
     
+    <div class="race-card" data-grade="g1" data-status="pred_only">
+      <div class="card-header upcoming">
+        <div class="card-status"><span class="status-badge status-upcoming">📋 予想のみ</span></div>
+        <div class="race-grade g1">GI</div>
+        <div class="race-name">第86回 皐月賞</div>
+        <div class="race-meta">
+          <span>📅 2026年4月19日（日）</span>
+          <span>🏟️ 中山競馬場 芝2000m 右回り</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="result-summary">皐月賞(GI)は芝2000m・良馬場の上位人気決着型。上位4頭（1-4番人気）がオッズ4.3-6.9に集中する混戦構図で、過去110レースの統計では1-3番人気複勝率40-49%と軸としての信頼度が高い。一方、5-7番人気帯のEVも1.00超えで、穴配当の妙味あり。PRトップのカヴァレリッツォ(1)と単勝1番人気ロブチェン(4)を中心に、戸崎騎手のグリーンエナジー(12)が混戦を動かす。</div>
+        <div class="report-links"><a class="report-link yoso" href="SP/2026/satsuki-sho-86_prediction.html"><span class="link-icon">📊</span> 予想レポート</a><a class="report-link kekka disabled" href="#"><span class="link-icon">🏁</span> 結果待ち</a></div>
+      </div>
+    </div>
+
     <div class="race-card hit" data-grade="g3" data-status="done">
       <div class="card-header ">
         <div class="card-status"><img src="images/atari.png" alt="的中" class="atari-img"></div>
@@ -352,38 +368,6 @@ footer strong { color: #1a6e3c; }
   </div>
   <div class="race-grid month-grid" data-month="4" >
     
-    <div class="race-card" data-grade="g1" data-status="scheduled">
-      <div class="card-header upcoming">
-        <div class="card-status"></div>
-        <div class="race-grade g1">J・GI</div>
-        <div class="race-name">中山グランドジャンプ</div>
-        <div class="race-meta">
-          <span>📅 2026年4月18日（土）</span>
-          <span>🏟️ 中山</span>
-        </div>
-      </div>
-      <div class="card-body">
-        
-        
-      </div>
-    </div>
-
-    <div class="race-card" data-grade="g1" data-status="scheduled">
-      <div class="card-header upcoming">
-        <div class="card-status"><span class="status-badge status-upcoming">📋 予想予定</span></div>
-        <div class="race-grade g1">GI</div>
-        <div class="race-name">皐月賞</div>
-        <div class="race-meta">
-          <span>📅 2026年4月19日（日）</span>
-          <span>🏟️ 中山 芝2000m</span>
-        </div>
-      </div>
-      <div class="card-body">
-        
-        
-      </div>
-    </div>
-
     <div class="race-card" data-grade="g3" data-status="scheduled">
       <div class="card-header upcoming">
         <div class="card-status"></div>
@@ -418,7 +402,7 @@ footer strong { color: #1a6e3c; }
 
     <div class="race-card" data-grade="g2" data-status="scheduled">
       <div class="card-header upcoming">
-        <div class="card-status"><span class="status-badge status-upcoming">📋 予想予定</span></div>
+        <div class="card-status"></div>
         <div class="race-grade g2">GII</div>
         <div class="race-name">サンケイスポーツ賞フローラステークス</div>
         <div class="race-meta">
@@ -811,7 +795,8 @@ footer strong { color: #1a6e3c; }
 <!-- ========== フッター ========== -->
 <footer>
   <p><strong>はじめての競馬</strong> &nbsp;|&nbsp; AIと統計を利用した競馬予想サイト</p>
-  <section class="trust">分析対象レース数:2,733件 / 的中率:75.0%（2026年4月現在)</section>
+  <section class="trust">分析対象過去レース数:2,733件 <br>
+	  2026年4月現在の的中率:75.0%（的中レース数：3／予想レース数：4)</section>
   <p style="margin-top:6px;">※ 本サイトの予想は参考情報です。馬券の購入は自己責任でお願いします。</p>
 </footer>
 
