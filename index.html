@@ -882,9 +882,6 @@ footer strong { color: #1a6e3c; }
   // 初期表示カウント
   document.addEventListener('DOMContentLoaded', () => {
     adjustLogo();
-    const doneCount = document.querySelectorAll('.race-card[data-status="done"], .race-card[data-status="upcoming"]').length;
-    const doneEl = document.getElementById('count-done');
-    if (doneEl) doneEl.textContent = doneCount;
 
     // ロゴ幅レスポンシブ制御
     function adjustLogoWidth() {
