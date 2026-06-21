@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DBH9FN7S59"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DBH9FN7S59');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="初心者向け競馬AI予想サイト｜Uma4begin.jp">
+<meta property="og:description" content="競馬初心者でもわかるAI予想。2026年開催の府中牝馬ステークスの予想をストーリーでわかりやすく説明。">
+<title>第74回府中牝馬ステークス 2026 予想レポート</title>
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon-uma.png">
+<link rel="icon" type="image/png" sizes="180x180" href="/favicon-uma.png">
+<style>
+  /* ========== ベーススタイル ========== */
+  body { font-family: 'Meiryo', 'Hiragino Kaku Gothic Pro', sans-serif; background: #f5f5f5; margin: 0; padding: 20px; color: #333; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* ========== ヘッダー ========== */
+  h1 {
+    background: linear-gradient(135deg, #1a6e3c, #2d9d5b);
+    color: white; padding: 20px 25px; border-radius: 10px;
+    margin-bottom: 5px; font-size: 1.5em;
+  }
+  h1 span.sub { font-size: 0.7em; display: block; margin-top: 5px; opacity: 0.9; }
+  .badge { display: inline-block; background: #e8a000; color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.8em; font-weight: bold; margin-left: 10px; }
+  .badge-rain { background: #5b8af5; }
+
+  /* ========== セクション共通 ========== */
+  .section { background: white; border-radius: 10px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .section h2 { color: #1a6e3c; border-bottom: 2px solid #1a6e3c; padding-bottom: 8px; margin-top: 0; }
+  .section h3 { color: #2d7a50; margin: 18px 0 10px; font-size: 1em; }
+  .section-icon { margin-right: 6px; }
+
+  .info-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+  .info-item { background: #f0f8f4; border-radius: 8px; padding: 12px; text-align: center; }
+  .info-item .label { font-size: 0.75em; color: #666; }
+  .info-item .value { font-size: 1.1em; font-weight: bold; color: #1a6e3c; margin-top: 4px; }
+
+  /* ========== メニュー ========== */
+  .menu { background: white; border-radius: 10px; padding: 14px 20px; margin: 10px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .menu-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .menu-title { font-size: 0.78em; color: #888; font-weight: bold; }
+  .menu-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .menu-links a {
+    background: #f0f8f4; color: #1a6e3c; padding: 5px 12px; border-radius: 20px;
+    font-size: 0.82em; text-decoration: none; border: 1px solid #c8e6d0;
+  }
+  .menu-links a:hover { background: #1a6e3c; color: white; }
+  .menu-top-btn {
+    background: #1a6e3c; color: white;
+    padding: 5px 14px; border-radius: 20px;
+    font-size: 0.78em; font-weight: bold;
+    text-decoration: none; white-space: nowrap;
+    border: 2px solid #1a6e3c;
+  }
+  .menu-top-btn:hover { background: white; color: #1a6e3c; }
+
+  /* ========== テーブル共通 ========== */
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; }
+  th { background: #1a6e3c; color: white; padding: 8px 10px; text-align: center; white-space: nowrap; }
+  td { padding: 7px 10px; border-bottom: 1px solid #eee; text-align: center; }
+  td.l { text-align: left; }
+  tr:hover { background: #f5fbf7; }
+  tr:nth-child(even) { background: #fafafa; }
+
+  /* ========== 馬名・騎手セル左寄せ（列番号で指定） ========== */
+  /* 出馬表：col2=馬名, col5=騎手 */
+  .tbl-entry td:nth-child(2), .tbl-entry td:nth-child(5) { text-align: left; }
+  /* 騎手分析：col1=騎手, col2=馬名 */
+  .tbl-jockey td:nth-child(1), .tbl-jockey td:nth-child(2) { text-align: left; }
+  /* 馬連オッズ順：col3=馬名 */
+  .tbl-umaren-odds td:nth-child(3) { text-align: left; }
+  /* 三連複人気順：col3=馬名 */
+  .tbl-sanren-odds td:nth-child(3) { text-align: left; }
+  /* PRランキング：col3=馬名, col4=騎手 */
+  .tbl-pr-ranking td:nth-child(3), .tbl-pr-ranking td:nth-child(4) { text-align: left; }
+  /* PR乖離分析：col1=馬名 */
+  .tbl-pr-gap td:nth-child(1) { text-align: left; }
+
+  /* ========== 人気色 ========== */
+  .pop1 { background: #fff3cd !important; }
+  .pop2 { background: #d1ecf1 !important; }
+  .pop3 { background: #d4edda !important; }
+  .pop4 { background: #f8d7da !important; }
+  tr.pop1 td, tr.pop2 td, tr.pop3 td, tr.pop4 td { }
+  .p1 { color: #e94560; font-weight: bold; }
+  .p2 { color: #ff8800; font-weight: bold; }
+  .p3 { color: #1a8f5a; font-weight: bold; }
+
+  /* ========== 期待値カラー ========== */
+  .ev-high, .evh { color: #c0392b; font-weight: bold; }
+  .ev-mid, .evm { color: #e67e22; font-weight: bold; }
+  .ev-low, .evl { color: #666; }
+
+  /* ========== 注目馬カード ========== */
+  .horse-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 12px; }
+  .horse-card { border: 2px solid #e0e0e0; border-radius: 8px; padding: 16px; position: relative; }
+  .horse-card.rank1 { border-color: #ffd700; background: #fffdf0; }
+  .horse-card.rank2 { border-color: #c0c0c0; background: #f9f9ff; }
+  .horse-card.rank3 { border-color: #cd7f32; background: #fff8f4; }
+  .horse-card .rank-badge { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1em; }
+  .horse-card.rank1 .rank-badge { background: #ffd700; color: #333; }
+  .horse-card.rank2 .rank-badge { background: #c0c0c0; color: #333; }
+  .horse-card.rank3 .rank-badge { background: #cd7f32; color: white; }
+  .horse-name { font-size: 1.15em; font-weight: bold; color: #1a1a2e; margin-bottom: 6px; }
+  .horse-meta { font-size: 0.82em; color: #666; margin-bottom: 8px; }
+  .horse-odds { font-size: 0.9em; font-weight: bold; margin-bottom: 6px; }
+  .horse-reason { font-size: 0.87em; line-height: 1.6; color: #444; }
+
+  /* ========== メニューに戻る ========== */
+  .back-to-menu { text-align: right; margin-top: 14px; }
+  .back-to-menu a { font-size: 0.78em; color: #1a6e3c; text-decoration: none; padding: 3px 10px; border: 1px solid #c8e6d0; border-radius: 20px; background: #f0f8f4; }
+  .back-to-menu a:hover { background: #1a6e3c; color: white; }
+
+  /* ========== フィルターノート ========== */
+  .filter-note { background: #e8f4fd; border-left: 4px solid #3498db; padding: 12px 16px; margin: 10px 0; border-radius: 4px; font-size: 0.88em; color: #555; line-height: 1.7; }
+  .cond { background: #f0f4ff; border-left: 4px solid #3a5af5; padding: 12px 16px; border-radius: 0 6px 6px 0; margin-bottom: 12px; font-size: 0.88em; line-height: 1.9; }
+
+  /* ========== 注記・メモ ========== */
+  .note { background: #fff8e1; border-radius: 6px; padding: 9px 13px; font-size: 0.83em; line-height: 1.7; margin-top: 9px; }
+  .note2 { background: #f0fff4; border-radius: 6px; padding: 9px 13px; font-size: 0.83em; line-height: 1.7; margin-top: 9px; }
+  .notice { background: #f0f0f0; border-radius: 6px; padding: 12px 16px; font-size: 0.83em; color: #666; margin-top: 15px; line-height: 1.6; }
+
+  /* ========== 騎手カード ========== */
+  .jockey-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .jockey-card { background: #f8fffe; border: 1px solid #d0e8da; border-radius: 8px; padding: 12px; }
+  .jockey-card .horse { font-weight: bold; color: #1a6e3c; }
+  .jockey-card .jockey { color: #333; margin: 4px 0; }
+  .jockey-card .comment { font-size: 0.82em; color: #666; line-height: 1.5; }
+  .pop-label { font-size: 0.75em; background: #eee; padding: 1px 6px; border-radius: 10px; margin-left: 4px; }
+
+  /* ========== ハイライト行 ========== */
+  .top-pick, tr.hl { background: #fff8e1 !important; font-weight: bold; }
+
+  /* ========== 馬連・三連複ハイライト ========== */
+  .umaren-highlight { background: #fff3e0 !important; }
+  .sanren-highlight { background: #e8f5e9 !important; }
+
+  /* ========== 推奨戦略 ========== */
+  .recommendation { background: linear-gradient(135deg, #fff8e1, #fff3cd); border: 2px solid #e8a000; border-radius: 10px; padding: 20px; margin: 15px 0; }
+  .recommendation h2 { color: #b7770d; border-bottom: 2px solid #e8a000; padding-bottom: 8px; margin-top: 0; }
+  .rec-item { background: white; border-radius: 8px; padding: 14px; margin: 10px 0; border-left: 5px solid #e8a000; }
+  .rec-item .title { font-weight: bold; color: #333; margin-bottom: 6px; }
+  .rec-item .detail { color: #555; font-size: 0.9em; line-height: 1.6; }
+  .rank-badge-s { display: inline-block; background: #1a6e3c; color: white; border-radius: 50%; width: 24px; height: 24px; line-height: 24px; text-align: center; font-size: 0.8em; margin-right: 8px; }
+  .priority-s { border-left-color: #c0392b; }
+  .priority-a { border-left-color: #e67e22; }
+  .priority-b { border-left-color: #1a6e3c; }
+
+  /* ========== PR分析 ========== */
+  .tag { display: inline-block; font-size: 0.75em; padding: 2px 7px; border-radius: 10px; margin-left: 4px; }
+  .tag-up { background: #fff0f0; color: #e94560; border: 1px solid #f5c0c0; }
+  .tag-note { background: #f0f4ff; color: #3a5af5; border: 1px solid #c0ceff; }
+  .pr-summary { background: #f0f4ff; border-left: 4px solid #3a5af5; padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 0.88em; line-height: 1.8; margin-top: 14px; }
+
+  /* ========== フッター ========== */
+  .footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 20px; padding-bottom: 30px; }
+
+  /* ========== レスポンシブ ========== */
+  @media (max-width: 700px) {
+    /* 問題6: body余白を詰める */
+    body { padding: 10px 8px; }
+
+    .info-grid { grid-template-columns: repeat(2, 1fr); }
+    .jockey-grid { grid-template-columns: 1fr; }
+    .horse-cards { grid-template-columns: 1fr; }
+
+    /* 問題1: 列を減らせないテーブルは横スクロール保険 */
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* 問題2: フォント最小サイズ引き上げ */
+    .note, .note2, .notice { font-size: 0.88em !important; }
+    .filter-note, .cond, .pr-summary { font-size: 0.88em !important; }
+    table { font-size: 0.88em; }
+
+    /* 問題3: 目次タップ領域拡大 */
+    .menu-links a { padding: 8px 14px; font-size: 0.88em; }
+
+    /* 問題4: 戻るボタン中央・フルワイド化 */
+    .back-to-menu { text-align: center; margin-top: 16px; }
+    .back-to-menu a { display: block; padding: 10px 0; font-size: 0.88em; border-radius: 6px; }
+
+    /* 問題1・5: sp-hide クラスの列をスマホで非表示 */
+    .sp-hide { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===========================
+     ヘッダー（レース名）
+     プレースホルダ：
+       第74回          例）第70回
+       府中牝馬ステークス      例）大阪杯
+       GIII      例）G1 / G2 / G3 / GIII / GII / GI
+           例）<span class="badge badge-rain">雨・稍重</span>  ※好天時は削除
+       2026年6月21日（日曜）        例）2026年4月5日（日）
+       3回東京6日        例）2回阪神4日 11R
+       東京芝1800m        例）芝2000m
+       15時45分      例）15:40
+       3歳以上 オープン          例）4歳以上オープン・15頭立て
+=========================== -->
+<h1 id="top">
+	第74回 府中牝馬ステークス <span class="badge">GIII</span><span class="badge badge-rain">曇・稍重馬場</span>
+  <span class="sub">2026年6月21日（日曜） 3回東京6日 ／ 東京芝1800m ／ 発走15時45分 ／ 3歳以上 オープン</span>
+</h1>
+
+<!-- ===========================
+     メニュー（ページ内リンク）
+     ※必要に応じてリンクを追加・削除
+=========================== -->
+<div class="menu" id="menu">
+  <div class="menu-header">
+    <div class="menu-title">📋 メニュー</div>
+    <a href="https://uma4begin.jp/" class="menu-top-btn">🏠 サイトTOPに戻る</a>
+  </div>
+  <div class="menu-links">
+    <a href="#summary" style="">🏆 総合まとめ・注目馬</a>
+    <a href="#entry">🐎 出馬表</a>
+    <a href="#past-races">📊 過去類似レース</a>
+    <a href="#race-history">📅 過去10年 同レース</a>
+    <a href="#jockey">🎽 騎手分析</a>
+    <a href="#odds" style="">📈 オッズ分析</a>
+    <a href="#umaren" style="">🔗 馬連</a>
+    <a href="#sanrenpuku" style="">🎯 ３連複</a>
+    <a href="#pr" style="display:none">⭐ PR分析</a>
+    <a href="#strategy" style="">💡 推奨購入戦略</a>
+    <a href="#conclusion" style="">📝 総括</a>
+  </div>
+</div>
+
+<!-- ===========================
+     総合まとめ・注目馬
+     プレースホルダ：
+       第74回府中牝馬ステークスは東京芝1800m・稍重馬場。1番人気ヴァルキリーバース(3.0倍)をニシノティアモ(6.1倍)、コガネノソラ(7.6倍)が追う構図。過去229件の類似統計では5番人気単勝の期待値1.39が最高、複勝は5番人気の期待値0.96が優秀。   レース全体の見立て（HTMLも可）
+       %注目馬カード%         下記 horse-card 構造のHTMLを繰り返す
+       ※horse-card の rank は rank1（◎）/ rank2（○）/ rank3（▲）/ なし
+=========================== -->
+<div class="section" id="summary" style="">
+  <h2><span class="section-icon">🏆</span>総合まとめ・注目馬</h2>
+  <p style="font-size:0.9em; line-height:1.8; margin-bottom:18px;">
+    <strong>レース展望：</strong>第74回府中牝馬ステークスは東京芝1800m・稍重馬場。1番人気ヴァルキリーバース(3.0倍)をニシノティアモ(6.1倍)、コガネノソラ(7.6倍)が追う構図。過去229件の類似統計では5番人気単勝の期待値1.39が最高、複勝は5番人気の期待値0.96が優秀。
+  </p>
+
+  <div class="horse-cards">
+    <!-- 注目馬カード（繰り返し）
+         rank1=◎本命 / rank2=○対抗 / rank3=▲単穴 / 指定なし=注意馬
+    -->
+    <div class="horse-card rank1">
+      <div class="rank-badge">◎</div>
+      <div class="horse-name">ヴァルキリーバース <small>（⑥番）</small></div>
+      <div class="horse-meta">牝 ／ 騎手：C.ルメール ／ 1番人気</div>
+      <div class="horse-odds p1">単勝 3.0倍 ／ 複勝 未発表倍</div>
+      <div class="horse-reason">1番人気3.0倍。過去229件類似統計で1番人気単勝勝率30.1%・期待値0.88。</div>
+    </div>
+
+    <div class="horse-card rank2">
+      <div class="rank-badge">○</div>
+      <div class="horse-name">セキトバイースト <small>（⑦番）</small></div>
+      <div class="horse-meta">牝 ／ 騎手：浜中 俊 ／ 5番人気</div>
+      <div class="horse-odds p2">単勝 10.8倍 ／ 複勝 未発表倍</div>
+      <div class="horse-reason">5番人気10.8倍。過去229件類似統計で5番人気単勝勝率14.0%・期待値1.39。</div>
+    </div>
+
+    <div class="horse-card rank3">
+      <div class="rank-badge">▲</div>
+      <div class="horse-name">ニシノティアモ <small>（⑧番）</small></div>
+      <div class="horse-meta">牝 ／ 騎手：津村 明秀 ／ 2番人気</div>
+      <div class="horse-odds p3">単勝 6.1倍 ／ 複勝 未発表倍</div>
+      <div class="horse-reason">2番人気6.1倍。過去229件類似統計で2番人気単勝勝率12.7%・期待値0.55。</div>
+    </div>
+
+    <!-- 追加注目馬（必要に応じて繰り返し）
+    <div class="horse-card">
+      <div class="horse-name">%注目馬N名% <small>（%注目馬N番%番）</small></div>
+      <div class="horse-meta">...</div>
+      <div class="horse-odds">...</div>
+      <div class="horse-reason">%注目馬Nコメント%</div>
+    </div>
+    -->
+  </div>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     出馬表・オッズ一覧
+     プレースホルダ：
+       %出馬表行%  以下の <tr> を人気順で繰り返す
+         <tr class="pop1">  ← pop1/pop2/pop3/pop4 または 指定なし
+           <td>%馬番%</td>
+           <td class="l"><b>%馬名%</b></td>
+           <td class="sp-hide">%性齢%</td>       ← スマホ非表示
+           <td class="sp-hide">%斤量%</td>       ← スマホ非表示
+           <td class="l">%騎手%</td>
+           <td class="ev-high">%単勝オッズ%</td>  ← 上位人気は ev-high 等
+           <td>%人気%番</td>
+           <td class="sp-hide">%複勝オッズ%</td> ← スマホ非表示
+         </tr>
+=========================== -->
+<div class="section" id="entry">
+  <h2><span class="section-icon">🐎</span>出馬表・オッズ一覧</h2>
+  <div class="notice" style="margin-top:6px; margin-bottom:14px; font-size:0.82em; color:#888;">
+    🕐 オッズは2026/06/21 12:02に取得したものです
+  </div>
+  <table class="tbl-entry">
+    <thead>
+      <tr>
+        <th>馬番</th><th style="min-width:120px">馬名</th><th class="sp-hide">性齢</th><th class="sp-hide">斤量</th>
+        <th style="min-width:90px">騎手</th><th>単勝オッズ</th><th>人気</th><th class="sp-hide">複勝オッズ</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr><td>①</td><td style="white-space:nowrap"><b>マカナ</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>松岡 正海</td><td>16.1倍</td><td>7</td><td class="sp-hide">倍</td></tr>
+      <tr><td>②</td><td style="white-space:nowrap"><b>ウイントワイライト</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>横山 典弘</td><td>24.1倍</td><td>10</td><td class="sp-hide">倍</td></tr>
+      <tr><td>③</td><td style="white-space:nowrap"><b>ブラウンラチェット</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>丸山 元気</td><td>97.9倍</td><td>15</td><td class="sp-hide">倍</td></tr>
+      <tr><td>④</td><td style="white-space:nowrap"><b>ミアネーロ</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>大野 拓弥</td><td>90.5倍</td><td>14</td><td class="sp-hide">倍</td></tr>
+      <tr class="pop4"><td>⑤</td><td style="white-space:nowrap"><b>エストゥペンダ</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>荻野 極</td><td>8.6倍</td><td>4</td><td class="sp-hide">倍</td></tr>
+      <tr class="pop1"><td>⑥</td><td style="white-space:nowrap"><b>ヴァルキリーバース</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>C.ルメール</td><td>3.0倍</td><td>1</td><td class="sp-hide">倍</td></tr>
+      <tr class="pop5"><td>⑦</td><td style="white-space:nowrap"><b>セキトバイースト</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>浜中 俊</td><td>10.8倍</td><td>5</td><td class="sp-hide">倍</td></tr>
+      <tr class="pop2"><td>⑧</td><td style="white-space:nowrap"><b>ニシノティアモ</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>津村 明秀</td><td>6.1倍</td><td>2</td><td class="sp-hide">倍</td></tr>
+      <tr><td>⑨</td><td style="white-space:nowrap"><b>テリオスララ</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>F.ゴンサルベス</td><td>25.9倍</td><td>12</td><td class="sp-hide">倍</td></tr>
+      <tr><td>⑩</td><td style="white-space:nowrap"><b>ホールネス</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>三浦 皇成</td><td>25.3倍</td><td>11</td><td class="sp-hide">倍</td></tr>
+      <tr><td>⑪</td><td style="white-space:nowrap"><b>テレサ</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>戸崎 圭太</td><td>21.4倍</td><td>9</td><td class="sp-hide">倍</td></tr>
+      <tr class="pop3"><td>⑫</td><td style="white-space:nowrap"><b>コガネノソラ</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>菊沢 一樹</td><td>7.6倍</td><td>3</td><td class="sp-hide">倍</td></tr>
+      <tr><td>⑬</td><td style="white-space:nowrap"><b>ビップデイジー</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>西村 淳也</td><td>43.9倍</td><td>13</td><td class="sp-hide">倍</td></tr>
+      <tr><td>⑭</td><td style="white-space:nowrap"><b>パラディレーヌ</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>原 優介</td><td>18.5倍</td><td>8</td><td class="sp-hide">倍</td></tr>
+      <tr><td>⑮</td><td style="white-space:nowrap"><b>ルージュソリテール</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>西塚 洸二</td><td>11.4倍</td><td>6</td><td class="sp-hide">倍</td></tr>
+      <tr><td>⑯</td><td style="white-space:nowrap"><b>セントメモリーズ</b></td><td class="sp-hide">牝</td><td class="sp-hide">—</td><td>木幡 巧也</td><td>138.7倍</td><td>16</td><td class="sp-hide">倍</td></tr>
+    </tbody>
+  </table>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     過去類似レース（＋レース基本情報を統合）
+     プレースホルダ：
+       東京競馬場 芝1800m 左回り              例）芝 2,000m 右内
+       曇・稍重馬場                例）雨 ／ 芝 稍重
+       3歳以上 オープン 牝                例）4歳以上 OP（国際）混合
+       3.0           例）2.8倍（推定）
+       7.6           例）4.5倍（推定）
+       10.8           例）8.0倍（推定）
+       229            例）56件
+       距離1800m芝・1/3/5番人気オッズ近接                例）芝1600m・1番人気1.5〜3.5倍・3番人気4.0〜7.0倍
+       芝1800m・1番人気(1.5,4.5)・3番人気(4.6,10.6)・5番人気(6.8,14.8)    例）距離：芝1600m<br>1番人気オッズ：2.5倍（1.5〜3.5倍範囲）
+       2003年以降の重賞レース結果より。当日馬連・複勝オッズは未発表のため単勝オッズベースの推定値を一部使用。        例）2020〜2025年の重賞レース（JRA）から抽出。前日時点のオッズは推定値を使用。
+       2026/06/21 12:02          例）2026年4月5日 09:34
+       5.0倍未満      例）3.0〜5.0倍
+       5.0倍未満:92回(40%)<br>5.0〜10.0倍:73回(32%)<br>10.0〜20.0倍:41回(18%)<br>20.0倍以上:23回(10%)      例）3.0倍未満が3件(8.8%)<br>3.0〜5.0倍が14件(41.2%)
+       2.0〜5.0倍      例）5.0倍以上
+       2.0倍未満:157回(34%)<br>2.0〜5.0倍:208回(45%)<br>5.0〜10.0倍:68回(15%)<br>10.0倍以上:25回(5%)      例）1.5倍未満が5件(14.7%)<br>1.5〜2.0倍が7件(20.6%)
+       10.0〜30.0倍      例）10.0倍未満
+       10.0倍未満:32回(14%)<br>10.0〜30.0倍:96回(42%)<br>30.0〜50.0倍:39回(17%)<br>50.0〜100.0倍:31回(14%)<br>100.0〜300.0倍:27回(12%)<br>300.0倍以上:4回(2%)      例）10.0倍未満が10件(29.4%)<br>10.0〜20.0倍が6件(17.6%)
+       50.0〜100.0倍    例）100.0〜300.0倍
+       10.0倍未満:9回(4%)<br>10.0〜30.0倍:43回(19%)<br>30.0〜50.0倍:26回(11%)<br>50.0〜100.0倍:57回(25%)<br>100.0〜300.0倍:53回(23%)<br>300.0〜1000.0倍:36回(16%)<br>1000.0倍以上:5回(2%)    例）30.0倍未満が7件(20.6%)<br>30.0〜100.0倍が8件(23.5%)
+       %過去類似レース行%        以下の li を直近10件分繰り返す（新しい順）
+         <li style="list-style:none; margin-bottom:8px;">
+           <span style="display:inline-block; background:#daeeff; color:#1a5276; font-weight:bold; font-size:0.95em; padding:2px 8px; border-radius:3px; margin-bottom:2px;">%年月% 府中牝馬ステークス</span><br>
+           着順：%1着人気%番人気ー%2着人気%番人気ー%3着人気%番人気<br>
+           払戻：単勝%単勝払戻%円／馬連%馬連払戻%円／３連複%三連複払戻%円
+         </li>
+=========================== -->
+<div class="section" id="past-races">
+  <h2><span class="section-icon">📊</span>過去類似レース（絞り込み条件・サマリ）</h2>
+
+  <!-- 絞り込み条件 -->
+  <div class="cond">
+    <b>絞り込み条件（229件 ／ 過去重賞データから抽出）</b><br>
+    芝1800m・1番人気(1.5,4.5)・3番人気(4.6,10.6)・5番人気(6.8,14.8)<br>
+  </div>
+  <div class="notice" style="margin-top:6px; margin-bottom:14px; font-size:0.82em; color:#888;">
+    🕐 本分析は出走前日に取得したオッズ情報をもとに、※2003年以降の重賞レース結果より。当日馬連・複勝オッズは未発表のため単勝オッズベースの推定値を一部使用。
+  </div>
+
+  <!-- サマリ -->
+  <h3>📌 過去類似レース サマリ</h3>
+  <div class="info-grid" style="margin-bottom:14px;">
+    <div class="info-item"><div class="label">単勝最多オッズ帯</div><div class="value">5.0倍未満</div></div>
+    <div class="info-item"><div class="label">複勝最多オッズ帯</div><div class="value">2.0〜5.0倍</div></div>
+    <div class="info-item" style=""><div class="label">馬連最多オッズ帯</div><div class="value">10.0〜30.0倍</div></div>
+    <div class="info-item" style=""><div class="label">３連複最多オッズ帯</div><div class="value">50.0〜100.0倍</div></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>券種</th><th>詳細</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>単勝</b></td><td class="l">5.0倍未満:92回(40%)<br>5.0〜10.0倍:73回(32%)<br>10.0〜20.0倍:41回(18%)<br>20.0倍以上:23回(10%)</td></tr>
+      <tr><td><b>複勝</b></td><td class="l">2.0倍未満:157回(34%)<br>2.0〜5.0倍:208回(45%)<br>5.0〜10.0倍:68回(15%)<br>10.0倍以上:25回(5%)</td></tr>
+      <tr style=""><td><b>馬連</b></td><td class="l">10.0倍未満:32回(14%)<br>10.0〜30.0倍:96回(42%)<br>30.0〜50.0倍:39回(17%)<br>50.0〜100.0倍:31回(14%)<br>100.0〜300.0倍:27回(12%)<br>300.0倍以上:4回(2%)</td></tr>
+      <tr style=""><td><b>３連複</b></td><td class="l">10.0倍未満:9回(4%)<br>10.0〜30.0倍:43回(19%)<br>30.0〜50.0倍:26回(11%)<br>50.0〜100.0倍:57回(25%)<br>100.0〜300.0倍:53回(23%)<br>300.0〜1000.0倍:36回(16%)<br>1000.0倍以上:5回(2%)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 過去類似レース一覧 -->
+  <h3>📋 直近５件の類似レースの結果</h3>
+  <ul style="font-size:0.9em; line-height:2.2; padding-left:20px;">
+        <li style="list-style:none; margin-bottom:8px;"><span style="display:inline-block; background:#daeeff; color:#1a5276; font-weight:bold; font-size:0.95em; padding:2px 8px; border-radius:3px; margin-bottom:2px;">202603 第40回 フラワーカップ</span><br>着順：6番人気ー9番人気ー1番人気<br>払戻：単勝1,280／馬連19,270／３連複22,810</li>
+    <li style="list-style:none; margin-bottom:8px;"><span style="display:inline-block; background:#daeeff; color:#1a5276; font-weight:bold; font-size:0.95em; padding:2px 8px; border-radius:3px; margin-bottom:2px;">202603 第44回 ローレル競馬場賞中山牝馬ステークス</span><br>着順：6番人気ー11番人気ー3番人気<br>払戻：単勝1,530／馬連14,990／３連複22,020</li>
+    <li style="list-style:none; margin-bottom:8px;"><span style="display:inline-block; background:#daeeff; color:#1a5276; font-weight:bold; font-size:0.95em; padding:2px 8px; border-radius:3px; margin-bottom:2px;">202603 第75回 フジテレビ賞スプリングステークス</span><br>着順：8番人気ー2番人気ー7番人気<br>払戻：単勝1,940／馬連4,410／３連複24,850</li>
+    <li style="list-style:none; margin-bottom:8px;"><span style="display:inline-block; background:#daeeff; color:#1a5276; font-weight:bold; font-size:0.95em; padding:2px 8px; border-radius:3px; margin-bottom:2px;">202512 第78回鳴尾記念</span><br>着順：2番人気ー7番人気ー3番人気<br>払戻：単勝430／馬連3,540／３連複9,440</li>
+    <li style="list-style:none; margin-bottom:8px;"><span style="display:inline-block; background:#daeeff; color:#1a5276; font-weight:bold; font-size:0.95em; padding:2px 8px; border-radius:3px; margin-bottom:2px;">202511 第30回東京スポーツ杯2歳ステークス</span><br>着順：3番人気ー5番人気ー2番人気<br>払戻：単勝730／馬連2,960／３連複4,610</li>
+  </ul>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+
+<!-- ===========================
+     過去10年 同レース サマリ
+     プレースホルダ：
+       5.0〜10.0倍     例）3.0倍未満
+       5.0倍未満:6回(26%)<br>5.0〜10.0倍:10回(43%)<br>10.0〜20.0倍:3回(13%)<br>20.0倍以上:4回(17%)           例）3.0倍未満が3件(30%)<br>3.0〜5.0倍が2件(20%)
+       2.0〜5.0倍     例）2.0〜3.0倍
+       2.0倍未満:18回(39%)<br>2.0〜5.0倍:24回(52%)<br>5.0〜10.0倍:2回(4%)<br>10.0倍以上:2回(4%)           例）1.5倍未満が1件(16.7%)<br>1.5〜2.0倍が1件(16.7%)
+       10.0〜30.0倍     例）10.0倍未満
+       10.0倍未満:2回(9%)<br>10.0〜30.0倍:10回(43%)<br>30.0〜50.0倍:3回(13%)<br>50.0〜100.0倍:6回(26%)<br>100.0〜300.0倍:2回(9%)           例）10.0倍未満が2件(33%)<br>20.0〜50.0倍が1件(16%)
+       10.0〜30.0倍   例）300.0〜1000.0倍
+       10.0〜30.0倍:8回(35%)<br>30.0〜50.0倍:1回(4%)<br>50.0〜100.0倍:6回(26%)<br>100.0〜300.0倍:6回(26%)<br>300.0〜1000.0倍:2回(9%)         例）30.0倍未満が1件(16%)<br>30.0〜100.0倍が2件(33%)
+       %同レース_結果行%  <tr> を直近10年分・新しい年順に繰り返す
+         <tr>
+           <td>2026</td>
+           <td class="pX">%1着人気%人気</td><td class="l" style="white-space:nowrap">%1着馬名%</td>
+           <td style="white-space:nowrap; text-align:right">%単勝払戻%倍</td>
+           <td style="white-space:nowrap; text-align:right">%馬連払戻%倍</td>
+           <td style="white-space:nowrap; text-align:right">%三連複払戻%倍</td>
+         </tr>
+=========================== -->
+<div class="section" id="race-history">
+  <h2><span class="section-icon">📅</span>過去10年 府中牝馬ステークス サマリ</h2>
+
+  <!-- サマリ グリッド -->
+  <div class="info-grid" style="margin-bottom:14px;">
+    <div class="info-item"><div class="label">単勝最多オッズ帯</div><div class="value">5.0〜10.0倍</div></div>
+    <div class="info-item"><div class="label">複勝最多オッズ帯</div><div class="value">2.0〜5.0倍</div></div>
+    <div class="info-item"><div class="label">馬連最多オッズ帯</div><div class="value">10.0〜30.0倍</div></div>
+    <div class="info-item"><div class="label">３連複最多オッズ帯</div><div class="value">10.0〜30.0倍</div></div>
+  </div>
+
+  <!-- サマリ詳細 -->
+  <table style="width:auto; min-width:60%; margin-bottom:18px;">
+    <thead>
+      <tr><th style="min-width:60px;">券種</th><th class="l">払戻分布</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><b>単勝</b></td><td class="l">5.0倍未満:6回(26%)<br>5.0〜10.0倍:10回(43%)<br>10.0〜20.0倍:3回(13%)<br>20.0倍以上:4回(17%)</td></tr>
+      <tr><td><b>複勝</b></td><td class="l">2.0倍未満:18回(39%)<br>2.0〜5.0倍:24回(52%)<br>5.0〜10.0倍:2回(4%)<br>10.0倍以上:2回(4%)</td></tr>
+      <tr><td><b>馬連</b></td><td class="l">10.0倍未満:2回(9%)<br>10.0〜30.0倍:10回(43%)<br>30.0〜50.0倍:3回(13%)<br>50.0〜100.0倍:6回(26%)<br>100.0〜300.0倍:2回(9%)</td></tr>
+      <tr><td><b>３連複</b></td><td class="l">10.0〜30.0倍:8回(35%)<br>30.0〜50.0倍:1回(4%)<br>50.0〜100.0倍:6回(26%)<br>100.0〜300.0倍:6回(26%)<br>300.0〜1000.0倍:2回(9%)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 過去10年 結果一覧 -->
+  <h3>📋 過去10年 府中牝馬ステークス 結果一覧</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>開催年</th>
+        <th>1着人気</th><th style="text-align:left">1着馬名</th>
+        <th style="min-width:70px">単勝(倍)</th><th style="min-width:70px">馬連(倍)</th><th style="min-width:80px">３連複(倍)</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr><td>2025</td><td class="">5人気</td><td class="l" style="white-space:nowrap">セキトバイースト</td><td style="white-space:nowrap; text-align:right">7.1倍</td><td style="white-space:nowrap; text-align:right">30.3倍</td><td style="white-space:nowrap; text-align:right">57.9倍</td></tr>
+      <tr><td>2024</td><td class="p2">2人気</td><td class="l" style="white-space:nowrap">ブレイディヴェーグ</td><td style="white-space:nowrap; text-align:right">3.6倍</td><td style="white-space:nowrap; text-align:right">67.9倍</td><td style="white-space:nowrap; text-align:right">40.9倍</td></tr>
+      <tr><td>2023</td><td class="p1">1人気</td><td class="l" style="white-space:nowrap">ディヴィーナ</td><td style="white-space:nowrap; text-align:right">4.7倍</td><td style="white-space:nowrap; text-align:right">14.6倍</td><td style="white-space:nowrap; text-align:right">131.5倍</td></tr>
+      <tr><td>2022</td><td class="">12人気</td><td class="l" style="white-space:nowrap">イズジョーノキセキ</td><td style="white-space:nowrap; text-align:right">34.8倍</td><td style="white-space:nowrap; text-align:right">40.4倍</td><td style="white-space:nowrap; text-align:right">85.5倍</td></tr>
+      <tr><td>2021</td><td class="">4人気</td><td class="l" style="white-space:nowrap">シャドウディーヴァ</td><td style="white-space:nowrap; text-align:right">8.8倍</td><td style="white-space:nowrap; text-align:right">60.2倍</td><td style="white-space:nowrap; text-align:right">260.5倍</td></tr>
+      <tr><td>2020</td><td class="">7人気</td><td class="l" style="white-space:nowrap">サラキア</td><td style="white-space:nowrap; text-align:right">20.2倍</td><td style="white-space:nowrap; text-align:right">93.5倍</td><td style="white-space:nowrap; text-align:right">231.6倍</td></tr>
+      <tr><td>2019</td><td class="">4人気</td><td class="l" style="white-space:nowrap">スカーレットカラー</td><td style="white-space:nowrap; text-align:right">6.8倍</td><td style="white-space:nowrap; text-align:right">73.2倍</td><td style="white-space:nowrap; text-align:right">99.4倍</td></tr>
+      <tr><td>2018</td><td class="p1">1人気</td><td class="l" style="white-space:nowrap">ディアドラ</td><td style="white-space:nowrap; text-align:right">2.3倍</td><td style="white-space:nowrap; text-align:right">3.8倍</td><td style="white-space:nowrap; text-align:right">13.1倍</td></tr>
+      <tr><td>2017</td><td class="">5人気</td><td class="l" style="white-space:nowrap">クロコスミア</td><td style="white-space:nowrap; text-align:right">10.4倍</td><td style="white-space:nowrap; text-align:right">21.9倍</td><td style="white-space:nowrap; text-align:right">24.4倍</td></tr>
+      <tr><td>2016</td><td class="p3">3人気</td><td class="l" style="white-space:nowrap">クイーンズリング</td><td style="white-space:nowrap; text-align:right">6.5倍</td><td style="white-space:nowrap; text-align:right">12.6倍</td><td style="white-space:nowrap; text-align:right">14.1倍</td></tr>
+    </tbody>
+  </table>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     分析1. 騎手分析
+     プレースホルダ A（カード形式）：
+       過去229件 ／ うち5年以内(2021〜)56件    例）過去56件 ／ うち5年以内（2023〜）9件
+       ※jockey-card を注目騎手数分繰り返す
+         %騎手馬番%  %騎手馬名%  %騎手人気%  %騎手名%  %騎手コメント%
+     プレースホルダ B（テーブル形式）：
+       %騎手分析行%
+         <tr><td class="l"><b>%騎手名%</b></td>
+             <td class="l">%担当馬名%</td><td>%馬番%</td><td class="pX">%人気%人気</td>
+             <td>%全期間成績%</td><td><b>%全期間合計%</b></td>
+             <td>%5年成績%</td><td>%5年合計%</td></tr>
+=========================== -->
+<div class="section" id="jockey">
+  <h2><span class="section-icon">🎽</span>分析１：騎手分析</h2>
+  <p style="font-size:0.86em; color:#555; margin-bottom:10px;">
+    対象：過去229件 ／ うち5年以内(2021〜)56件
+  </p>
+
+  <!-- テーブル形式（全騎手一覧） -->
+  <table class="tbl-jockey">
+    <thead>
+      <tr>
+        <th style="min-width:90px">騎手</th><th style="min-width:120px">馬名</th>
+        <th>全期間<br>1-2-3着</th><th>全合計</th>
+        <th>5年以内<br>1-2-3着</th><th>5年合計</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr class="hl"><td class="l"><b>C.ルメール</b></td><td class="l" style="white-space:nowrap">⑥ ヴァルキリーバース</td><td>20-11-8</td><td><b>39</b></td><td>9-2-2</td><td>13</td></tr>
+      <tr class="hl"><td class="l"><b>津村 明秀</b></td><td class="l" style="white-space:nowrap">⑧ ニシノティアモ</td><td>3-2-2</td><td><b>7</b></td><td>3-0-1</td><td>4</td></tr>
+      <tr><td class="l"><b>菊沢 一樹</b></td><td class="l" style="white-space:nowrap">⑫ コガネノソラ</td><td>0-0-0</td><td><b>0</b></td><td>0-0-0</td><td>0</td></tr>
+      <tr><td class="l"><b>荻野 極</b></td><td class="l" style="white-space:nowrap">⑤ エストゥペンダ</td><td>0-0-0</td><td><b>0</b></td><td>0-0-0</td><td>0</td></tr>
+      <tr class="hl"><td class="l"><b>浜中 俊</b></td><td class="l" style="white-space:nowrap">⑦ セキトバイースト</td><td>3-2-1</td><td><b>6</b></td><td>1-1-0</td><td>2</td></tr>
+      <tr><td class="l"><b>西塚 洸二</b></td><td class="l" style="white-space:nowrap">⑮ ルージュソリテール</td><td>0-0-0</td><td><b>0</b></td><td>0-0-0</td><td>0</td></tr>
+      <tr class="hl"><td class="l"><b>松岡 正海</b></td><td class="l" style="white-space:nowrap">① マカナ</td><td>6-3-3</td><td><b>12</b></td><td>1-0-1</td><td>2</td></tr>
+      <tr class="hl"><td class="l"><b>原 優介</b></td><td class="l" style="white-space:nowrap">⑭ パラディレーヌ</td><td>1-1-0</td><td><b>2</b></td><td>1-1-0</td><td>2</td></tr>
+    </tbody>
+  </table>
+
+  <!-- カード形式（注目騎手ピックアップ） -->
+  <h3>🌟 注目騎手ピックアップ</h3>
+  <div class="jockey-grid">
+    <!-- 注目騎手カード（繰り返し） -->
+    <div class="jockey-card">
+      <div class="horse">馬⑥ ヴァルキリーバース<span class="pop-label">1番人気</span></div>
+      <div class="jockey">🎽 C.ルメール</div>
+      <div class="comment">類似レース5年以内で複数回馬券絡み、好相性</div>
+    </div>
+    <div class="jockey-card" style="">
+      <div class="horse">馬⑧ ニシノティアモ<span class="pop-label">2番人気</span></div>
+      <div class="jockey">🎽 津村 明秀</div>
+      <div class="comment">類似レース5年以内で複数回馬券絡み、好相性</div>
+    </div>
+  </div>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     分析2. オッズ分析
+     各サブセクションのプレースホルダは以下参照
+=========================== -->
+<div class="section" id="odds" style="">
+  <h2><span class="section-icon">📈</span>分析２：オッズ分析（過去229件の類似レース）</h2>
+
+  <!-- ---- 戦略1-1. 単勝 人気別期待値 ---- -->
+  <!--
+     %単勝人気別期待値行%  以下を人気順に繰り返す
+       <tr [class="top-pick"]>
+         <td>%人気%番</td>
+         <td class="l">馬%馬番% %担当馬名%</td>
+         <td>%単勝オッズ%</td>
+         <td>%勝率%（%的中数%/229）</td>
+         <td>%平均払戻%円</td>
+         <td class="ev-high|ev-mid|ev-low">%期待値%</td>
+         <td>%評価記号%</td>
+       </tr>
+     5番人気(セキトバイースト 10.8倍)の期待値1.39が最高。  フィルターノート内のコメントテキスト
+  -->
+  <h3>戦略1-1 ／ 単勝 人気別期待値</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>人気</th><th style="min-width:120px; text-align:left">今回の馬</th><th>単勝オッズ</th>
+        <th>確率（的中/件数）</th><th>平均払戻</th><th>期待値</th><th style="min-width:120px">評価</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr><td class="p1">1</td><td class="l" style="white-space:nowrap">⑥ ヴァルキリーバース</td><td>3.0</td><td>30.1%（69/229）</td><td>292円</td><td class="ev-mid">0.88</td><td>○妥当</td></tr>
+      <tr><td class="p2">2</td><td class="l" style="white-space:nowrap">⑧ ニシノティアモ</td><td>6.1</td><td>12.7%（29/229）</td><td>437円</td><td class="ev-low">0.55</td><td>△回収困難</td></tr>
+      <tr><td class="p3">3</td><td class="l" style="white-space:nowrap">⑫ コガネノソラ</td><td>7.6</td><td>10.9%（25/229）</td><td>622円</td><td class="ev-low">0.68</td><td>△回収困難</td></tr>
+      <tr><td>4</td><td class="l" style="white-space:nowrap">⑤ エストゥペンダ</td><td>8.6</td><td>10.5%（24/229）</td><td>737円</td><td class="ev-low">0.77</td><td>△回収困難</td></tr>
+      <tr class="top-pick"><td>5</td><td class="l" style="white-space:nowrap">⑦ セキトバイースト</td><td>10.8</td><td>14.0%（32/229）</td><td>995円</td><td class="ev-high">1.39</td><td>◎高期待値</td></tr>
+      <tr><td>6</td><td class="l" style="white-space:nowrap">⑮ ルージュソリテール</td><td>11.4</td><td>7.4%（17/229）</td><td>1660円</td><td class="ev-high">1.23</td><td>◎高期待値</td></tr>
+      <tr><td>7</td><td class="l" style="white-space:nowrap">① マカナ</td><td>16.1</td><td>5.2%（12/229）</td><td>1876円</td><td class="ev-mid">0.98</td><td>○妥当</td></tr>
+      <tr><td>8</td><td class="l" style="white-space:nowrap">⑭ パラディレーヌ</td><td>18.5</td><td>3.5%（8/229）</td><td>2481円</td><td class="ev-mid">0.87</td><td>○妥当</td></tr>
+    </tbody>
+  </table>
+  <div class="filter-note">💡 5番人気(セキトバイースト 10.8倍)の期待値1.39が最高。</div>
+
+  <!-- ---- 戦略1-2. 単勝 オッズ帯別期待値 ---- -->
+  <!--
+     %単勝オッズ帯別期待値行%  以下をオッズ帯順に繰り返す
+       <tr [class="top-pick"]>
+         <td>%オッズ帯%倍</td>
+         <td class="l">%該当馬名%</td>
+         <td>%購入件数%件</td>
+         <td>%的中回数%回</td>
+         <td class="ev-high|ev-mid|ev-low">%期待値%</td>
+         <td>%評価記号%</td>
+       </tr>
+     単勝オッズ帯別の期待値分析。
+  -->
+  <h3>戦略1-2 ／ 単勝 オッズ帯別期待値</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>オッズ帯</th><th>今回の該当馬</th><th>確率</th><th>平均払戻</th><th>期待値</th><th style="min-width:120px">評価</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr><td>3-6倍</td><td class="l"><span style="white-space:nowrap">⑥ ヴァルキリーバース</span></td><td>30.1%</td><td>292円</td><td class="ev-mid">0.88</td><td>○妥当</td></tr>
+      <tr class="top-pick"><td>6-10倍</td><td class="l"><span style="white-space:nowrap">⑧ ニシノティアモ</span><br><span style="white-space:nowrap">⑫ コガネノソラ</span><br><span style="white-space:nowrap">⑤ エストゥペンダ</span></td><td>34.1%</td><td>589円</td><td class="ev-high">2.01</td><td>◎高期待値</td></tr>
+      <tr class="top-pick"><td>10-20倍</td><td class="l"><span style="white-space:nowrap">⑦ セキトバイースト</span><br><span style="white-space:nowrap">⑮ ルージュソリテール</span><br><span style="white-space:nowrap">① マカナ</span><br><span style="white-space:nowrap">⑭ パラディレーヌ</span></td><td>30.1%</td><td>1484円</td><td class="ev-high">4.47</td><td>◎高期待値</td></tr>
+      <tr class="top-pick"><td>20-50倍</td><td class="l"><span style="white-space:nowrap">⑪ テレサ</span><br><span style="white-space:nowrap">② ウイントワイライト</span><br><span style="white-space:nowrap">⑩ ホールネス</span><br><span style="white-space:nowrap">⑨ テリオスララ</span><br><span style="white-space:nowrap">⑬ ビップデイジー</span></td><td>4.8%</td><td>3625円</td><td class="ev-high">1.74</td><td>◎高期待値</td></tr>
+      <tr><td>50倍以上</td><td class="l"><span style="white-space:nowrap">④ ミアネーロ</span><br><span style="white-space:nowrap">③ ブラウンラチェット</span><br><span style="white-space:nowrap">⑯ セントメモリーズ</span></td><td>0.9%</td><td>7525円</td><td class="ev-low">0.66</td><td>△回収困難</td></tr>
+    </tbody>
+  </table>
+  <div class="filter-note">💡 単勝オッズ帯別の期待値分析。</div>
+
+  <!-- ---- 戦略2-1. 複勝 人気別期待値 ---- -->
+  <!--
+     %複勝人気別期待値行%
+       <tr [class="top-pick"]>
+         <td class="pX">%人気%番</td>
+         <td class="l">馬%馬番% %担当馬名%</td>
+         <td>%複勝オッズ%</td>
+         <td>%複勝率%（%的中数%/229）</td>
+         <td>%平均払戻%</td>
+         <td class="ev-high|ev-mid|ev-low">%期待値%</td>
+         <td>%評価記号%</td>
+       </tr>
+     複勝期待値最高は5番人気(セキトバイースト)＝0.96。当日複勝オッズは未発表のため参考値。
+  -->
+  <h3>戦略2-1 ／ 複勝 人気別期待値</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>人気</th><th style="min-width:120px; text-align:left">今回の馬</th><th>複勝オッズ</th>
+        <th>複勝率（的中/件数）</th><th>平均払戻</th><th>期待値</th><th style="min-width:120px">評価</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr><td class="p1">1</td><td class="l" style="white-space:nowrap">⑥ ヴァルキリーバース</td><td>未発表</td><td>62.0%（142/229）</td><td>140円</td><td class="ev-mid">0.87</td><td>○妥当</td></tr>
+      <tr><td class="p2">2</td><td class="l" style="white-space:nowrap">⑧ ニシノティアモ</td><td>未発表</td><td>42.8%（98/229）</td><td>170円</td><td class="ev-low">0.73</td><td>△回収困難</td></tr>
+      <tr><td class="p3">3</td><td class="l" style="white-space:nowrap">⑫ コガネノソラ</td><td>未発表</td><td>31.9%（73/229）</td><td>218円</td><td class="ev-low">0.69</td><td>△回収困難</td></tr>
+      <tr><td>4</td><td class="l" style="white-space:nowrap">⑤ エストゥペンダ</td><td>未発表</td><td>33.2%（76/229）</td><td>237円</td><td class="ev-low">0.79</td><td>△回収困難</td></tr>
+      <tr class="top-pick"><td>5</td><td class="l" style="white-space:nowrap">⑦ セキトバイースト</td><td>未発表</td><td>32.8%（75/229）</td><td>292円</td><td class="ev-mid">0.96</td><td>○妥当</td></tr>
+      <tr><td>6</td><td class="l" style="white-space:nowrap">⑮ ルージュソリテール</td><td>未発表</td><td>24.9%（57/229）</td><td>356円</td><td class="ev-mid">0.89</td><td>○妥当</td></tr>
+      <tr><td>7</td><td class="l" style="white-space:nowrap">① マカナ</td><td>未発表</td><td>18.3%（42/229）</td><td>441円</td><td class="ev-mid">0.81</td><td>○妥当</td></tr>
+      <tr><td>8</td><td class="l" style="white-space:nowrap">⑭ パラディレーヌ</td><td>未発表</td><td>13.5%（31/229）</td><td>499円</td><td class="ev-low">0.68</td><td>△回収困難</td></tr>
+    </tbody>
+  </table>
+  <div class="filter-note">💡 複勝期待値最高は5番人気(セキトバイースト)＝0.96。当日複勝オッズは未発表のため参考値。</div>
+  <div class="note">期待値1.0以上＝理論的プラス期待値</div>
+
+  <!-- ---- 戦略2-2. 複勝 オッズ帯別期待値 ---- -->
+  <!--
+     %複勝オッズ帯別期待値行%
+       <tr [class="top-pick"]>
+         <td>%複勝オッズ帯%</td>
+         <td class="l">%該当馬名%</td>
+         <td>%的中率%%</td>
+         <td>%平均払戻%</td>
+         <td class="ev-high|ev-mid|ev-low">%期待値%</td>
+       </tr>
+     単勝オッズ帯に基づく複勝期待値の参考分析。
+  -->
+  <h3>戦略2-2 ／ 複勝 オッズ帯別期待値</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>複勝オッズ帯</th><th>今回の該当馬</th><th>的中率</th><th>平均払戻</th><th>期待値</th><th style="min-width:120px">評価</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr><td>3-6倍</td><td class="l" style="white-space:nowrap">ヴァルキリーバース</td><td>62.0%</td><td>140円</td><td class="ev-mid">0.87</td><td>○妥当</td></tr>
+      <tr class="top-pick"><td>6-10倍</td><td class="l" style="white-space:nowrap">ニシノティアモ・コガネノソラ・エストゥペンダ</td><td>107.9%</td><td>204円</td><td class="ev-high">2.2</td><td>◎高期待値</td></tr>
+      <tr class="top-pick"><td>10-20倍</td><td class="l" style="white-space:nowrap">セキトバイースト・ルージュソリテール・マカナ・パラディレーヌ</td><td>89.5%</td><td>379円</td><td class="ev-high">3.39</td><td>◎高期待値</td></tr>
+      <tr class="top-pick"><td>20-50倍</td><td class="l" style="white-space:nowrap">テレサ・ウイントワイライト・ホールネス・テリオスララ・ビップデイジー</td><td>34.1%</td><td>825円</td><td class="ev-high">2.81</td><td>◎高期待値</td></tr>
+      <tr><td>50倍以上</td><td class="l" style="white-space:nowrap">ミアネーロ・ブラウンラチェット・セントメモリーズ</td><td>5.2%</td><td>1891円</td><td class="ev-mid">0.99</td><td>○妥当</td></tr>
+    </tbody>
+  </table>
+  <div class="filter-note">💡 単勝オッズ帯に基づく複勝期待値の参考分析。</div>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     分析3. 馬連
+     プレースホルダ：
+     ─ 軸馬有効性テーブル─
+       %馬連軸馬有効性行%
+         <tr [class="hl"]>
+           <td class="pX">%人気%番人気</td>
+           <td>%担当馬名%</td>
+           <td>%馬連軸1着2着%/229 (%率%%)</td>
+           <td>%3着以内%/229 (%率%%)</td>
+         </tr>
+     ─ n頭流しシミュレーション ─
+       %馬連n頭流し行%  （軸馬を指定し n 点に対する的中率をシミュ）
+         <tr [class="hl"]>
+           <td>%点数%点</td>
+           <td class="l">%軸馬% × %相手範囲%</td>
+           <td>%的中数%/229</td>
+           <td>%的中率%%</td>
+         </tr>
+     ─ 人気組み合わせ頻度 × 馬連オッズ ─
+       %馬連組み合わせ頻度行%
+         <tr>
+           <td>%人気組%</td><td>%回数%回</td><td>%頻度%%</td>
+           <td class="l">%今回相当馬連%</td><td><b>%現在オッズ%倍</b></td>
+         </tr>
+     ─ 軸馬別 最適組み合わせ（ダービー卿スタイル）─
+       %馬連軸別最適行%
+         <tr [class="top-pick"]>
+           <td>%人気%人気軸</td>
+           <td>%担当馬名%（馬%馬番%）</td>
+           <td>%最適流し頭数%頭流し</td>
+           <td class="ev-high|ev-mid">%期待値%</td>
+           <td>%馬連オッズ参考%</td>
+         </tr>
+     ─ 推奨馬連購入プラン ─
+       馬連: ヴァルキリーバース(6)軸から2〜3番人気へ2点流しを推奨。  自由記述
+=========================== -->
+<div class="section" id="umaren" style="">
+  <h2><span class="section-icon">🔗</span>分析３：馬連</h2>
+
+  <!-- 軸馬有効性 -->
+  <h3>軸馬有効性（過去類似レース）</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>人気</th><th>今回の馬</th>
+        <th>馬連軸（1〜2着）</th><th>3着以内</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr><td class="p1">1</td><td class="l" style="white-space:nowrap">⑥ ヴァルキリーバース</td><td>46.3%</td><td>62.0%</td></tr>
+      <tr><td class="p2">2</td><td class="l" style="white-space:nowrap">⑧ ニシノティアモ</td><td>28.4%</td><td>42.8%</td></tr>
+      <tr><td class="p3">3</td><td class="l" style="white-space:nowrap">⑫ コガネノソラ</td><td>24.0%</td><td>31.9%</td></tr>
+      <tr><td>4</td><td class="l" style="white-space:nowrap">⑤ エストゥペンダ</td><td>23.6%</td><td>33.2%</td></tr>
+      <tr><td>5</td><td class="l" style="white-space:nowrap">⑦ セキトバイースト</td><td>21.4%</td><td>32.8%</td></tr>
+      <tr><td>6</td><td class="l" style="white-space:nowrap">⑮ ルージュソリテール</td><td>17.5%</td><td>24.9%</td></tr>
+    </tbody>
+  </table>
+
+  <!-- n頭流しシミュレーション -->
+  <h3>ヴァルキリーバース（1番人気）軸 n頭流し シミュレーション</h3>
+  <!--
+     ヴァルキリーバース    例）クロワデュノール
+     1  例）1
+  -->
+  <table>
+    <thead>
+      <tr>
+        <th>点数</th><th>組み合わせ</th><th>確率</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr class="hl"><td>2点</td><td class="l">2〜3番人気</td><td>14.8%</td></tr>
+      <tr class="hl"><td>3点</td><td class="l">2〜4番人気</td><td>22.7%</td></tr>
+      <tr><td>4点</td><td class="l">2〜5番人気</td><td>28.4%</td></tr>
+      <tr><td>5点</td><td class="l">2〜6番人気</td><td>32.8%</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 人気組み合わせ頻度 × 馬連オッズ -->
+  <h3>1〜2着人気の組み合わせ頻度 × 現在馬連オッズ</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>人気組</th><th>回数</th><th>頻度</th>
+        <th style="text-align:left">今回の相当馬連</th><th>現在オッズ</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr><td>1-2番人気</td><td>19回</td><td>8.3%</td><td class="l">ヴァルキリーバース(6) × ニシノティアモ(8)</td><td><b>3.0</b></td></tr>
+      <tr><td>1-3番人気</td><td>15回</td><td>6.6%</td><td class="l">ヴァルキリーバース(6) × コガネノソラ(12)</td><td><b>3.8</b></td></tr>
+      <tr><td>1-4番人気</td><td>18回</td><td>7.9%</td><td class="l">ヴァルキリーバース(6) × エストゥペンダ(5)</td><td><b>4.3</b></td></tr>
+      <tr><td>1-5番人気</td><td>13回</td><td>5.7%</td><td class="l">ヴァルキリーバース(6) × セキトバイースト(7)</td><td><b>5.4</b></td></tr>
+      <tr><td>2-3番人気</td><td>10回</td><td>4.4%</td><td class="l">ニシノティアモ(8) × コガネノソラ(12)</td><td><b>7.7</b></td></tr>
+      <tr><td>2-5番人気</td><td>11回</td><td>4.8%</td><td class="l">ニシノティアモ(8) × セキトバイースト(7)</td><td><b>11.0</b></td></tr>
+    </tbody>
+  </table>
+
+  <!-- 軸馬別 最適組み合わせ数（ダービー卿スタイル） -->
+  <h3>軸馬別 最適組み合わせ数（期待値ベース）</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="min-width:120px; text-align:left">今回の馬</th>
+        <th>最適流し頭数</th><th>期待値</th><th>馬連オッズ参考</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr><td class="l" style="white-space:nowrap">⑥ ヴァルキリーバース</td><td>3頭流し</td><td class="ev-mid">0.87</td><td>単勝オッズから簡易推定(当日馬連オッズ未発表)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 馬連オッズ低い順 -->
+  <h3>馬連 オッズ低い順（上位10組）</h3>
+  <!--  10  例）20  -->
+  <table class="tbl-umaren-odds">
+    <thead>
+      <tr>
+        <th>順位</th><th style="min-width:140px; text-align:left">馬名</th><th>オッズ</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr class="umaren-highlight"><td>1</td><td class="l"><span style="white-space:nowrap">⑥ ヴァルキリーバース</span><br><span style="white-space:nowrap">⑧ ニシノティアモ</span></td><td style="text-align:right">3.0倍</td></tr>
+      <tr class="umaren-highlight"><td>2</td><td class="l"><span style="white-space:nowrap">⑥ ヴァルキリーバース</span><br><span style="white-space:nowrap">⑫ コガネノソラ</span></td><td style="text-align:right">3.8倍</td></tr>
+      <tr class="umaren-highlight"><td>3</td><td class="l"><span style="white-space:nowrap">⑥ ヴァルキリーバース</span><br><span style="white-space:nowrap">⑤ エストゥペンダ</span></td><td style="text-align:right">4.3倍</td></tr>
+      <tr class="umaren-highlight"><td>4</td><td class="l"><span style="white-space:nowrap">⑥ ヴァルキリーバース</span><br><span style="white-space:nowrap">⑦ セキトバイースト</span></td><td style="text-align:right">5.4倍</td></tr>
+      <tr><td>5</td><td class="l"><span style="white-space:nowrap">⑥ ヴァルキリーバース</span><br><span style="white-space:nowrap">⑮ ルージュソリテール</span></td><td style="text-align:right">5.7倍</td></tr>
+      <tr><td>6</td><td class="l"><span style="white-space:nowrap">⑧ ニシノティアモ</span><br><span style="white-space:nowrap">⑫ コガネノソラ</span></td><td style="text-align:right">7.7倍</td></tr>
+      <tr><td>7</td><td class="l"><span style="white-space:nowrap">⑧ ニシノティアモ</span><br><span style="white-space:nowrap">⑤ エストゥペンダ</span></td><td style="text-align:right">8.7倍</td></tr>
+      <tr><td>8</td><td class="l"><span style="white-space:nowrap">⑫ コガネノソラ</span><br><span style="white-space:nowrap">⑤ エストゥペンダ</span></td><td style="text-align:right">10.9倍</td></tr>
+      <tr><td>9</td><td class="l"><span style="white-space:nowrap">⑧ ニシノティアモ</span><br><span style="white-space:nowrap">⑦ セキトバイースト</span></td><td style="text-align:right">11.0倍</td></tr>
+      <tr><td>10</td><td class="l"><span style="white-space:nowrap">⑧ ニシノティアモ</span><br><span style="white-space:nowrap">⑮ ルージュソリテール</span></td><td style="text-align:right">11.6倍</td></tr>
+      <!--
+      <tr class="umaren-highlight"><td>1</td><td>%馬番A%-%-馬番B%</td><td>%馬名A% ― %馬名B%</td><td class="ev-high">%オッズ%</td></tr>
+      -->
+    </tbody>
+  </table>
+  <div class="filter-note">💡 1番人気ヴァルキリーバース軸の馬連は過去229件で1着2着絡み率46.3%。当日馬連オッズ未発表のため単勝オッズからの簡易推定値を参考表示。</div>
+
+  <!-- 推奨馬連購入プラン -->
+  <h3>推奨馬連購入プラン</h3>
+  <div class="note2">
+    馬連: ヴァルキリーバース(6)軸から2〜3番人気へ2点流しを推奨。
+  </div>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     ３連複
+     プレースホルダ：
+     ─ 人気順 上位リスト ─
+       %三連複人気順行%
+         <tr class="sanren-highlight">
+           <td>%順位%位</td>
+           <td>%馬番組%</td>
+           <td class="l">%馬名組%</td>
+           <td class="ev-high|ev-mid">%オッズ%</td>
+         </tr>
+     ─ 期待値分析 ─
+       %三連複期待値行%
+         <tr [class="top-pick"]>
+           <td>%戦略%</td>
+           <td>%組み合わせ%</td>
+           <td>%点数%点</td>
+           <td>%的中率%%</td>
+           <td class="ev-high|ev-mid|ev-low">%期待値%</td>
+           <td>%評価記号%</td>
+         </tr>
+     3連複最高期待値は3連複 1-2-5番人気（期待値0.88）。当日オッズ未発表のため推定値。
+=========================== -->
+<div class="section" id="sanrenpuku" style="">
+  <h2><span class="section-icon">🎯</span>分析４：３連複</h2>
+
+  <!-- 人気順 上位 -->
+  <h3>３連複 人気順 上位6組</h3>
+  <!--  6  例）10  -->
+  <table class="tbl-sanren-odds">
+    <thead>
+      <tr>
+        <th>人気</th><th style="min-width:160px; text-align:left">馬名</th><th>オッズ</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr><td>1位</td><td class="l"><span style="white-space:nowrap">⑥ ヴァルキリーバース</span><br><span style="white-space:nowrap">⑧ ニシノティアモ</span><br><span style="white-space:nowrap">⑫ コガネノソラ</span></td><td style="text-align:right">3.9倍</td></tr>
+      <tr><td>2位</td><td class="l"><span style="white-space:nowrap">⑥ ヴァルキリーバース</span><br><span style="white-space:nowrap">⑧ ニシノティアモ</span><br><span style="white-space:nowrap">⑤ エストゥペンダ</span></td><td style="text-align:right">4.2倍</td></tr>
+      <tr><td>3位</td><td class="l"><span style="white-space:nowrap">⑥ ヴァルキリーバース</span><br><span style="white-space:nowrap">⑧ ニシノティアモ</span><br><span style="white-space:nowrap">⑦ セキトバイースト</span></td><td style="text-align:right">4.7倍</td></tr>
+      <tr><td>4位</td><td class="l"><span style="white-space:nowrap">⑥ ヴァルキリーバース</span><br><span style="white-space:nowrap">⑫ コガネノソラ</span><br><span style="white-space:nowrap">⑤ エストゥペンダ</span></td><td style="text-align:right">4.7倍</td></tr>
+      <tr><td>5位</td><td class="l"><span style="white-space:nowrap">⑥ ヴァルキリーバース</span><br><span style="white-space:nowrap">⑫ コガネノソラ</span><br><span style="white-space:nowrap">⑦ セキトバイースト</span></td><td style="text-align:right">5.2倍</td></tr>
+      <tr><td>6位</td><td class="l"><span style="white-space:nowrap">⑧ ニシノティアモ</span><br><span style="white-space:nowrap">⑫ コガネノソラ</span><br><span style="white-space:nowrap">⑤ エストゥペンダ</span></td><td style="text-align:right">6.7倍</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 期待値分析 -->
+  <h3>３連複 期待値分析（過去229件）</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="min-width:130px;">戦略</th><th>組み合わせ</th><th>点数</th><th>的中率</th><th>期待値</th><th style="min-width:150px;">評価</th>
+      </tr>
+    </thead>
+    <tbody>
+            <tr><td>3連複 1-2-3番人気</td><td>ヴァルキリーバース - ニシノティアモ - コガネノソラ</td><td>点</td><td>4.4%</td><td class="ev-low">0.51</td><td>△回収困難</td></tr>
+      <tr><td>3連複 1-2-4番人気</td><td>ヴァルキリーバース - ニシノティアモ - エストゥペンダ</td><td>点</td><td>5.2%</td><td class="ev-mid">0.8</td><td>○妥当</td></tr>
+      <tr><td>3連複 1-2-5番人気</td><td>ヴァルキリーバース - ニシノティアモ - セキトバイースト</td><td>点</td><td>4.8%</td><td class="ev-mid">0.88</td><td>○妥当</td></tr>
+      <tr><td>3連複 1-3-4番人気</td><td>ヴァルキリーバース - コガネノソラ - エストゥペンダ</td><td>点</td><td>2.6%</td><td class="ev-mid">0.82</td><td>○妥当</td></tr>
+      <tr><td>3連複 1-3-5番人気</td><td>ヴァルキリーバース - コガネノソラ - セキトバイースト</td><td>点</td><td>1.3%</td><td class="ev-low">0.42</td><td>△回収困難</td></tr>
+      <tr><td>3連複 2-3-4番人気</td><td>ニシノティアモ - コガネノソラ - エストゥペンダ</td><td>点</td><td>2.2%</td><td class="ev-low">0.78</td><td>△回収困難</td></tr>
+    </tbody>
+  </table>
+  <div class="filter-note">💡 3連複最高期待値は3連複 1-2-5番人気（期待値0.88）。当日オッズ未発表のため推定値。</div>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     プレレーティング（PR）分析
+     プレースホルダ：
+                 例）過去レース成績に基づく指数（最高値）をPR値として使用。1位◯◯115（◯◯1着）、2位…
+       %PRランキング行%           <tr> を PR値降順に繰り返す
+         <tr [class="hl"]>
+           <td><b style="color:#d32f2f|#e65100|なし">%PR値%</b></td>
+           <td class="l" style="white-space:nowrap">%馬番% <b>%馬名%</b></td>
+           <td>%性齢%</td>
+           <td style="white-space:nowrap">%単勝%倍</td>
+           <td>%コース適性%</td>
+         </tr>
+         ※ color:#d32f2f=上位3頭 / #e65100=4〜5位 / なし=6位以下
+       %PR乖離分析行%             <tr> を繰り返す（馬番順）
+         <tr [style="background:#f0fff0"]>
+           <td class="l" style="white-space:nowrap">%馬番% %馬名%</td>
+           <td>%人気PR差%</td>
+           <td class="l">%評価コメント%</td>
+         </tr>
+         ※ 乖離=人気順位−PRランク。プラス=過大人気 / マイナス=過小評価
+         ※ 過小評価（穴候補）行に style="background:#f0fff0" を付与
+       %PRマトリクス行%           PR上位5頭の馬連マトリクス行（display:none 内）
+                まとめボックス内テキスト（HTML可）
+=========================== -->
+<div class="section" id="pr" style="display:none">
+  <h2><span class="section-icon">⭐</span>分析５：プレレーティング（PR）分析</h2>
+  <p style="font-size:0.86em; color:#555; line-height:1.7; margin-bottom:14px;">
+    
+  </p>
+
+  <!-- PRランキング -->
+  <h3>PRランキング × オッズ × コード適性</h3>
+  <table class="tbl-pr-ranking">
+    <thead>
+      <tr>
+        <th>PR値</th><th style="min-width:120px">馬名</th><th>年齢</th>
+        <th style="min-width:60px">単勝</th><th>コース適性</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+
+  <!-- 乖離分析 -->
+  <div style="display:none">
+  <h3>PRとオッズの乖離分析（過大人気・過小評価の検出）</h3>
+  <p style="font-size:0.83em; color:#555; margin-bottom:10px;">
+    乖離 = 人気順位 − PRランク。プラスは人気がPRより高い（過大人気）、マイナスはPRの割に人気薄（過小評価）。
+  </p>
+  <table class="tbl-pr-gap">
+    <thead>
+      <tr>
+        <th style="min-width:150px">馬名</th><th>人気PR差</th><th class="l" style="min-width:150px">評価・コメント</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+  </div>
+
+  <!-- PR上位馬連マトリクス -->
+  <div style="">
+  <h3>PR上位5頭の馬連マトリクス</h3>
+  <!--  5  例）5  -->
+  <p style="font-size:0.83em; color:#555; margin-bottom:8px;"></p>
+  <table>
+    <thead>
+      <tr>
+        <th>組み合わせ</th><th>PR値</th><th>PR差</th><th>馬連オッズ</th><th>評価</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+  </div>
+
+  <!-- PRまとめ -->
+  <div class="pr-summary">
+    <b>🔑 PRまとめ・馬券への示唆</b><br>
+    
+  </div>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     推奨購入戦略（期待値順）
+     プレースホルダ：
+       %推奨戦略アイテム%  以下の rec-item を期待値の高い順に繰り返す
+         <div class="rec-item priority-s|priority-a|priority-b">
+           <div class="title">
+             <span class="rank-badge-s">S|A|B</span>
+             【%券種%】%買い目説明% ／ 期待値 %期待値%
+           </div>
+           <div class="detail">
+             %購入戦略詳細%（購入額の目安、推奨点数等）
+           </div>
+         </div>
+=========================== -->
+<div class="recommendation" id="strategy" style="">
+  <h2>🏆 推奨購入戦略（期待値順）</h2>
+
+  <!-- %推奨戦略アイテム% -->
+
+  <div class="rec-item priority-s">
+    <div class="title">
+      <span class="rank-badge-s">S</span>
+      【単勝】7番セキトバイースト 単勝10.8倍 ／ 期待値 1.39
+    </div>
+    <div class="detail">5番人気の単勝は過去229件類似レースで勝率14.0%・平均払戻995円、期待値1.39と単勝の中で最高値。</div>
+  </div>
+
+  <div class="rec-item priority-a">
+    <div class="title">
+      <span class="rank-badge-s">A</span>
+      【馬連】ヴァルキリーバース(6)軸から2〜3番人気へ流し ／ 期待値 0.87
+    </div>
+    <div class="detail">1番人気ヴァルキリーバースを軸に2〜3番人気へ流す2点。<br>過去229件で1番人気馬連絡み率46.3%。</div>
+  </div>
+
+  <div class="rec-item priority-b">
+    <div class="title">
+      <span class="rank-badge-s">B</span>
+      【3連複】ヴァルキリーバース - ニシノティアモ - セキトバイースト ／ 期待値 0.88
+    </div>
+    <div class="detail">3連複 1-2-5番人気。<br>過去229件類似レースで的中率4.8%、期待値0.88。</div>
+  </div>
+
+  <!-- 必要に応じて追加 -->
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     総括・レースの見立て
+     プレースホルダ：
+       <p>第74回府中牝馬ステークスは1番人気ヴァルキリーバース(3.0倍)が支持を集めるが、過去229件の類似レース統計では1番人気単勝期待値0.88。単勝最高期待値は5番人気セキトバイースト(期待値1.39)、複勝最高期待値は5番人気セキトバイースト(期待値0.96)。</p><p>推奨は単勝セキトバイーストを中心に、ヴァルキリーバース軸の馬連流し、3連複ヴァルキリーバース - ニシノティアモ - セキトバイーストを三段構えで押さえる戦略を提案する。</p>  <p>タグを含むHTML。複数段落可。
+       本レポートは過去データの統計的分析に基づく参考情報です。競馬は確率論であり、必ずしも期待値通りの結果になるとは限りません。馬券購入は自己責任の範囲内でお楽しみください。  ※レポートの注意書き（省略可）
+=========================== -->
+<div class="section" id="conclusion" style="">
+  <h2><span class="section-icon">📝</span>総括・レースの見立て</h2>
+  <p>第74回府中牝馬ステークスは1番人気ヴァルキリーバース(3.0倍)が支持を集めるが、過去229件の類似レース統計では1番人気単勝期待値0.88。単勝最高期待値は5番人気セキトバイースト(期待値1.39)、複勝最高期待値は5番人気セキトバイースト(期待値0.96)。</p><p>推奨は単勝セキトバイーストを中心に、ヴァルキリーバース軸の馬連流し、3連複ヴァルキリーバース - ニシノティアモ - セキトバイーストを三段構えで押さえる戦略を提案する。</p>
+  <div class="notice">
+    ⚠️ 本レポートは過去データの統計的分析に基づく参考情報です。競馬は確率論であり、必ずしも期待値通りの結果になるとは限りません。馬券購入は自己責任の範囲内でお楽しみください。
+  </div>
+  <div class="back-to-menu"><a href="#menu">▲ メニューに戻る</a></div>
+</div>
+
+<!-- ===========================
+     フッター
+     プレースホルダ：
+       2026年6月21日 13:00     例）2026年4月5日 09:34
+       JRA公式サイト + 重賞レース結果.csv（229件の類似レース）   例）JRA公式サイト + 重賞レース結果_2003-2025.xlsx（56件の類似レース）
+=========================== -->
+<div class="footer">
+  <br>本レポートは過去データの統計的分析に基づく参考情報です。競馬は確率論であり、必ずしも期待値通りの結果になるとは限りません。馬券購入は自己責任の範囲内でお楽しみください。
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
