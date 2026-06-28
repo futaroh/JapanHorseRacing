@@ -138,15 +138,14 @@
     <input type="password" id="apiKey" placeholder="AIza..." />
   </div>
 
-  <!-- JSONファイル選択 -->
+  <!-- JSONプレビュー -->
   <div class="card">
-    <label>JSONファイルを選択（sample.json）</label>
-    <input type="file" id="jsonFile" accept=".json" onchange="onFileSelected(this)" />
-    <div id="jsonPreview" style="margin-top:10px;">（ファイルを選択してください）</div>
+    <h3>読み込み済みファイル：<code>sample.json</code></h3>
+    <div id="jsonPreview">（読み込み中...）</div>
   </div>
 
   <!-- ステータス -->
-  <div id="status" class="idle">⏳ ファイルを選択して「AIに記憶させる」を押してください</div>
+  <div id="status" class="idle">⏳ 「AIに記憶させる」ボタンを押してください</div>
 
   <button onclick="loadAndCache()" id="cacheBtn"
           style="margin-bottom:16px; padding:10px 20px; background:#188038; color:white; border:none; border-radius:6px; cursor:pointer; font-size:14px;">
@@ -169,33 +168,33 @@
     let cachedContentName = "";
     let loadedJsonText = "";
 
-    // ファイル選択時にプレビュー表示
-    function onFileSelected(input) {
-      const file = input.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const text = e.target.result;
+    // ページ読み込み時に sample.json を自動取得してプレビュー表示
+    window.addEventListener("DOMContentLoaded", async () => {
+      const preview = document.getElementById("jsonPreview");
+      try {
+        const res = await fetch("sample.json");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const text = await res.text();
         loadedJsonText = text;
-        const preview = document.getElementById("jsonPreview");
         try {
           preview.textContent = JSON.stringify(JSON.parse(text), null, 2);
         } catch {
           preview.textContent = text;
         }
-        setStatus("idle", "⏳ ファイルを読み込みました。「AIに記憶させる」を押してください。");
-      };
-      reader.readAsText(file, "UTF-8");
-    }
+        setStatus("idle", "⏳ sample.json を読み込みました。「AIに記憶させる」を押してください。");
+      } catch (err) {
+        preview.textContent = `⚠ sample.json の読み込みに失敗しました: ${err.message}`;
+        setStatus("error", "❌ sample.json が見つかりません");
+      }
+    });
 
-    // 読み込んだJSONをキャッシュとして Gemini に送付
+    // sample.json をキャッシュとして Gemini に送付
     async function loadAndCache() {
       const apiKey = document.getElementById("apiKey").value.trim();
-      const statusEl = document.getElementById("status");
       const cacheBtn = document.getElementById("cacheBtn");
 
       if (!apiKey) { alert("APIキーを入力してください。"); return; }
-      if (!loadedJsonText) { alert("JSONファイルを選択してください。"); return; }
+      if (!loadedJsonText) { alert("sample.json がまだ読み込まれていません。"); return; }
 
       setStatus("loading", "⏳ AIに送付中...");
       cacheBtn.disabled = true;
