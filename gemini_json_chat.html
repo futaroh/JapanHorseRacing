@@ -196,6 +196,32 @@
       }
     });
 
+    // マークダウンを簡易レンダリング（XSS対策済み）
+    function renderMarkdown(text) {
+      // HTMLエスケープを先に行う
+      const escaped = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+      return escaped
+        // 見出し（行頭 ### ## #）
+        .replace(/^### (.+)$/gm, "<h4>$1</h4>")
+        .replace(/^## (.+)$/gm, "<h3>$1</h3>")
+        .replace(/^# (.+)$/gm, "<h2>$1</h2>")
+        // 太字・斜体
+        .replace(/\*\*\*(.+?)\*\*\*/g, "<strong><em>$1</em></strong>")
+        .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\*(.+?)\*/g, "<em>$1</em>")
+        // 箇条書き（- または * で始まる行）
+        .replace(/^[*\-] (.+)$/gm, "<li>$1</li>")
+        .replace(/(<li>.*<\/li>)/s, "<ul>$1</ul>")
+        // 水平線
+        .replace(/^---$/gm, "<hr>")
+        // 改行
+        .replace(/\n/g, "<br>");
+    }
+
     // 質問のたびに /api/chat へ送信（APIキーはサーバー側で管理）
     async function askGemini() {
       const prompt = document.getElementById("userInput").value.trim();
@@ -208,7 +234,7 @@
       document.getElementById("userInput").value = "";
       sendBtn.disabled = true;
 
-      const loadingBubble = appendMessage("loading", "Gemini", "思考中...");
+      const loadingBubble = appendMessage("loading", "競馬AI", "思考中...");
 
       try {
         const res = await fetch("/api/chat", {
@@ -221,7 +247,7 @@
         if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
 
         loadingBubble.className = "bubble gemini";
-        loadingBubble.innerText = data.reply;
+        loadingBubble.innerHTML = renderMarkdown(data.reply);
 
       } catch (err) {
         loadingBubble.className = "bubble error";
