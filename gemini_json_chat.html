@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini JSON チャット</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: #f5f5f5;
+    }
+    h1 { color: #333; margin-bottom: 4px; }
+    h1 span { font-size: 14px; font-weight: normal; color: #888; }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .card h3 { margin: 0 0 10px; font-size: 14px; color: #555; }
+
+    /* JSONプレビュー */
+    #jsonPreview {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      border-radius: 4px;
+      padding: 12px;
+      font-size: 12px;
+      font-family: monospace;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre;
+    }
+
+    /* ステータスバー */
+    #status {
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+    #status.idle    { background: #e8f0fe; color: #1967d2; }
+    #status.loading { background: #fff8e1; color: #f57f17; }
+    #status.ready   { background: #e6f4ea; color: #188038; }
+    #status.error   { background: #fce8e6; color: #c62828; }
+
+    /* APIキー */
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+
+    /* チャットエリア */
+    #chatLog {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 200px;
+      max-height: 450px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .chat-empty {
+      color: #aaa;
+      font-style: italic;
+      text-align: center;
+      margin: auto;
+    }
+    .message-wrap { display: flex; flex-direction: column; }
+    .message-wrap.user   { align-items: flex-end; }
+    .message-wrap.gemini { align-items: flex-start; }
+    .sender { font-size: 11px; font-weight: bold; margin-bottom: 3px; opacity: 0.6; }
+    .bubble {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .bubble.user    { background: #4285f4; color: white; border-bottom-right-radius: 4px; }
+    .bubble.gemini  { background: #f1f3f4; color: #333;  border-bottom-left-radius: 4px; }
+    .bubble.loading { background: #f1f3f4; color: #888;  border-bottom-left-radius: 4px; font-style: italic; }
+    .bubble.error   { background: #fce8e6; color: #c62828; border-bottom-left-radius: 4px; }
+
+    /* 入力エリア */
+    .input-row { display: flex; gap: 8px; }
+    .input-row textarea {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      resize: none;
+      height: 60px;
+      box-sizing: border-box;
+    }
+    .input-row textarea:disabled { background: #f5f5f5; }
+    .input-row button {
+      background: #4285f4;
+      color: white;
+      border: none;
+      padding: 0 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .input-row button:hover    { background: #3367d6; }
+    .input-row button:disabled { background: #aaa; cursor: not-allowed; }
+
+    .hint { font-size: 12px; color: #999; margin-top: 4px; }
+  </style>
+</head>
+<body>
+
+  <h1>Gemini JSON チャット <span>— sample.json に関する質問</span></h1>
+
+  <!-- APIキー -->
+  <div class="card">
+    <label for="apiKey">Gemini API キー</label>
+    <input type="password" id="apiKey" placeholder="AIza..." />
+  </div>
+
+  <!-- JSONファイル選択 -->
+  <div class="card">
+    <label>JSONファイルを選択（sample.json）</label>
+    <input type="file" id="jsonFile" accept=".json" onchange="onFileSelected(this)" />
+    <div id="jsonPreview" style="margin-top:10px;">（ファイルを選択してください）</div>
+  </div>
+
+  <!-- ステータス -->
+  <div id="status" class="idle">⏳ ファイルを選択して「AIに記憶させる」を押してください</div>
+
+  <button onclick="loadAndCache()" id="cacheBtn"
+          style="margin-bottom:16px; padding:10px 20px; background:#188038; color:white; border:none; border-radius:6px; cursor:pointer; font-size:14px;">
+    AIに記憶させる（キャッシュ作成）
+  </button>
+
+  <!-- チャット -->
+  <div id="chatLog">
+    <span class="chat-empty">AIに記憶させた後、質問を入力してください</span>
+  </div>
+
+  <div class="input-row">
+    <textarea id="userInput" placeholder="sample.json の内容について質問してください... (Ctrl+Enter で送信)" disabled
+              onkeydown="handleKey(event)"></textarea>
+    <button id="sendBtn" onclick="askGemini()" disabled>送信</button>
+  </div>
+  <p class="hint">Ctrl+Enter でも送信できます</p>
+
+  <script>
+    let cachedContentName = "";
+    let loadedJsonText = "";
+
+    // ファイル選択時にプレビュー表示
+    function onFileSelected(input) {
+      const file = input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target.result;
+        loadedJsonText = text;
+        const preview = document.getElementById("jsonPreview");
+        try {
+          preview.textContent = JSON.stringify(JSON.parse(text), null, 2);
+        } catch {
+          preview.textContent = text;
+        }
+        setStatus("idle", "⏳ ファイルを読み込みました。「AIに記憶させる」を押してください。");
+      };
+      reader.readAsText(file, "UTF-8");
+    }
+
+    // 読み込んだJSONをキャッシュとして Gemini に送付
+    async function loadAndCache() {
+      const apiKey = document.getElementById("apiKey").value.trim();
+      const statusEl = document.getElementById("status");
+      const cacheBtn = document.getElementById("cacheBtn");
+
+      if (!apiKey) { alert("APIキーを入力してください。"); return; }
+      if (!loadedJsonText) { alert("JSONファイルを選択してください。"); return; }
+
+      setStatus("loading", "⏳ AIに送付中...");
+      cacheBtn.disabled = true;
+
+      try {
+        const jsonText = loadedJsonText;
+
+        // Gemini キャッシュ API に送付
+        const cacheRes = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/cachedContents?key=${apiKey}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              model: "models/gemini-2.5-flash",
+              displayName: "sample_json_cache",
+              contents: [
+                {
+                  role: "user",
+                  parts: [{ text: `以下はsample.jsonの内容です。この内容を記憶し、後の質問に答えてください。\n\n${jsonText}` }]
+                }
+              ],
+              ttl: "3600s" // 1時間キャッシュ
+            })
+          }
+        );
+
+        const cacheData = await cacheRes.json();
+        if (!cacheRes.ok) throw new Error(cacheData.error?.message || `HTTP ${cacheRes.status}`);
+
+        cachedContentName = cacheData.name;
+
+        setStatus("ready", "✅ AIに記憶させました（1時間有効）。質問を入力してください。");
+        document.getElementById("userInput").disabled = false;
+        document.getElementById("sendBtn").disabled = false;
+
+      } catch (err) {
+        setStatus("error", `❌ エラー: ${err.message}`);
+        cacheBtn.disabled = false;
+      }
+    }
+
+    // キャッシュを使って質問に回答させる
+    async function askGemini() {
+      const prompt = document.getElementById("userInput").value.trim();
+      const sendBtn = document.getElementById("sendBtn");
+      const apiKey = document.getElementById("apiKey").value.trim();
+
+      if (!prompt) return;
+      if (!cachedContentName) { alert("先にAIに記憶させてください。"); return; }
+
+      appendMessage("user", "あなた", prompt);
+      document.getElementById("userInput").value = "";
+      sendBtn.disabled = true;
+
+      const loadingBubble = appendMessage("loading", "Gemini", "思考中...");
+
+      try {
+        const res = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [
+                {
+                  role: "user",
+                  parts: [{ text: prompt + "\n\n（※必ず記憶したsample.jsonの内容に基づいて回答してください。JSONにない情報は「記載がありません」と答えてください。）" }]
+                }
+              ],
+              cachedContent: cachedContentName
+            })
+          }
+        );
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error?.message || `HTTP ${res.status}`);
+
+        const reply = data.candidates[0].content.parts[0].text;
+        loadingBubble.className = "bubble gemini";
+        loadingBubble.innerText = reply;
+
+      } catch (err) {
+        loadingBubble.className = "bubble error";
+        loadingBubble.innerText = "エラー: " + err.message;
+      } finally {
+        sendBtn.disabled = false;
+        scrollToBottom();
+      }
+    }
+
+    // ---- ユーティリティ ----
+
+    function appendMessage(type, sender, text) {
+      const log = document.getElementById("chatLog");
+      const empty = log.querySelector(".chat-empty");
+      if (empty) empty.remove();
+
+      const wrap = document.createElement("div");
+      wrap.className = `message-wrap ${type === "user" ? "user" : "gemini"}`;
+
+      const senderEl = document.createElement("div");
+      senderEl.className = "sender";
+      senderEl.innerText = sender;
+
+      const bubble = document.createElement("div");
+      bubble.className = `bubble ${type}`;
+      bubble.innerText = text;
+
+      wrap.appendChild(senderEl);
+      wrap.appendChild(bubble);
+      log.appendChild(wrap);
+      scrollToBottom();
+      return bubble;
+    }
+
+    function scrollToBottom() {
+      const log = document.getElementById("chatLog");
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function setStatus(type, text) {
+      const el = document.getElementById("status");
+      el.className = type;
+      el.textContent = text;
+    }
+
+    function handleKey(e) {
+      if (e.key === "Enter" && e.ctrlKey) {
+        e.preventDefault();
+        askGemini();
+      }
+    }
+  </script>
+</body>
+</html>
