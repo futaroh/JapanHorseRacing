@@ -24,7 +24,6 @@
     }
     .card h3 { margin: 0 0 10px; font-size: 14px; color: #555; }
 
-    /* JSONプレビュー */
     #jsonPreview {
       background: #1e1e1e;
       color: #d4d4d4;
@@ -37,7 +36,6 @@
       white-space: pre;
     }
 
-    /* ステータスバー */
     #status {
       padding: 8px 12px;
       border-radius: 4px;
@@ -50,8 +48,7 @@
     #status.ready   { background: #e6f4ea; color: #188038; }
     #status.error   { background: #fce8e6; color: #c62828; }
 
-    /* APIキー */
-    input[type="text"], input[type="password"] {
+    input[type="password"] {
       width: 100%;
       padding: 8px;
       border: 1px solid #ccc;
@@ -61,7 +58,6 @@
     }
     label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 4px; }
 
-    /* チャットエリア */
     #chatLog {
       background: white;
       border: 1px solid #ddd;
@@ -99,7 +95,6 @@
     .bubble.loading { background: #f1f3f4; color: #888;  border-bottom-left-radius: 4px; font-style: italic; }
     .bubble.error   { background: #fce8e6; color: #c62828; border-bottom-left-radius: 4px; }
 
-    /* 入力エリア */
     .input-row { display: flex; gap: 8px; }
     .input-row textarea {
       flex: 1;
@@ -132,29 +127,20 @@
 
   <h1>Gemini JSON チャット <span>— sample.json に関する質問</span></h1>
 
-  <!-- APIキー -->
   <div class="card">
     <label for="apiKey">Gemini API キー</label>
     <input type="password" id="apiKey" placeholder="AIza..." />
   </div>
 
-  <!-- JSONプレビュー -->
   <div class="card">
     <h3>読み込み済みファイル：<code>sample.json</code></h3>
     <div id="jsonPreview">（読み込み中...）</div>
   </div>
 
-  <!-- ステータス -->
-  <div id="status" class="idle">⏳ 「AIに記憶させる」ボタンを押してください</div>
+  <div id="status" class="idle">⏳ sample.json を読み込み中...</div>
 
-  <button onclick="loadAndCache()" id="cacheBtn"
-          style="margin-bottom:16px; padding:10px 20px; background:#188038; color:white; border:none; border-radius:6px; cursor:pointer; font-size:14px;">
-    AIに記憶させる（キャッシュ作成）
-  </button>
-
-  <!-- チャット -->
   <div id="chatLog">
-    <span class="chat-empty">AIに記憶させた後、質問を入力してください</span>
+    <span class="chat-empty">質問を入力してください</span>
   </div>
 
   <div class="input-row">
@@ -165,10 +151,9 @@
   <p class="hint">Ctrl+Enter でも送信できます</p>
 
   <script>
-    let cachedContentName = "";
     let loadedJsonText = "";
 
-    // ページ読み込み時に sample.json を自動取得してプレビュー表示
+    // ページ読み込み時に sample.json を自動取得
     window.addEventListener("DOMContentLoaded", async () => {
       const preview = document.getElementById("jsonPreview");
       try {
@@ -181,76 +166,32 @@
         } catch {
           preview.textContent = text;
         }
-        setStatus("idle", "⏳ sample.json を読み込みました。「AIに記憶させる」を押してください。");
+        setStatus("ready", "✅ sample.json を読み込みました。質問を入力してください。");
+        document.getElementById("userInput").disabled = false;
+        document.getElementById("sendBtn").disabled = false;
       } catch (err) {
         preview.textContent = `⚠ sample.json の読み込みに失敗しました: ${err.message}`;
         setStatus("error", "❌ sample.json が見つかりません");
       }
     });
 
-    // sample.json をキャッシュとして Gemini に送付
-    async function loadAndCache() {
-      const apiKey = document.getElementById("apiKey").value.trim();
-      const cacheBtn = document.getElementById("cacheBtn");
-
-      if (!apiKey) { alert("APIキーを入力してください。"); return; }
-      if (!loadedJsonText) { alert("sample.json がまだ読み込まれていません。"); return; }
-
-      setStatus("loading", "⏳ AIに送付中...");
-      cacheBtn.disabled = true;
-
-      try {
-        const jsonText = loadedJsonText;
-
-        // Gemini キャッシュ API に送付
-        const cacheRes = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/cachedContents?key=${apiKey}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              model: "models/gemini-2.5-flash",
-              displayName: "sample_json_cache",
-              contents: [
-                {
-                  role: "user",
-                  parts: [{ text: `以下はsample.jsonの内容です。この内容を記憶し、後の質問に答えてください。\n\n${jsonText}` }]
-                }
-              ],
-              ttl: "3600s" // 1時間キャッシュ
-            })
-          }
-        );
-
-        const cacheData = await cacheRes.json();
-        if (!cacheRes.ok) throw new Error(cacheData.error?.message || `HTTP ${cacheRes.status}`);
-
-        cachedContentName = cacheData.name;
-
-        setStatus("ready", "✅ AIに記憶させました（1時間有効）。質問を入力してください。");
-        document.getElementById("userInput").disabled = false;
-        document.getElementById("sendBtn").disabled = false;
-
-      } catch (err) {
-        setStatus("error", `❌ エラー: ${err.message}`);
-        cacheBtn.disabled = false;
-      }
-    }
-
-    // キャッシュを使って質問に回答させる
+    // 質問のたびに JSON + 質問をまとめて送信
     async function askGemini() {
       const prompt = document.getElementById("userInput").value.trim();
-      const sendBtn = document.getElementById("sendBtn");
       const apiKey = document.getElementById("apiKey").value.trim();
+      const sendBtn = document.getElementById("sendBtn");
 
+      if (!apiKey) { alert("APIキーを入力してください。"); return; }
       if (!prompt) return;
-      if (!cachedContentName) { alert("先にAIに記憶させてください。"); return; }
+      if (!loadedJsonText) { alert("sample.json がまだ読み込まれていません。"); return; }
 
       appendMessage("user", "あなた", prompt);
       document.getElementById("userInput").value = "";
       sendBtn.disabled = true;
 
       const loadingBubble = appendMessage("loading", "Gemini", "思考中...");
+
+      const combinedText = `【参照資料: sample.json】\n${loadedJsonText}\n\n【質問】\n${prompt}`;
 
       try {
         const res = await fetch(
@@ -259,13 +200,12 @@
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              contents: [
-                {
-                  role: "user",
-                  parts: [{ text: prompt + "\n\n（※必ず記憶したsample.jsonの内容に基づいて回答してください。JSONにない情報は「記載がありません」と答えてください。）" }]
-                }
-              ],
-              cachedContent: cachedContentName
+              systemInstruction: {
+                parts: [{ text: "あなたは提供された資料に基づいてのみ回答するアシスタントです。資料に記載のない情報については「資料に記載がありません」と答え、推測で答えないでください。" }]
+              },
+              contents: [{
+                parts: [{ text: combinedText }]
+              }]
             })
           }
         );
@@ -285,8 +225,6 @@
         scrollToBottom();
       }
     }
-
-    // ---- ユーティリティ ----
 
     function appendMessage(type, sender, text) {
       const log = document.getElementById("chatLog");
