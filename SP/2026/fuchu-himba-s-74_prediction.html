@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <!-- Google tag (gtag.js) -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DBH9FN7S59"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -1117,6 +1118,23 @@
   .bubble.loading { background: #f1f3f4; color: #888; font-style: italic; border-bottom-left-radius: 4px; }
   .bubble.error   { background: #fce8e6; color: #c62828; border-bottom-left-radius: 4px; }
 
+  /* Markdownレンダリング */
+  .bubble.ai p          { margin: 0 0 8px; }
+  .bubble.ai p:last-child { margin-bottom: 0; }
+  .bubble.ai strong     { font-weight: bold; color: #1a4fa0; }
+  .bubble.ai em         { font-style: italic; }
+  .bubble.ai h1, .bubble.ai h2, .bubble.ai h3 {
+    font-size: 0.95em; font-weight: bold; color: #1a4fa0;
+    margin: 10px 0 4px; border-bottom: 1px solid #bfdbfe; padding-bottom: 2px;
+  }
+  .bubble.ai ul, .bubble.ai ol { margin: 4px 0 8px 16px; padding: 0; }
+  .bubble.ai li         { margin-bottom: 3px; }
+  .bubble.ai code       {
+    background: #dbeafe; color: #1e40af; border-radius: 3px;
+    padding: 1px 5px; font-size: 0.9em; font-family: monospace;
+  }
+  .bubble.ai hr         { border: none; border-top: 1px solid #bfdbfe; margin: 8px 0; }
+
 
   #ai-chat-input-row {
     padding: 10px 12px 14px;
@@ -1220,7 +1238,7 @@
         loadingBubble.innerText = `エラー(${res.status}): ${data.error || 'APIリクエスト失敗'}`;
       } else {
         loadingBubble.className = 'bubble ai';
-        loadingBubble.innerText = data.reply || '（返答なし）';
+        loadingBubble.innerHTML = marked.parse(data.reply || '（返答なし）');
       }
     } catch (e) {
       loadingBubble.className = 'bubble error';
