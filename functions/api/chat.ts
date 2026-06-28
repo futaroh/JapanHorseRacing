@@ -5,6 +5,7 @@ interface Env {
 interface ChatRequest {
   prompt: string;
   source: string;
+  general: string;
 }
 
 export const onRequestPost: PagesFunction<Env> = async (ctx) => {
@@ -20,12 +21,12 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     return Response.json({ error: "リクエスト形式が不正です" }, { status: 400 });
   }
 
-  const { prompt, source } = body;
-  if (!prompt || !source) {
-    return Response.json({ error: "prompt と source は必須です" }, { status: 400 });
+  const { prompt, source, general } = body;
+  if (!prompt || !source || !general) {
+    return Response.json({ error: "prompt・source・general はすべて必須です" }, { status: 400 });
   }
 
-  const combinedText = `【参照資料: sample.json】\n${source}\n\n【質問】\n${prompt}`;
+  const combinedText = `【参照資料1: sample.json】\n${source}\n\n【参照資料2: general.json】\n${general}\n\n【質問】\n${prompt}`;
 
   const geminiRes = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,

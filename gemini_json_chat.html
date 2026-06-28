@@ -125,14 +125,19 @@
 </head>
 <body>
 
-  <h1>Gemini JSON チャット <span>— sample.json に関する質問</span></h1>
+  <h1>Gemini JSON チャット <span>— sample.json / general.json に関する質問</span></h1>
 
   <div class="card">
     <h3>読み込み済みファイル：<code>sample.json</code></h3>
     <div id="jsonPreview">（読み込み中...）</div>
   </div>
 
-  <div id="status" class="idle">⏳ sample.json を読み込み中...</div>
+  <div class="card">
+    <h3>読み込み済みファイル：<code>general.json</code></h3>
+    <div id="generalPreview">（読み込み中...）</div>
+  </div>
+
+  <div id="status" class="idle">⏳ ファイルを読み込み中...</div>
 
   <div id="chatLog">
     <span class="chat-empty">質問を入力してください</span>
@@ -146,27 +151,48 @@
   <p class="hint">Ctrl+Enter でも送信できます</p>
 
   <script>
-    let loadedJsonText = "";
+    let loadedSampleText = "";
+    let loadedGeneralText = "";
 
-    // ページ読み込み時に sample.json を自動取得
-    window.addEventListener("DOMContentLoaded", async () => {
-      const preview = document.getElementById("jsonPreview");
+    // JSONをプレビュー要素に表示するヘルパー
+    function showPreview(el, text) {
       try {
-        const res = await fetch("sample.json");
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const text = await res.text();
-        loadedJsonText = text;
-        try {
-          preview.textContent = JSON.stringify(JSON.parse(text), null, 2);
-        } catch {
-          preview.textContent = text;
-        }
-        setStatus("ready", "✅ sample.json を読み込みました。質問を入力してください。");
+        el.textContent = JSON.stringify(JSON.parse(text), null, 2);
+      } catch {
+        el.textContent = text;
+      }
+    }
+
+    // ページ読み込み時に両ファイルを並行取得
+    window.addEventListener("DOMContentLoaded", async () => {
+      const samplePreview  = document.getElementById("jsonPreview");
+      const generalPreview = document.getElementById("generalPreview");
+
+      try {
+        const [sampleRes, generalRes] = await Promise.all([
+          fetch("sample.json"),
+          fetch("general.json"),
+        ]);
+
+        if (!sampleRes.ok)  throw new Error(`sample.json: HTTP ${sampleRes.status}`);
+        if (!generalRes.ok) throw new Error(`general.json: HTTP ${generalRes.status}`);
+
+        const [sampleText, generalText] = await Promise.all([
+          sampleRes.text(),
+          generalRes.text(),
+        ]);
+
+        loadedSampleText  = sampleText;
+        loadedGeneralText = generalText;
+
+        showPreview(samplePreview,  sampleText);
+        showPreview(generalPreview, generalText);
+
+        setStatus("ready", "✅ 2ファイルを読み込みました。質問を入力してください。");
         document.getElementById("userInput").disabled = false;
         document.getElementById("sendBtn").disabled = false;
       } catch (err) {
-        preview.textContent = `⚠ sample.json の読み込みに失敗しました: ${err.message}`;
-        setStatus("error", "❌ sample.json が見つかりません");
+        setStatus("error", `❌ 読み込み失敗: ${err.message}`);
       }
     });
 
@@ -176,7 +202,7 @@
       const sendBtn = document.getElementById("sendBtn");
 
       if (!prompt) return;
-      if (!loadedJsonText) { alert("sample.json がまだ読み込まれていません。"); return; }
+      if (!loadedSampleText || !loadedGeneralText) { alert("ファイルがまだ読み込まれていません。"); return; }
 
       appendMessage("user", "あなた", prompt);
       document.getElementById("userInput").value = "";
@@ -188,7 +214,7 @@
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt, source: loadedJsonText })
+          body: JSON.stringify({ prompt, source: loadedSampleText, general: loadedGeneralText })
         });
 
         const data = await res.json();
