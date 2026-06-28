@@ -32,7 +32,7 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         systemInstruction: {
-          parts: [{ text: `あなたは競馬AI予想アシスタントです。以下のレース情報をもとに、競馬初心者にもわかりやすく日本語で答えてください。\n\n${context}` }]
+          parts: [{ text: `あなたは競馬AI予想アシスタントです。**必ず以下の「提供データ」の範囲内のみで回答してください。**データに記載のない情報（他のレース、他の馬、推測・予測など）は一切使用せず、「提供データには記載がありません」と答えてください。競馬初心者にもわかりやすく、簡潔な日本語で答えてください。\n\n【提供データ】\n${context}` }]
         },
         contents: [{
           parts: [{ text: prompt }]
