@@ -128,11 +128,6 @@
   <h1>Gemini JSON チャット <span>— sample.json に関する質問</span></h1>
 
   <div class="card">
-    <label for="apiKey">Gemini API キー</label>
-    <input type="password" id="apiKey" placeholder="AIza..." />
-  </div>
-
-  <div class="card">
     <h3>読み込み済みファイル：<code>sample.json</code></h3>
     <div id="jsonPreview">（読み込み中...）</div>
   </div>
@@ -175,13 +170,11 @@
       }
     });
 
-    // 質問のたびに JSON + 質問をまとめて送信
+    // 質問のたびに /api/chat へ送信（APIキーはサーバー側で管理）
     async function askGemini() {
       const prompt = document.getElementById("userInput").value.trim();
-      const apiKey = document.getElementById("apiKey").value.trim();
       const sendBtn = document.getElementById("sendBtn");
 
-      if (!apiKey) { alert("APIキーを入力してください。"); return; }
       if (!prompt) return;
       if (!loadedJsonText) { alert("sample.json がまだ読み込まれていません。"); return; }
 
@@ -191,31 +184,18 @@
 
       const loadingBubble = appendMessage("loading", "Gemini", "思考中...");
 
-      const combinedText = `【参照資料: sample.json】\n${loadedJsonText}\n\n【質問】\n${prompt}`;
-
       try {
-        const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              systemInstruction: {
-                parts: [{ text: "あなたは提供された資料に基づいてのみ回答するアシスタントです。資料に記載のない情報については「資料に記載がありません」と答え、推測で答えないでください。" }]
-              },
-              contents: [{
-                parts: [{ text: combinedText }]
-              }]
-            })
-          }
-        );
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt, source: loadedJsonText })
+        });
 
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error?.message || `HTTP ${res.status}`);
+        if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
 
-        const reply = data.candidates[0].content.parts[0].text;
         loadingBubble.className = "bubble gemini";
-        loadingBubble.innerText = reply;
+        loadingBubble.innerText = data.reply;
 
       } catch (err) {
         loadingBubble.className = "bubble error";
