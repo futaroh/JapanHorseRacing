@@ -1061,6 +1061,7 @@
 <style>
   #ai-chat-btn {
     position: fixed; bottom: 24px; right: 20px; z-index: 1000;
+    display: none;
     background: linear-gradient(135deg, #1a4fa0, #3b82f6);
     color: white; border: none; border-radius: 50px;
     padding: 14px 20px; font-size: 1em; font-weight: bold;
@@ -1195,6 +1196,7 @@
       raceContext = await res.text();
       sendBtn.disabled = false;
       input.disabled   = false;
+      document.getElementById('ai-chat-btn').style.display = 'flex';
     } catch (e) {
       appendMessage('AI', `予想データの読み込みに失敗しました: ${e.message}`, 'error');
     }
