@@ -125,10 +125,10 @@
 </head>
 <body>
 
-  <h1>Gemini JSON チャット <span>— sample.json / general.json に関する質問</span></h1>
+  <h1>Gemini JSON チャット <span>— 第74回府中牝馬ステークス</span></h1>
 
   <div class="card">
-    <h3>読み込み済みファイル：<code>sample.json</code></h3>
+    <h3>読み込み済みファイル：<code>data/2026/20260621.第74回府中牝馬ステークス_予想レポート.json</code></h3>
     <div id="jsonPreview">（読み込み中...）</div>
   </div>
 
@@ -170,7 +170,7 @@
 
       try {
         const [sampleRes, generalRes] = await Promise.all([
-          fetch("sample.json"),
+          fetch("data/2026/20260621.第74回府中牝馬ステークス_予想レポート.json"),
           fetch("general.json"),
         ]);
 

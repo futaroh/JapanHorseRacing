@@ -26,7 +26,7 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     return Response.json({ error: "prompt・source・general はすべて必須です" }, { status: 400 });
   }
 
-  const combinedText = `【参照資料1: sample.json】\n${source}\n\n【参照資料2: general.json】\n${general}\n\n【質問】\n${prompt}`;
+  const combinedText = `【参照資料1: 予想レポート】\n${source}\n\n【参照資料2: 競馬用語解説】\n${general}\n\n【質問】\n${prompt}`;
 
   const geminiRes = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
